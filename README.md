@@ -4,4 +4,4 @@ FOLLOW THESE STEPS:
 2. cd que-front
 3. cd que
 4. NPM install
-5. npm start //to start the Website
+5. npm start //to start the website
