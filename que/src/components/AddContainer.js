@@ -15,13 +15,13 @@ const AddContainer = () => {
           <h1  className='text-blue text-2xl font-medium select-none'>I'm a ________ .</h1>
           </div>
           <div className='flex justify-evenly '>
-            <div className=' text-white font-bold py-2 mt-4 rounded-2xl hover:opacity-70 bg-blue w-[100px] flex justify-center'>
+            <div className=' text-white font-bold py-2 mt-4 rounded-2xl hover:cursor-pointer hover:opacity-70 bg-blue w-[100px] flex justify-center'>
             <Button 
             buttonName = "Guest"
             type= "submit"
             />
             </div>
-            <div className='text-white font-bold py-2 mt-4 rounded-2xl hover:opacity-70 bg-blue w-[100px] flex justify-center'>
+            <div className='text-white font-bold py-2 mt-4 rounded-2xl hover:cursor-pointer hover:opacity-70 bg-blue w-[100px] flex justify-center'>
             <Button 
             buttonName = "Student"
             type= "submit"

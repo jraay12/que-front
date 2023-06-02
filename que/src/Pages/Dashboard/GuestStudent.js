@@ -6,32 +6,25 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import { BsQrCodeScan } from 'react-icons/bs'
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import AddContainer from '../../components/AddContainer'
+import QrContainer from '../../components/QrContainer'
+import code from "../../images/qrcode.png"
 
 const GuestStudent = () => {
-  const [qrOpen, setqrOpen] = useState(() => {
-    return false
-  })
-   const [openModal , setopenModal] = useState(() => {
-    return false
-   })
+  const qrOpen = false
+
+  const openModal = false
   const navigate = useNavigate()
 
-  const toggleOpen = () => {
-    setqrOpen(!qrOpen)
-  }
   
-  const Modal = () => {
-    setopenModal(true)
-    
-  }
+
   return (
       <div className='flex flex-col min-h-screen bg-background object-cover w-screen bg-black'>
         <div className='flex justify-evenly md:justify-end w-screen h-14'>
           <div className='text-white flex justify-center gap-28 md:gap-10 items-center mx-10 font-semibold'>
             <div className='flex flex-col items-center leading-3 text-2xl hover:cursor-pointer' > 
-            <div className='flex' onClick={toggleOpen}>
+            <div className='flex' onClick={() => navigate("/Dashboard/QrCode")}>
               <BsQrCodeScan />
-              {qrOpen ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowUp />}
+              {qrOpen ? <MdOutlineKeyboardArrowDown />: <MdOutlineKeyboardArrowUp />}
             </div>
             <p className='text-[10px] font-normal select-none	'>Generate QR code</p>
             </div>
@@ -44,7 +37,7 @@ const GuestStudent = () => {
           </div>
         </div>
         <hr />
-        <div className='flex flex-col justify-evenly mx-7 items-center mt-16 md:flex-row sm:gap-10'>
+        <div className="flex flex-col justify-evenly mx-7 items-center mt-16 md:flex-row sm:gap-10">
           {SampleData.map((item, index) => (
            <Container 
            key = {index}
@@ -57,9 +50,11 @@ const GuestStudent = () => {
           
         </div>
         
-        {openModal && <AddContainer />}
+        {openModal && <AddContainer />} 
+        {qrOpen && <QrContainer/>}
         <Outlet />
       </div>
+      
     
   )
 }
