@@ -3,7 +3,7 @@ import React from 'react'
 
 const Container = (props) => {
   return (
-    <div className='w-72 bg-white text-blue bg-opacity-50 h-96 rounded-lg flex gap-10 flex-col items-center text-left justify-center'>
+    <div className='w-72 bg-white text-blue bg-opacity-50 h-96 rounded-lg flex gap-10 flex-col items-center text-left pt-5 hover:cursor-pointer' onClick={props.onClick}>
         <img src={props.image}/>
         <div className='flex flex-col justify-start'>
         <h1 className='font-bold text-lg '>{props.name}</h1>
