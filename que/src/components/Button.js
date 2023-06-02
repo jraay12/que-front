@@ -3,8 +3,7 @@ import React from 'react'
 const Button = (props) => {
   return (
     <>
-         <button type={props.type} placeholder={props.placeholder}>{props.buttonName} </button>
-    
+      <button type={props.type}  onClick={props.onClick} >{props.buttonName} </button>
     </>
   )
 }
