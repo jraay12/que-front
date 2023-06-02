@@ -25,9 +25,9 @@ const GuestStudent = () => {
     
   }
   return (
-      <div className='flex flex-col min-h-screen bg-background object-cover w-screen bg-black'>
+      <div className='flex flex-col min-h-screen bg-background object-cover w-screen  bg-black'>
         <div className='flex justify-end w-screen h-14' >
-          <div className='text-white flex justify-center  gap-5 items-center mx-10 font-semibold'>
+          <div className='text-white flex justify-center gap-5 items-center mx-10 font-semibold'>
             <div className='flex flex-col items-center leading-3 text-2xl hover:cursor-pointer' > 
             <div className='flex' onClick={toggleOpen}>
               <BsQrCodeScan />
