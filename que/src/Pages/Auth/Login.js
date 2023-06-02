@@ -20,7 +20,7 @@ const Login = () => {
             type= "password"
             placeholder = "password"
            />
-           </div>
+            </div>
 
           </div>
         </div>
