@@ -5,7 +5,7 @@ const Login = () => {
   return (
    <div className='h-screen w-screen'>
     <div className='flex'>
-      <div className='h-screen w-[60%] bg-background bg-black'></div>
+      <div className='h-screen w-[60%] bg-background bg-black rounded-r-3xl'></div>
       <div className='h-screen w-[50%] flex justify-center items-center'>
         <div className='min-h-[80%] w-[70%]'> 
           <div className='flex flex-col items-center gap-16'>

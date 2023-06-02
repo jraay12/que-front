@@ -10,7 +10,13 @@ module.exports = {
       }, 
      colors: {
       "blue" : "#05046A"
-     }
+     },
+     screens: {
+      'sm': '320px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1440px',
+      }
     },
 
   },
