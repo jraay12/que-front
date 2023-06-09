@@ -1,7 +1,7 @@
 import React from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 import Button from './Button'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const AddContainer = () => {
 
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ const AddContainer = () => {
           <h1  className='text-blue text-2xl font-bold select-none'>Add Queue</h1>
           <h1  className='text-blue text-2xl font-medium select-none'>I'm a ________ .</h1>
           </div>
-          <div className='flex justify-evenly mt-10 mb-10'>
-            <div className=' text-white font-bold py-2 mt-4 rounded-2xl hover:cursor-pointer hover:opacity-70 bg-blue w-[100px] flex justify-center'>
+          <div className='flex justify-evenly mt-10'>
+            <div className=' text-white font-bold   mt-4 rounded-full hover:cursor-pointer hover:opacity-70 bg-blue w-[100px] flex justify-center'>
             <Button 
             buttonName = "Guest"
             type= "submit"
@@ -25,7 +25,7 @@ const AddContainer = () => {
             
             />
             </div>
-            <div className='text-white font-bold py-2 mt-4 rounded-2xl hover:cursor-pointer hover:opacity-70 bg-blue w-[100px] flex justify-center'>
+            <div className='text-white font-bold mt-4 rounded-full hover:cursor-pointer hover:opacity-70 bg-blue w-[100px] flex justify-center'>
             <Button 
             buttonName = "Student"
             type= "submit"
@@ -36,7 +36,7 @@ const AddContainer = () => {
 
           </div>
         </div>
-        <Outlet />
+        
     </div>
    
   )
