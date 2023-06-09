@@ -8,7 +8,7 @@ const AddQueFormGuest = () => {
     const navigate = useNavigate()
     
   return (
-    <div className='flex justify-center items-center w-screen h-screen backdrop-blur-lg absolute '>
+    <div className='flex justify-center items-center w-screen h-screen bg-background backdrop-blur-lg absolute '>
         <div className='container bg-slate-300 flex flex-col xxl:h-[40%] shadow-2xl drop-shadow-2xl h-[80%] xl:h-[65%] w-[40%] xxl:w-[30%] rounded-3xl'>
             <div className='flex mt-10 items-center flex-col'>
                 <h1 className='font-extrabold md:text-lg lg:text-2xl xl:text-4xl'>Add Queue</h1>

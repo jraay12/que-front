@@ -1,7 +1,7 @@
 import React from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 import Button from './Button'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const AddContainer = () => {
 
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const AddContainer = () => {
 
           </div>
         </div>
-        <Outlet />
+        
     </div>
    
   )
