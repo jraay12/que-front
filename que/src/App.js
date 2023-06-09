@@ -13,14 +13,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/Dashboard" />} />
         <Route path="/Dashboard" element={<GuestStudent />}>
-          <Route path="AddQue" element={<AddContainer />} >
-            <Route path="Student" element={< AddQueFormStudent/>} />
-            <Route path="Guest" element={< AddQueFormGuest/>} />
-
-          </Route>
-          <Route path="QrCode" element={<QrContainer />} />
-           
+          <Route path="QrCode" element={<QrContainer />} />  
+          <Route path="AddQue" element={<AddContainer />} />  
         </Route>
+        <Route path="/Dashboard/AddQue/Student" element={< AddQueFormStudent/>} />
+        <Route path="/Dashboard/AddQue/Guest" element={< AddQueFormGuest/>} />
+        
         <Route path="/Faculty" element={<Faculty/>}/>
         <Route path="/Login" element={<Login/>} />
       </Routes>
