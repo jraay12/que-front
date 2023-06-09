@@ -9,7 +9,7 @@ const AddQueFormStudent = () => {
     
   return (
     <div className='flex justify-center items-center w-screen h-screen backdrop-blur-lg absolute '>
-        <div className='container bg-slate-300 flex flex-col xxl:h-3/6 shadow-2xl drop-shadow-2xl xxl:w-[30%] h-[90%] xl:h-[80%] w-[40%] rounded-3xl'>
+        <div className='container bg-slate-300 flex flex-col xxl:h-3/6 shadow-2xl drop-shadow-2xl xxl:w-[30%] h-[90%] xl:h-[70%] w-[40%] rounded-3xl'>
             <div className='flex mt-10 items-center flex-col'>
                 <h1 className='font-extrabold md:text-lg lg:text-2xl xl:text-4xl '>Add Queue</h1>
             </div>
@@ -38,13 +38,13 @@ const AddQueFormStudent = () => {
                 />
             </div>
             <div className='flex justify-evenly gap-4 leading-none -mt-10 xxl:mt-10'>
-            <div className='bg-blue hover:bg-red-600 text-white px-10 py-4 rounded-full'>
+            <div className='bg-blue hover:bg-red-600 text-white w-[100px] rounded-2xl'>
                     <Button 
                     buttonName = "Cancel"
                     onClick = {() => navigate("/Dashboard")}
                     />
                 </div>
-                <div className='bg-blue text-white px-10 py-4 rounded-full'>
+                <div className='bg-blue text-white w-[100px] rounded-2xl'>
                     <Button 
                     buttonName = "Submit"
                     />
