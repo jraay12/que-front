@@ -18,7 +18,7 @@ const GuestStudent = () => {
   
 
   return (
-      <div className='flex flex-col min-h-screen bg-background bg-cover bg-no-repeat w-screen'>
+      <div className='flex flex-col min-h-screen max-h-screen bg-background bg-cover bg-no-repeat w-screen'>
         <div className='flex justify-evenly md:justify-end w-screen h-14 '>
           <div className='text-white flex justify-center gap-28 md:gap-10 items-center mx-10 font-semibold'>
             <div className='flex flex-col items-center leading-3 text-2xl hover:cursor-pointer' > 
@@ -37,7 +37,7 @@ const GuestStudent = () => {
           </div>
         </div>
         <hr />
-        <div className="flex flex-col justify-evenly mx-7 items-center mt-16 md:flex-row sm:gap-10">
+        <div className="flex flex-col mx-7 h-screen mt-16 md:flex-row sm:gap-10 md:justify-evenly items-center">
           {SampleData.map((item, index) => (
            <Container 
            key = {index}
