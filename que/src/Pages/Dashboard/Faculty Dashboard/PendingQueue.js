@@ -1,7 +1,7 @@
 import React from "react";
 import { currentData } from "../../../SampleData/SampleData";
 import { Outlet, useNavigate } from "react-router-dom";
-const CurrentQue = () => {
+const PendingQueue = () => {
 
   const navigate = useNavigate()
   return (
@@ -34,4 +34,4 @@ const CurrentQue = () => {
   );
 };
 
-export default CurrentQue;
+export default PendingQueue;

@@ -5,7 +5,7 @@ import AddContainer from "./components/AddContainer";
 import QrContainer from "./components/QrContainer";
 import AddQueFormStudent from "./components/AddQueFormStudent";
 import AddQueFormGuest from "./components/AddQueFormGuest";
-import CurrentQue from "./Pages/Dashboard/Faculty Dashboard/CurrentQue";
+import PendingQueue from "./Pages/Dashboard/Faculty Dashboard/PendingQueue";
 import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
 import InformationCard from "./components/InformationCard";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -29,7 +29,7 @@ function App() {
         <Route path="/Dashboard/AddQue/Guest" element={<AddQueFormGuest />} />
 
         <Route path="/Faculty" element={<Faculty />}>
-          <Route path="PendingQueue" element={<CurrentQue />}>
+          <Route path="PendingQueue" element={<PendingQueue />}>
             <Route path="Information" element={<InformationCard />} />
           </Route>
           <Route path="QueueHistory" element={<QueHistory />} />

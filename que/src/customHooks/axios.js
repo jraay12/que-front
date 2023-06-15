@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Query, useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 //For Login
 const facultyLogin = (credentials) => {
