@@ -31,14 +31,14 @@ const AddQueFormGuest = () => {
                 
                 />
             </div>
-            <div className='flex justify-evenly gap-4'>
-            <div className='bg-blue hover:bg-red-600 text-white rounded-full'>
+            <div className='flex justify-evenly gap-4 '>
+            <div className='bg-blue hover:bg-red-600 text-white rounded-2xl'>
                     <Button 
                     buttonName = "Cancel"
                     onClick = {() => navigate("/Dashboard")}
                     />
                 </div>
-                <div className='bg-blue text-white rounded-full'>
+                <div className='bg-blue text-white rounded-2xl'>
                     <Button 
                     buttonName = "Submit"
                     />
