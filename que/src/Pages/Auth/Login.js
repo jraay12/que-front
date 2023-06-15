@@ -18,7 +18,7 @@ const Login = () => {
     mutate(credentials, {
       onSuccess: () => {
         console.log("Success");
-        navigate("/Faculty/CurrentQue");
+        navigate("/Faculty/PendingQueue");
       },
       onError: (error) => {
         console.error(error);

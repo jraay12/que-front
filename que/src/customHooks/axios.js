@@ -20,3 +20,14 @@ const dashboardQuery = async() => {
 export const GetFaculty = () => {
     return useQuery(['faculty'], dashboardQuery)
 }
+
+
+//For Pending Data
+const pendingQuery = async() => {
+    const value = await axios.get('https://ustp-queueing-system.onrender.com/queue/pending')
+    return value.data
+}
+
+export const GetPending = () => {
+    return useQuery(['pending'], pendingQuery)
+}
