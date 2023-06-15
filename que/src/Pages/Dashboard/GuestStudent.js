@@ -20,7 +20,7 @@ const GuestStudent = () => {
   const navigate = useNavigate();
 
   const { data: getUser } = GetFaculty();
-  
+  console.log(getUser)
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-background bg-cover bg-no-repeat w-screen">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 bg-yellow-400 ">

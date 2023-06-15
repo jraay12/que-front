@@ -30,7 +30,7 @@ function App() {
 
         <Route path="/Faculty" element={<Faculty />}>
           <Route path="PendingQueue" element={<PendingQueue />}>
-            <Route path="Information" element={<InformationCard />} />
+            <Route path="Information/:name" element={<InformationCard />} />
           </Route>
           <Route path="QueueHistory" element={<QueHistory />} />
         </Route>
