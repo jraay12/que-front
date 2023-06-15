@@ -2,9 +2,9 @@ import React from 'react'
 
 const Input = (props) => {
   return (
-    <div className='flex flex-col gap-2 w-screen'>
+    <div className='flex flex-col gap-2'>
       <label className='font-serif text-xl md:text-[12px] leading-3 xxl:text-2xl'>{props.label}</label>
-        <input className="rounded-3xl px-2 py-3" placeholder={props.placeholder} type={props.type} onChange={props.onChange}>{props.name}</input>
+        <input className="rounded-3xl px-2 py-3 border-2 border-black" placeholder={props.placeholder} type={props.type} onChange={props.onChange}>{props.name}</input>
         
     </div>
   )
