@@ -25,7 +25,7 @@ const AddContainer = () => {
             
             />
             </div>
-            <div className='text-white font-bold mt-4 rounded-full hover:cursor-pointer hover:opacity-70 bg-blue w-[100px] flex justify-center'>
+            <div className='text-white font-bold mt-4 rounded-full hover:cursor-pointer hover:opacity-70 h-16 bg-blue w-[100px] flex justify-center'>
             <Button 
             buttonName = "Student"
             type= "submit"
