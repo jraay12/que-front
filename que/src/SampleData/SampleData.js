@@ -21,5 +21,33 @@
 
     ] 
 
+export const currentData = [
+    {
+        "Queue": "Q#1",
+        "Identity" : "Student",
+        "Name" : "Juan De La Cruz",
+        "Purpose" : "Grade Consulatiton"
+    },
+    {
+        "Queue": "Q#2",
+        "Identity" : "Guest",
+        "Name" : "Mark Louie",
+        "Purpose" : "Transfer Requirement"
+    },
+    {
+        "Queue": "Q#3",
+        "Identity" : "Student",
+        "Name" : "Sean Joshua Radaza",
+        "Purpose" : "Capston Consultation"
+    },
+    {
+        "Queue": "Q#4",
+        "Identity" : "Student",
+        "Name" : "Rj Senining",
+        "Purpose" : "Course Consultation"
+    },
+    
+    
+]
 
     export default data

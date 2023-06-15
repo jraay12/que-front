@@ -5,7 +5,9 @@ import AddContainer from "./components/AddContainer";
 import QrContainer from "./components/QrContainer";
 import AddQueFormStudent from "./components/AddQueFormStudent";
 import AddQueFormGuest from "./components/AddQueFormGuest";
-import {Routes, Route, Navigate } from "react-router-dom";
+import CurrentQue from "./Pages/Dashboard/Faculty Dashboard/CurrentQue";
+import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
@@ -13,14 +15,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/Dashboard" />} />
         <Route path="/Dashboard" element={<GuestStudent />}>
-          <Route path="QrCode" element={<QrContainer />} />  
-          <Route path="AddQue" element={<AddContainer />} />  
+          <Route path="QrCode" element={<QrContainer />} />
+          <Route path="AddQue" element={<AddContainer />} />
         </Route>
-        <Route path="/Dashboard/AddQue/Student" element={< AddQueFormStudent/>} />
-        <Route path="/Dashboard/AddQue/Guest" element={< AddQueFormGuest/>} />
-        
-        <Route path="/Faculty" element={<Faculty/>}/>
-        <Route path="/Login" element={<Login/>} />
+        <Route
+          path="/Dashboard/AddQue/Student"
+          element={<AddQueFormStudent />}
+        />
+        <Route path="/Dashboard/AddQue/Guest" element={<AddQueFormGuest />} />
+
+        <Route path="/Faculty" element={<Faculty />}>
+          <Route path="CurrentQue" element={<CurrentQue />} />
+          <Route path="QueueHistory" element={<QueHistory />} />
+        </Route>
+        <Route path="/Login" element={<Login />} />
       </Routes>
     </div>
   );
