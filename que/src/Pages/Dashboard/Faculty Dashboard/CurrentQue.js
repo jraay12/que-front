@@ -3,9 +3,9 @@ import { currentData } from "../../../SampleData/SampleData";
 const CurrentQue = () => {
   return (
     <div className="flex w-full bg-no-repeat bg-cover justify-center items-center min-h-screen bg-background backdrop-blur-lg">
-      <div className="drop-shadow shadow-2xl shadow-black backdrop-blur-sm rounded-3xl w-full max-h-[70%] overflow-auto bg-white min-h-[70%] mx-32">
-        <table class="text-left w-full">
-          <thead class=" flex bg-gray-500 text-white w-full sticky top-0">
+      <div className="drop-shadow shadow-2xl bg-opacity-60 shadow-black backdrop-blur-sm rounded-3xl w-full max-h-[70%] overflow-auto bg-white min-h-[70%] mx-32">
+        <table class="text-left w-full font-semibold">
+          <thead class=" flex bg-yellow-300 text-black text-white w-full sticky top-0">
             <tr class="flex w-full mb-4">
               <th class="p-4 w-1/4">Queue Number</th>
               <th class="p-4 w-1/4">Identity</th>
