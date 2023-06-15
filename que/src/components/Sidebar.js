@@ -44,14 +44,14 @@ const Sidebar = () => {
       <div
         ref={sidebarRef}
         className={`${
-          open ? "w-52 xxl:w-96" : "w-20"
+          open ? "w-52 xxl:w-96" : "w-20 xxl:w-36"
         } bg-dark-purple h-screen p-5 pt-8 relative duration-300 ease-in md:${!open}`}
       >
-        <h1 className={`${!open && "hidden"} origin-left duration-200 text-xl`}>SIR ROJO</h1>
+        <h1 className={`${!open && "hidden"} origin-left duration-200 text-xl xxl:text-3xl`}>SIR ROJO</h1>
         <div className={`flex justify-end ${!open && "justify-center"}`}>
           <img
             src={Toggle}
-            className={`absolute cursor-pointer top-9 w-4 border-dark-purple
+            className={`absolute cursor-pointer top-9 w-4 xxl:w-7 border-dark-purple
            ${!open && "rotate-180"}`}
             onClick={() => setOpen(!open)}
             alt="Toggle Sidebar"
@@ -66,7 +66,7 @@ const Sidebar = () => {
               <NavLink
                 key={index}
                 to={items.path}
-                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white font-semibold text-md items-center gap-x-4 
+                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl xxl:mt-10 hover:bg-light-white font-semibold text-md items-center gap-x-4 
               ${items.gap ? "mt-9" : "mt-2"} ${
                   index === 0 && "bg-light-white"
                 }`}
@@ -83,11 +83,11 @@ const Sidebar = () => {
         </div>
 
         <div className="absolute bottom-5 left-5 right-5">
-          <div className="flex justify-center ">
-            <img src={Logout} className="object-contain h-5 w-5" alt="Logout" />
+          <div className="flex justify-center items-center">
+            <img src={Logout} className="object-contain h-5 w-5 xxl:h-7 xxl:w-7" alt="Logout" />
 
             <span className={`${!open && "hidden"} `}>
-              <button className="text-white text-lg font-semibold ml-4 rounded-lg outline-none">
+              <button className="text-white text-lg font-semibold ml-4 xxl:text-3xl rounded-lg outline-none">
                 Logout
               </button>
             </span>
