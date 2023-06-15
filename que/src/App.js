@@ -8,11 +8,14 @@ import AddQueFormGuest from "./components/AddQueFormGuest";
 import CurrentQue from "./Pages/Dashboard/Faculty Dashboard/CurrentQue";
 import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
 import InformationCard from "./components/InformationCard";
+import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path="/" element={<Navigate to="/Dashboard" />} />
         <Route path="/Dashboard" element={<GuestStudent />}>
@@ -33,7 +36,7 @@ function App() {
         </Route>
         <Route path="/Login" element={<Login />} />
       </Routes>
-    </div>
+    </QueryClientProvider>
   );
 }
 
