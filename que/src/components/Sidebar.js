@@ -29,8 +29,8 @@ const Sidebar = () => {
 
   const menuItem = [
     {
-      path: `/Faculty/CurrentQue`,
-      name: "Current Que",
+      path: `/Faculty/PendingQueue`,
+      name: "Pending Queue",
       src: Current,
     },
     {

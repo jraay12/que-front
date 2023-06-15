@@ -5,14 +5,17 @@ import AddContainer from "./components/AddContainer";
 import QrContainer from "./components/QrContainer";
 import AddQueFormStudent from "./components/AddQueFormStudent";
 import AddQueFormGuest from "./components/AddQueFormGuest";
-import CurrentQue from "./Pages/Dashboard/Faculty Dashboard/CurrentQue";
+import PendingQueue from "./Pages/Dashboard/Faculty Dashboard/PendingQueue";
 import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
 import InformationCard from "./components/InformationCard";
+import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path="/" element={<Navigate to="/Dashboard" />} />
         <Route path="/Dashboard" element={<GuestStudent />}>
@@ -26,14 +29,14 @@ function App() {
         <Route path="/Dashboard/AddQue/Guest" element={<AddQueFormGuest />} />
 
         <Route path="/Faculty" element={<Faculty />}>
-          <Route path="CurrentQue" element={<CurrentQue />}>
-            <Route path="Information" element={<InformationCard />} />
+          <Route path="PendingQueue" element={<PendingQueue />}>
+            <Route path="Information/:name" element={<InformationCard />} />
           </Route>
           <Route path="QueueHistory" element={<QueHistory />} />
         </Route>
         <Route path="/Login" element={<Login />} />
       </Routes>
-    </div>
+    </QueryClientProvider>
   );
 }
 
