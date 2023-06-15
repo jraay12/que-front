@@ -7,6 +7,7 @@ import AddQueFormStudent from "./components/AddQueFormStudent";
 import AddQueFormGuest from "./components/AddQueFormGuest";
 import CurrentQue from "./Pages/Dashboard/Faculty Dashboard/CurrentQue";
 import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
+import InformationCard from "./components/InformationCard";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
@@ -25,7 +26,9 @@ function App() {
         <Route path="/Dashboard/AddQue/Guest" element={<AddQueFormGuest />} />
 
         <Route path="/Faculty" element={<Faculty />}>
-          <Route path="CurrentQue" element={<CurrentQue />} />
+          <Route path="CurrentQue" element={<CurrentQue />}>
+            <Route path="Information" element={<InformationCard />} />
+          </Route>
           <Route path="QueueHistory" element={<QueHistory />} />
         </Route>
         <Route path="/Login" element={<Login />} />

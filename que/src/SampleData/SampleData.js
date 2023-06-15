@@ -26,7 +26,7 @@ export const currentData = [
         "Queue": "Q#1",
         "Identity" : "Student",
         "Name" : "Juan De La Cruz",
-        "Purpose" : "Grade Consulatiton"
+        "Purpose" : "Grade Consulatitonawdawdawdawd"
     },
     {
         "Queue": "Q#2",
