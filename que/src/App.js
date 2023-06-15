@@ -29,7 +29,7 @@ function App() {
         <Route path="/Dashboard/AddQue/Guest" element={<AddQueFormGuest />} />
 
         <Route path="/Faculty" element={<Faculty />}>
-          <Route path="CurrentQue" element={<CurrentQue />}>
+          <Route path="PendingQueue" element={<CurrentQue />}>
             <Route path="Information" element={<InformationCard />} />
           </Route>
           <Route path="QueueHistory" element={<QueHistory />} />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useMutation } from "react-query";
+import { Query, useMutation, useQuery } from "react-query";
 
 //For Login
 const facultyLogin = (credentials) => {
@@ -9,3 +9,14 @@ const facultyLogin = (credentials) => {
 export const MutateLogin = () => {
     return useMutation(facultyLogin)
 }      
+
+
+//For Dashboard Data
+const dashboardQuery = async() => {
+    const value =  await axios.get('https://ustp-queueing-system.onrender.com/user/')
+    return value.data
+}
+
+export const GetFaculty = () => {
+    return useQuery(['faculty'], dashboardQuery)
+}
