@@ -13,8 +13,8 @@ export const MutateLogin = () => {
 };
 
 //For Dashboard Data
-const dashboardQuery = () => {
-  const value = axios.get("https://ustp-queueing-system.onrender.com/user/");
+const dashboardQuery = async() => {
+  const value = await axios.get("https://ustp-queueing-system.onrender.com/user/");
   return value.data;
 };
 
@@ -24,6 +24,8 @@ export const GetFaculty = () => {
     refetchIntervalInBackground: true,
   });
 };
+
+
 
 //For Pending Data
 const pendingQuery = async() => {
@@ -39,6 +41,8 @@ export const GetPending = () => {
     refetchIntervalInBackground: true,
   });
 };
+
+
 
 //For Sending Email
 const sendEmail = (notifyEmail) => {
