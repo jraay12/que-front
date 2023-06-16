@@ -50,7 +50,7 @@ const Login = () => {
                 label="Password"
                 type="password"
                 value={password}
-                placeholder="password"
+                placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div className="w-full h-10 xxl:h-20 xxl:text-4xl rounded-lg  flex justify-center items-center font-bold bg-blue hover:bg-opacity-60 text-white text-lg xxl:mt-10 mt-2">

@@ -47,7 +47,13 @@ const Sidebar = () => {
           open ? "w-52 xxl:w-96" : "w-20 xxl:w-36"
         } bg-dark-purple h-screen p-5 pt-8 relative duration-300 ease-in md:${!open}`}
       >
-        <h1 className={`${!open && "hidden"} origin-left duration-200 text-xl xxl:text-3xl`}>SIR ROJO</h1>
+        <h1
+          className={`${
+            !open && "hidden"
+          } origin-left duration-200 text-xl xxl:text-3xl`}
+        >
+          SIR ROJO
+        </h1>
         <div className={`flex justify-end ${!open && "justify-center"}`}>
           <img
             src={Toggle}
@@ -57,21 +63,20 @@ const Sidebar = () => {
             alt="Toggle Sidebar"
           />
         </div>
-        <div className="flex gap-x-4 items-center">
-          
-        </div>
-        <div className="flex flex-col flex-grow items-center">
-          <ul className="pt-6 mt-20 flex-grow ">
+        <div className="flex gap-x-4 items-center"></div>
+        <div className="flex flex-col flex-grow items-center ">
+          <ul className="pt-6 mt-20 flex-grow xxl:mt-96 ">
             {menuItem.map((items, index) => (
               <NavLink
                 key={index}
                 to={items.path}
-                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl xxl:mt-10 hover:bg-light-white font-semibold text-md items-center gap-x-4 
+                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold text-md items-center gap-x-4 
               ${items.gap ? "mt-9" : "mt-2"} ${
                   index === 0 && "bg-light-white"
                 }`}
               >
-                <img src={items.src} alt={items.name} />
+                <img src={items.src} alt={items.name} className="xxl:h-10 xxl:w-10"/>
+
                 <span
                   className={`${!open && "hidden"} origin-left duration-200`}
                 >
@@ -84,7 +89,11 @@ const Sidebar = () => {
 
         <div className="absolute bottom-5 left-5 right-5">
           <div className="flex justify-center items-center">
-            <img src={Logout} className="object-contain h-5 w-5 xxl:h-7 xxl:w-7" alt="Logout" />
+            <img
+              src={Logout}
+              className="object-contain h-5 w-5 xxl:h-7 xxl:w-7"
+              alt="Logout"
+            />
 
             <span className={`${!open && "hidden"} `}>
               <button className="text-white text-lg font-semibold ml-4 xxl:text-3xl rounded-lg outline-none">
