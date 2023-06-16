@@ -29,8 +29,7 @@ const dashboardQuery = async () => {
 
 export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery, {
-    refetchInterval: 2000,
-    refetchIntervalInBackground: true,
+    
   });
 };
 
@@ -44,8 +43,7 @@ const pendingQuery = async () => {
 
 export const GetPending = () => {
   return useQuery(["pending"], pendingQuery, {
-    refetchInterval: 2000,
-    refetchIntervalInBackground: true,
+    
   });
 };
 
