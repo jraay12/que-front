@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
-import SampleData from "../../SampleData/SampleData";
 import { GetFaculty } from "../../customHooks/axios";
 import { Outlet, useNavigate } from "react-router-dom";
 import { BsQrCodeScan } from "react-icons/bs";
@@ -11,7 +10,6 @@ import {
 } from "react-icons/md";
 import AddContainer from "../../components/AddContainer";
 import QrContainer from "../../components/QrContainer";
-import code from "../../images/qrcode.png";
 
 const GuestStudent = () => {
   const qrOpen = false;
@@ -20,7 +18,7 @@ const GuestStudent = () => {
   const navigate = useNavigate();
 
   const { data: getUser } = GetFaculty();
-  console.log(getUser)
+
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-background bg-cover bg-no-repeat w-screen">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 bg-yellow-400 ">
