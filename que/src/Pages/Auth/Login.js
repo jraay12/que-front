@@ -16,8 +16,10 @@ const Login = () => {
     e.preventDefault();
     const credentials = { email, password };
     mutate(credentials, {
-      onSuccess: () => {
-        console.log("Success");
+      onSuccess: (data) => {
+        const access_token = data.data.accessToken
+        sessionStorage.setItem("access_token", access_token)
+        console.log("Success", data);
         navigate("/Faculty/PendingQueue");
       },
       onError: (error) => {
