@@ -56,7 +56,7 @@ const Login = () => {
                     />
                   </div>
 
-                  <div className="w-20 h-10 rounded-lg flex justify-center  items-center font-bold bg-blue hover:bg-opacity-60 text-white text-lg py-2 mt-2">
+                  <div className="w-20 h-10 rounded-lg flex justify-center items-center font-bold bg-blue hover:bg-opacity-60 text-white text-lg  mt-2">
                     <Button buttonName="Login" type="submit" />
                   </div>
                 </form>
