@@ -8,7 +8,7 @@ const PendingQueue = () => {
   const {data:Pending} = GetPending()
   return (
     <div className="flex w-full bg-no-repeat bg-cover justify-center overflow-hidden items-center min-h-screen bg-background backdrop-blur-lg">
-      <div className="drop-shadow shadow-2xl bg-opacity-60 shadow-black backdrop-blur-sm rounded-3xl max-h-[70%] overflow-auto bg-white min-h-[70%] mx-30 overflow-x-hidden">
+      <div className="drop-shadow shadow-2xl bg-opacity-60 shadow-black backdrop-blur-sm rounded-3xl max-h-[70%] overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] min-w-[80%]  overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className=" flex bg-yellow-300 text-black w-full sticky top-0">
             <tr className="flex w-full mb-4">

@@ -8,15 +8,16 @@ const QrContainer = () => {
   return (
     <div className="h-full w-screen absolute  flex flex-col  backdrop-blur-sm">
       <div
-        className="hover:cursor-pointer h-10 flex justify-end mx-3 pt-3 text-4xl"
+        className="hover:cursor-pointer h-10 flex justify-end mx-3 pt-3 text-4xl xxl:text-9xl text-red-600"
         onClick={() => navigate("/Dashboard")}
       >
         <AiOutlineClose />
       </div>
-      <div className="flex h-full w-full justify-center items-center">
-        <div className="h-80 w-80">
-          <img src={code} />
-        </div>
+      <div className="flex h-full justify-center items-center">
+        <img
+          src={code}
+          className="xxl:h-[700px] h-80 w-80 object-contain xxl:w-[700px]"
+        />
       </div>
     </div>
   );
