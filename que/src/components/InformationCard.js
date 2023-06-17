@@ -8,10 +8,8 @@ const InformationCard = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-
   const { data: GetInfo } = GetPending();
   const value = GetInfo?.filter((item) => item.name == name);
-
 
   useEffect(() => {
     if (value && value.length > 0) {
@@ -20,7 +18,6 @@ const InformationCard = () => {
       }
     }
   }, [GetInfo, name]);
-
 
   if (!Array.isArray(value) || value.length === 0) {
     return null;
@@ -44,8 +41,8 @@ const InformationCard = () => {
   console.log(value);
 
   return (
-    <div className="flex min-h-screen  w-full justify-center items-center absolute backdrop-blur-sm">
-      <div className="max-w-[90%] h-96 bg-white bg-opacity-90 xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px] max-h-screen rounded-3xl">
+    <div className="flex min-h-screen  justify-center items-center absolute ">
+      <div className="w-max min-w-[40%] h-96 bg-white shadow-2xl shadow-bluex xxl:min-w-[40%]  xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px] max-h-screen rounded-3xl ">
         <div className="flex flex-col h-full items-center mt-4">
           <h1 className="xxl:mt-10 xxl:text-5xl text-2xl font-bold text-blue">
             Information
@@ -71,7 +68,10 @@ const InformationCard = () => {
             </div>
             <div className="flex justify-center w-full gap-10 font-semibold xxl:gap-20 xxl:mt-10">
               <div className="bg-blue text-white  rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">
-                <Button buttonName="Done" onClick={() => navigate('/Faculty/PendingQueue')}/>
+                <Button
+                  buttonName="Done"
+                  onClick={() => navigate("/Faculty/PendingQueue")}
+                />
               </div>
               <div className="bg-blue text-white  rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">
                 <Button buttonName="Notify" onClick={handleNotify} />
