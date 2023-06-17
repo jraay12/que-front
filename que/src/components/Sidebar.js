@@ -71,14 +71,14 @@ const Sidebar = () => {
                 key={index}
                 to={items.path}
                 className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold text-md items-center gap-x-4 
-              ${items.gap ? "mt-9" : "mt-2"} ${
+              ${items.gap ? "mt-9" : "mt-4"} ${
                   index === 0 && "bg-light-white"
                 }`}
               >
-                <img src={items.src} alt={items.name} className="xxl:h-10 xxl:w-10"/>
+                <img src={items.src} alt={items.name} className="xxl:h-10 xxl:w-10 xxl:mt-10"/>
 
                 <span
-                  className={`${!open && "hidden"} origin-left duration-200`}
+                  className={`${!open && "hidden"} origin-left duration-200 xxl:mt-10`}
                 >
                   {items.name}
                 </span>
