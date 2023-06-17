@@ -35,6 +35,7 @@ function App() {
           <Route path="QueueHistory" element={<QueHistory />} />
         </Route>
         <Route path="/Login" element={<Login />} />
+        
       </Routes>
     </QueryClientProvider>
   );
