@@ -6,7 +6,7 @@ const QrContainer = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-full w-screen absolute  flex flex-col  backdrop-blur-sm">
+    <div className="h-screen w-screen z-20 inset-0 fixed top-0 flex flex-col  backdrop-blur-sm">
       <div
         className="hover:cursor-pointer h-10 flex justify-end mx-3 pt-3 text-4xl xxl:text-9xl text-red-600"
         onClick={() => navigate("/Dashboard")}

@@ -10,6 +10,10 @@ import {
 } from "react-icons/md";
 import AddContainer from "../../components/AddContainer";
 import QrContainer from "../../components/QrContainer";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from "swiper";
+
+import "swiper/swiper-bundle.min.css";
 
 const GuestStudent = () => {
   const qrOpen = false;
@@ -20,9 +24,9 @@ const GuestStudent = () => {
   const { data: getUser } = GetFaculty();
 
   return (
-    <div className="flex flex-col min-h-screen max-h-screen bg-background bg-cover bg-no-repeat w-screen">
-      <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 bg-yellow-400 ">
-        <div className="text-black font-serif flex justify-center gap-28 md:gap-10 items-center mx-10 font-semibold">
+    <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
+      <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
+        <div className="text-white font-bold flex justify-center gap-28 md:gap-10 items-center mx-10 ">
           <div className="flex flex-col items-center leading-3 text-2xl hover:cursor-pointer xxl:text-4xl">
             <div className="flex" onClick={() => navigate("/Dashboard/QrCode")}>
               <BsQrCodeScan />
@@ -32,7 +36,7 @@ const GuestStudent = () => {
                 <MdOutlineKeyboardArrowUp />
               )}
             </div>
-            <p className="text-[10px] font-light select-none	xxl:text-2xl">
+            <p className="text-[10px] font-bold select-none	xxl:text-2xl">
               Generate QR code
             </p>
           </div>
@@ -41,21 +45,32 @@ const GuestStudent = () => {
           </div>
         </div>
       </div>
-      <hr />
-      <div className="flex flex-col mx-7 h-screen mt-16 md:flex-row sm:gap-10 md:justify-evenly items-center">
-        {Array.isArray(getUser) && getUser.map((item, index) => (
-          <Container
-            key={index}
-            name={item.name}
-            position={item.position}
-            image={item.src}
-            onClick={() => navigate("/Dashboard/AddQue")}
-          />
-        ))}
+      <div className="flex mx-7 inset-0 justify-center h-screen items-center">
+        <Swiper
+          spaceBetween={50}
+          modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
+          pagination={{ clickable: true }}
+          navigation
+          slidesPerView={3}
+          className="z-10"
+        >
+          {Array.isArray(getUser) &&
+            getUser.map((item, index) => (
+              <SwiperSlide>
+                <Container
+                  key={index}
+                  name={item.name}
+                  position={item.position}
+                  image={item.src}
+                  onClick={() => navigate("/Dashboard/AddQue")}
+                />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+        {qrOpen && <QrContainer />}
       </div>
 
       {openModal && <AddContainer />}
-      {qrOpen && <QrContainer />}
       <Outlet />
     </div>
   );
