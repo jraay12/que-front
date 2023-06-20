@@ -16,6 +16,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const credentials = { email, password };
+    console.log(credentials)
     mutate(credentials, {
       onSuccess: (data) => {
         const access_token = data.data.accessToken;
