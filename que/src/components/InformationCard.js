@@ -35,6 +35,7 @@ const InformationCard = () => {
     const notify = { email };
     mutate(notify, {
       onSuccess: () => {
+        console.log("Success")
         navigate("/Faculty/PendingQueue");
       },
       onError: (error) => {

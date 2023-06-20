@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient} from "react-query";
 
 //headers
 let validation = sessionStorage.getItem("access_token");
@@ -42,6 +42,7 @@ const pendingQuery = async () => {
 };
 
 export const GetPending = () => {
+  const queryClient = useQueryClient()
   return useQuery(["pending"], pendingQuery, {
     
   });
