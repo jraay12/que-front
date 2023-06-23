@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { MutateLogin } from "../../customHooks/axios";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../images/Logo.png";
+import AuthContext from "../../context/AuthProvider";
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const { setAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,12 +17,16 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const credentials = { email, password };
-    console.log(credentials)
+    console.log(credentials);
     mutate(credentials, {
       onSuccess: (data) => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
-        console.log("Success", data);
+        console.log(JSON.stringify(data?.data))
+        // const authName = data.data.user.name
+        // const authEmail = data.data.user.email
+        // const authPosition = data.data.user.position
+        setAuth({email, password})
         navigate("/Faculty/PendingQueue");
       },
       onError: (error) => {
@@ -36,7 +41,9 @@ const Login = () => {
       <div className="flex min-w-[90%] max-w-full rounded-3xl h-[80%] shadow-2xl drop-shadow-2xl shadow-blue bg-white">
         <div className="w-full min-h-full rounded-l-3xl bg-background bg-no-repeat bg-cover"></div>
         <div className="flex flex-col xxl:gap-52 gap-20 justify-center items-center w-full min-h-full rounded-r-3xl bg-slate-300">
-          <h1 className="font-black text-blue text-4xl xxl:text-8xl">QUEUE SYSTEM</h1>
+          <h1 className="font-black text-blue text-4xl xxl:text-8xl">
+            QUEUE SYSTEM
+          </h1>
 
           <form onSubmit={handleLogin}>
             <div className="flex w-[400px] xxl:w-[1000px] font-medium  flex-col gap-4">
