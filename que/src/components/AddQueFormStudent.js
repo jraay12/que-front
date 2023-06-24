@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { MutateQue } from "../customHooks/axios";
+import axios from "axios";
 const AddQueFormStudent = () => {
   const navigate = useNavigate();
+  const { _id } = useParams();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [idNumber, setIdNumber] = useState("");
+  const [purpose, setPurpose] = useState("");
+
+  const { mutate } = MutateQue();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    params.append("userId", _id);
+    params.append("name", name);
+    params.append("idNumber", idNumber);
+    params.append("email", email);
+    params.append("purpose", purpose);
+    const value = params;
+    console.log(value);
+    mutate(value, {
+      onSuccess: () => {
+        console.log("success");
+      },
+      onError: (err) => {
+        console.error(err);
+      },
+    });
+  };
+
+
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-cover bg-no-repeat bg-background backdrop-blur-lg absolute ">
@@ -14,23 +45,44 @@ const AddQueFormStudent = () => {
             Add Queue
           </h1>
         </div>
-        <div className="w-full px-10 flex flex-col gap-4 mt-6">
-          <Input label="Student Number" py={3} />
-          <Input label="Student Name" py={3} />
-          <Input label="Student Email" py={3} />
-          <Input label="Purpose" py={3} />
-        </div>
-        <div className="flex justify-evenly gap-4 leading-none mt-6  xxl:mt-10 ">
-          <div className="bg-blue hover:bg-red-600 text-white rounded-2xl h-10 w-20 xxl:h-14 xxl:w-28 xxl:text-4xl flex justify-center items-center">
-            <Button
-              buttonName="Cancel"
-              onClick={() => navigate("/Dashboard")}
+        <form onSubmit={handleSubmit}>
+          <div className="w-full px-10 flex flex-col gap-4 mt-6">
+            <Input
+              label="Guest Name"
+              py={3}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Input
+              label="ID Number"
+              py={3}
+              value={idNumber}
+              onChange={(e) => setIdNumber(e.target.value)}
+            />
+            <Input
+              label="Guest Email"
+              py={3}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              label="Purpose"
+              value={purpose}
+              onChange={(e) => setPurpose(e.target.value)}
             />
           </div>
-          <div className="bg-blue text-white  rounded-2xl h-10 w-20 flex justify-center xxl:h-14 xxl:w-28 xxl:text-4xl items-center">
-            <Button buttonName="Submit" />
+          <div className="flex justify-evenly gap-4 mt-10">
+            <div className="bg-blue hover:bg-red-600 text-white rounded-2xl xxl:h-14 xxl:w-28 xxl:text-4xl h-10 w-20 flex justify-center items-center">
+              <Button
+                buttonName="Cancel"
+                onClick={() => navigate("/Dashboard")}
+              />
+            </div>
+            <div className="bg-blue text-white rounded-2xl h-10 w-20 flex xxl:h-14 xxl:w-28 xxl:text-4xl justify-center items-center">
+              <Button buttonName="Submit" />
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -1,10 +1,12 @@
 import React from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 import Button from './Button'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 const AddContainer = () => {
 
   const navigate = useNavigate();
+  const {_id} = useParams()
+  
   
   return (
     <div className='fixed top-0 inset-0 z-20 backdrop-blur-sm flex justify-center items-center'>
@@ -21,7 +23,7 @@ const AddContainer = () => {
             <Button 
             buttonName = "Guest"
             type= "submit"
-            onClick={() => navigate("/Dashboard/AddQue/Guest")}
+            onClick={() => navigate(`/Dashboard/AddQue/Guest/${_id}`)}
             
             />
             </div>
@@ -29,7 +31,7 @@ const AddContainer = () => {
             <Button 
             buttonName = "Student"
             type= "submit"
-            onClick={() => navigate("/Dashboard/AddQue/Student")}
+            onClick={() => navigate(`/Dashboard/AddQue/Student/${_id}`)}
 
             />
             </div>

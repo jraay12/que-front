@@ -22,7 +22,8 @@ const GuestStudent = () => {
   const navigate = useNavigate();
 
   const { data: getUser } = GetFaculty();
-
+  
+  // console.log(getUser)
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
@@ -62,7 +63,7 @@ const GuestStudent = () => {
                   name={item.name}
                   position={item.position}
                   image={item.src}
-                  onClick={() => navigate("/Dashboard/AddQue")}
+                  onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
                 />
               </SwiperSlide>
             ))}
