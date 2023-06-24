@@ -1,11 +1,16 @@
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient} from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 //headers
 let validation = sessionStorage.getItem("access_token");
 const headers = {
   Authorization: `Bearer ${validation}`,
   "Content-Type": "application/json",
+};
+
+//header for Login
+const loginHeader = {
+  "Content-Type": "application/x-www-form-urlencoded",
 };
 
 //For Login
@@ -19,6 +24,18 @@ export const MutateLogin = () => {
   return useMutation(facultyLogin);
 };
 
+//For Add Queue
+const addQue = async (value) => {
+  return await axios.post(
+    `https://ustp-queueing-system.onrender.com/queue/`,
+    value, {loginHeader}
+  );
+};
+
+export const MutateQue = () => {
+  return useMutation(addQue);
+};
+
 //For Dashboard Data
 const dashboardQuery = async () => {
   const value = await axios.get(
@@ -28,9 +45,7 @@ const dashboardQuery = async () => {
 };
 
 export const GetFaculty = () => {
-  return useQuery(["faculty"], dashboardQuery, {
-    
-  });
+  return useQuery(["faculty"], dashboardQuery, {});
 };
 
 //For Pending Data
@@ -42,20 +57,18 @@ const pendingQuery = async () => {
 };
 
 export const GetPending = () => {
-  const queryClient = useQueryClient()
-  return useQuery(["pending"], pendingQuery, {
-    
-  });
+  const queryClient = useQueryClient();
+  return useQuery(["pending"], pendingQuery, {});
 };
 
 //For Sending Email
-const sendEmail = async(notify) => {
+const sendEmail = async (notify) => {
   return await axios.post(
     "https://ustp-queueing-system.onrender.com/queue/notify",
     notify,
     { headers }
   );
-};  
+};
 
 export const NotifyQuery = () => {
   return useMutation(sendEmail);
