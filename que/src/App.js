@@ -22,10 +22,10 @@ function App() {
           <Route path="AddQue/:_id" element={<AddContainer />} />
         </Route>
         <Route
-          path="/Dashboard/AddQue/Student"
+          path="/Dashboard/AddQue/Student/:_id"
           element={<AddQueFormStudent />}
         />
-        <Route path="/Dashboard/AddQue/Guest" element={<AddQueFormGuest />} />
+        <Route path="/Dashboard/AddQue/Guest/:_id" element={<AddQueFormGuest />} />
 
         <Route path="/Faculty" element={<Faculty />}>
           <Route path="PendingQueue" element={<PendingQueue />}>

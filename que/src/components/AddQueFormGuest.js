@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AddQueFormGuest = () => {
   const navigate = useNavigate();
+  const { _id } = useParams();
+
+  const [userId, setUserId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [purpose, setPurpose] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+  };
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-background bg-no-repeat bg-cover backdrop-blur-lg absolute ">
@@ -14,11 +25,13 @@ const AddQueFormGuest = () => {
             Add Queue
           </h1>
         </div>
-        <div className="w-full px-10 flex flex-col gap-4 mt-6">
-          <Input label="Guest Name" py={3} />
-          <Input label="Guest Email" py={3} />
-          <Input label="Purpose" />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="w-full px-10 flex flex-col gap-4 mt-6">
+            <Input label="Guest Name" py={3} value={name} onChange={(e) => setName(e.target.value)}/>
+            <Input label="Guest Email" py={3} value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input label="Purpose" value={purpose} onChange={(e) => setPurpose(e.target.value)}/>
+          </div>
+        </form>
         <div className="flex justify-evenly gap-4 mt-10">
           <div className="bg-blue hover:bg-red-600 text-white rounded-2xl xxl:h-14 xxl:w-28 xxl:text-4xl h-10 w-20 flex justify-center items-center">
             <Button

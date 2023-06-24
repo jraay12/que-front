@@ -10,6 +10,7 @@ const Input = (props) => {
         className="rounded-3xl xxl:rounded-full px-4 py-3 border-2 xxl:py-9 xxl:text-4xl border-black"
         placeholder={props.placeholder}
         type={props.type}
+        value={props.value}
         onChange={props.onChange}
         required
       >
