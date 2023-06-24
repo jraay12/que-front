@@ -16,8 +16,12 @@ const AddQueFormGuest = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const value = { _id, name, email, purpose };
-    console.log(value);
+    const params = new URLSearchParams();
+    params.append("userId", _id);
+    params.append("name", name);
+    params.append("email", email);
+    params.append("purpose", purpose);
+    const value = params;
     mutate(value, {
       onSuccess: () => {
         console.log("success");
