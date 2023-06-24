@@ -10,7 +10,6 @@ import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
 import InformationCard from "./components/InformationCard";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
-
 const queryClient = new QueryClient();
 
 function App() {
@@ -20,7 +19,7 @@ function App() {
         <Route path="/" element={<Navigate to="/Dashboard" />} />
         <Route path="/Dashboard" element={<GuestStudent />}>
           <Route path="QrCode" element={<QrContainer />} />
-          <Route path="AddQue" element={<AddContainer />} />
+          <Route path="AddQue/:_id" element={<AddContainer />} />
         </Route>
         <Route
           path="/Dashboard/AddQue/Student"
@@ -35,7 +34,6 @@ function App() {
           <Route path="QueueHistory" element={<QueHistory />} />
         </Route>
         <Route path="/Login" element={<Login />} />
-        
       </Routes>
     </QueryClientProvider>
   );
