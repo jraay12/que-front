@@ -28,6 +28,7 @@ const AddQueFormStudent = () => {
     mutate(value, {
       onSuccess: () => {
         console.log("success");
+        navigate('/Dashboard')
       },
       onError: (err) => {
         console.error(err);
@@ -48,7 +49,7 @@ const AddQueFormStudent = () => {
         <form onSubmit={handleSubmit}>
           <div className="w-full px-10 flex flex-col gap-4 mt-6">
             <Input
-              label="Guest Name"
+              label="Student Name"
               py={3}
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -60,7 +61,7 @@ const AddQueFormStudent = () => {
               onChange={(e) => setIdNumber(e.target.value)}
             />
             <Input
-              label="Guest Email"
+              label="Student Email"
               py={3}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
