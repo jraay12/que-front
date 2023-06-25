@@ -63,6 +63,7 @@ const GuestStudent = () => {
                   name={item.name}
                   position={item.position}
                   image={item.profilePic}
+                  status={item.status}
                   onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
                 />
               </SwiperSlide>
