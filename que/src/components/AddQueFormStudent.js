@@ -28,6 +28,7 @@ const AddQueFormStudent = () => {
     mutate(value, {
       onSuccess: () => {
         console.log("success");
+        navigate('/Dashboard')
       },
       onError: (err) => {
         console.error(err);
