@@ -51,7 +51,7 @@ export const GetFaculty = () => {
 //For Pending Data
 const pendingQuery = async () => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/queue/pending"
+    "https://ustp-queueing-system.onrender.com/queue/pending",
   );
   return value.data;
 };
