@@ -23,11 +23,11 @@ const Login = () => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
         console.log(JSON.stringify(data?.data))
-        // const authName = data.data.user.name
+        const authName = data.data.user.name
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position
         const id = data?.data?.user._id
-        setAuth({email, password, id})
+        setAuth({email, password, id, authName})
         navigate("/Faculty/PendingQueue");
       },
       onError: (error) => {

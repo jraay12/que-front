@@ -1,12 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import History from "../images/history.png";
 import Current from "../images/Vector.png";
 import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
+import AuthContext from "../context/AuthProvider";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
+  const {auth} = useContext(AuthContext)
+  
   const sidebarRef = useRef(null);
 
   useEffect(() => {
@@ -52,7 +55,7 @@ const Sidebar = () => {
             !open && "hidden"
           } origin-left duration-200 text-xl xxl:text-3xl`}
         >
-          SIR ROJO
+          {auth.authName}
         </h1>
         <div className={`flex justify-end ${!open && "justify-center"}`}>
           <img

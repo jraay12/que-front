@@ -22,6 +22,7 @@ const GuestStudent = () => {
 
   const { data: getUser } = GetFaculty();
   
+  
 
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
@@ -63,7 +64,7 @@ const GuestStudent = () => {
                   position={item.position}
                   image={item.profilePic}
                   status={item.status}
-                  count={item.count}
+                  // count={count}
                   onClick={() => navigate(`/Dashboard/AddQue/${item.userId}`)}
                 />
               </SwiperSlide>

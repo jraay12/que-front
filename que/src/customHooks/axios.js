@@ -8,7 +8,6 @@ const headers = {
   "Content-Type": "application/x-www-form-urlencoded",
 };
 
-
 //For Login
 const facultyLogin = async (credentials) => {
   return await axios.post(
@@ -36,16 +35,26 @@ export const MutateQue = () => {
 //For Dashboard Data
 const dashboardQuery = async () => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/queue/count"
+    "https://ustp-queueing-system.onrender.com/user/"
   );
   return value.data;
 };
 
 export const GetFaculty = () => {
-  return useQuery(["faculty"], dashboardQuery, {
-    refetchIntervalInBackground: false
-  });
+  return useQuery(["faculty"], dashboardQuery);
 };
+
+//For Queue Count
+// const count = async () => {
+//   const response = await axios.get(
+//     `https://ustp-queueing-system.onrender.com/queue/count`
+//   );
+//   return response.data;w
+// };
+
+// export const GetCount = () => {
+//   return useQuery(["count"], count);
+// };
 
 //For Pending Data
 const pendingQuery = async () => {
