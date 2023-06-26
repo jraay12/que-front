@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { GetPending } from "../../../customHooks/axios";
 import AuthContext from "../../../context/AuthProvider";
-
+import { CountQueue } from "../../../customHooks/axios";
 const PendingQueue = () => {
 
   const {auth} = useContext(AuthContext)
@@ -12,7 +12,6 @@ const PendingQueue = () => {
   const {data:Pending} = GetPending()
   const filterData = Pending?.filter((item) => item.userId == value[2])
  
-  
   
   return (
     <div className="flex w-full bg-no-repeat bg-cover justify-center overflow-hidden items-center min-h-screen bg-background ">

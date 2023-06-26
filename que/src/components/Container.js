@@ -17,7 +17,12 @@ const Container = (props) => {
             <span className="font-bold ">Position</span> : {props.position}
           </h1>
         </div>
-        <h1 className="font-bold text-lg xxl:text-4xl ">{props.status}</h1>
+        <h1 className=" text-md xxl:text-2xl">
+          <span className="font-bold ">Status</span> : {props.status}
+        </h1>
+        <h1 className=" text-md xxl:text-2xl">
+          <span className="font-bold ">Current Queue</span> : {props.count}
+        </h1>
       </div>
     </div>
   );
