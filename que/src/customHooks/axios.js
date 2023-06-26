@@ -8,6 +8,11 @@ const headers = {
   "Content-Type": "application/x-www-form-urlencoded",
 };
 
+//for Register
+const registerHeaders = {
+  "Content-Type": "multipart/form-data",
+};
+
 //For Login
 const facultyLogin = async (credentials) => {
   return await axios.post(
@@ -105,3 +110,19 @@ export const QueueStatus = () => {
     }
   });
 };
+
+
+//For Register
+const register = async(value) => {
+  return await axios.post(`https://ustp-queueing-system.onrender.com/auth/register`, value, {registerHeaders})
+  
+}
+
+export const Register = () => {
+  const queryClient = useQueryClient()
+  return useMutation(register, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("faculty")
+    }
+  })
+}
