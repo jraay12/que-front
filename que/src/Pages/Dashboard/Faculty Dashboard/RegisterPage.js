@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { Register } from "../../../customHooks/axios";
+import { useNavigate } from "react-router-dom";
+
 
 const RegisterPage = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [position, setPosition] = useState("");
@@ -22,10 +25,9 @@ const RegisterPage = () => {
     formdata.append("profilePic", picture);
 
     const value = formdata
-    console.log(value)
     RegisterUser(value, {
-      onSuccess: (data) => {
-        console.log("success", data)
+      onSuccess: () => {
+        navigate("/Faculty/PendingQueue")
       },
       onError:(err) => {
         console.error(err)

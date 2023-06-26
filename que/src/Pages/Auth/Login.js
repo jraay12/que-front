@@ -17,12 +17,10 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const credentials = { email, password };
-    console.log(credentials);
     mutate(credentials, {
       onSuccess: (data) => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
-        console.log(JSON.stringify(data?.data))
         const authName = data.data.user.name
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position

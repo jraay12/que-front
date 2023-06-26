@@ -34,11 +34,11 @@ const addQue = async (value) => {
 };
 
 export const MutateQue = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   return useMutation(addQue, {
     onSuccess: () => {
-      queryClient.invalidateQueries("pending")
-    }
+      queryClient.invalidateQueries("pending");
+    },
   });
 };
 
@@ -75,9 +75,7 @@ const pendingQuery = async () => {
 };
 
 export const GetPending = () => {
-  return useQuery(["pending"], pendingQuery, {
-    
-  });
+  return useQuery(["pending"], pendingQuery);
 };
 
 //For Sending Email
@@ -103,26 +101,28 @@ const queueStatus = async (value) => {
 };
 
 export const QueueStatus = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   return useMutation(queueStatus, {
     onSuccess: () => {
-      queryClient.invalidateQueries("pending")
-    }
+      queryClient.invalidateQueries("pending");
+    },
   });
 };
 
-
 //For Register
-const register = async(value) => {
-  return await axios.post(`https://ustp-queueing-system.onrender.com/auth/register`, value, {registerHeaders})
-  
-}
+const register = async (value) => {
+  return await axios.post(
+    `https://ustp-queueing-system.onrender.com/auth/register`,
+    value,
+    { registerHeaders }
+  );
+};
 
 export const Register = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   return useMutation(register, {
     onSuccess: () => {
-      queryClient.invalidateQueries("faculty")
-    }
-  })
-}
+      queryClient.invalidateQueries("faculty");
+    },
+  });
+};
