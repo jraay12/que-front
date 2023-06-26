@@ -29,7 +29,12 @@ const addQue = async (value) => {
 };
 
 export const MutateQue = () => {
-  return useMutation(addQue);
+  const queryClient = useQueryClient()
+  return useMutation(addQue, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("pending")
+    }
+  });
 };
 
 //For Dashboard Data
@@ -65,7 +70,9 @@ const pendingQuery = async () => {
 };
 
 export const GetPending = () => {
-  return useQuery(["pending"], pendingQuery, {});
+  return useQuery(["pending"], pendingQuery, {
+    
+  });
 };
 
 //For Sending Email
@@ -91,5 +98,10 @@ const queueStatus = async (value) => {
 };
 
 export const QueueStatus = () => {
-  return useMutation(queueStatus);
+  const queryClient = useQueryClient()
+  return useMutation(queueStatus, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("pending")
+    }
+  });
 };
