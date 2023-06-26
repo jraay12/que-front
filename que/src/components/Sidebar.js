@@ -4,6 +4,7 @@ import History from "../images/history.png";
 import Current from "../images/Vector.png";
 import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
+import Add from "../images/icons8-add-user-50.png"
 import AuthContext from "../context/AuthProvider";
 
 const Sidebar = () => {
@@ -40,6 +41,11 @@ const Sidebar = () => {
       path: `/Faculty/QueueHistory`,
       name: "Queue History",
       src: History,
+    },
+    {
+      path: `/Faculty/Register`,
+      name: "Register User",
+      src: Add,
     },
   ];
   return (
@@ -78,7 +84,7 @@ const Sidebar = () => {
                   index === 0 && "bg-light-white"
                 }`}
               >
-                <img src={items.src} alt={items.name} className="xxl:h-10 xxl:w-10 xxl:mt-10"/>
+                <img src={items.src} alt={items.name} className="w-5 h-5 xxl:h-10 xxl:w-10 xxl:mt-10"/>
 
                 <span
                   className={`${!open && "hidden"} origin-left duration-200 xxl:mt-10`}

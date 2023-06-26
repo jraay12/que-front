@@ -10,6 +10,7 @@ import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
 import InformationCard from "./components/InformationCard";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
+import RegisterPage from "./Pages/Dashboard/Faculty Dashboard/RegisterPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
             <Route path="Information/:_id" element={<InformationCard />} />
           </Route>
           <Route path="QueueHistory" element={<QueHistory />} />
+          <Route path="Register" element={<RegisterPage />} />
+
         </Route>
         <Route path="/Login" element={<Login />} />
       </Routes>
