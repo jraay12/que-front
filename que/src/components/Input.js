@@ -3,7 +3,7 @@ import React from "react";
 const Input = (props) => {
   return (
     <div className="flex flex-col gap-2 xxl:gap-6 ">
-      <label className="font-bold text-xl md:text-[15px] leading-3 xxl:text-4xl">
+      <label className="font-bold text-xl ml-2 md:text-[15px] leading-3 xxl:text-4xl">
         {props.label}
       </label>
       <input
