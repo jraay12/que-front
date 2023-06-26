@@ -3,29 +3,32 @@ import Button from "../components/Button";
 import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GetPending, NotifyQuery } from "../customHooks/axios";
+import { GetPending } from "../customHooks/axios";
+import { QueueStatus } from "../customHooks/axios";
+import { NotifyQuery } from "../customHooks/axios";
+import { AiOutlineClose } from "react-icons/ai";
 
 const InformationCard = () => {
-  const { name } = useParams();
-  const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const { _id } = useParams();
+  const [email, setEmail] = useState("");
 
   const { data: GetInfo } = GetPending();
-  const value = GetInfo?.filter((item) => item.name === name);
+  const value = GetInfo?.filter((item) => item._id === _id);
 
   useEffect(() => {
     if (value && value.length > 0) {
-      if (value[0].name === name) {
+      if (value[0]._id === _id) {
         setEmail(value[0].email);
       }
     }
-  }, [GetInfo, name]);
+  }, [GetInfo, _id]);
 
   if (!Array.isArray(value) || value.length === 0) {
     return null;
   }
 
-  const { mutate } = NotifyQuery();
+  const { mutate: Notify } = NotifyQuery();
 
   const handleNotify = () => {
     toast.success("Email Sent Successfully", {
@@ -33,10 +36,9 @@ const InformationCard = () => {
       theme: "dark",
     });
     const notify = { email };
-    mutate(notify, {
+    Notify(notify, {
       onSuccess: () => {
-        console.log("Success")
-        navigate("/Faculty/PendingQueue");
+        console.log("Success");
       },
       onError: (error) => {
         console.error(error);
@@ -44,12 +46,35 @@ const InformationCard = () => {
     });
   };
 
-  console.log(value);
+  const { mutate: Queue } = QueueStatus();
+
+  const handleDone = (e) => {
+    e.preventDefault();
+    const status = "Done";
+    const params = new URLSearchParams();
+    params.append("_id", _id);
+    params.append("status", status);
+    const value = params;
+    Queue(value, {
+      onSuccess: () => {
+        navigate("/Faculty/PendingQueue");
+      },
+      onError: (err) => {
+        console.error(err);
+      },
+    });
+  };
 
   return (
     <div className="flex min-h-screen justify-center items-center absolute">
       <div className="w-max min-w-[40%] h-96 bg-white shadow-2xl shadow-blue xxl:min-w-[40%] xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px] max-h-screen rounded-3xl">
         <div className="flex flex-col h-full items-center mt-4">
+          <div
+            className="flex justify-end w-full mr-5 hover:text-red-600 cursor-pointer text-xl"
+            onClick={() => navigate("/Faculty/PendingQueue/")}
+          >
+            <AiOutlineClose />
+          </div>
           <h1 className="xxl:mt-10 xxl:text-5xl text-2xl font-bold text-blue">
             Information
           </h1>
@@ -74,10 +99,7 @@ const InformationCard = () => {
             </div>
             <div className="flex justify-center w-full gap-10 font-semibold xxl:gap-20 xxl:mt-10">
               <div className="bg-blue text-white rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">
-                <Button
-                  buttonName="Done"
-                  onClick={() => navigate("/Faculty/PendingQueue")}
-                />
+                <Button buttonName="Done" onClick={handleDone} />
               </div>
               <div className="bg-blue text-white rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">
                 <Button buttonName="Notify" onClick={handleNotify} />

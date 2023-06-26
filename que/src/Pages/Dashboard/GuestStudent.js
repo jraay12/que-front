@@ -12,7 +12,6 @@ import AddContainer from "../../components/AddContainer";
 import QrContainer from "../../components/QrContainer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from "swiper";
-
 import "swiper/swiper-bundle.min.css";
 
 const GuestStudent = () => {
@@ -23,7 +22,8 @@ const GuestStudent = () => {
 
   const { data: getUser } = GetFaculty();
   
-  console.log(getUser)
+  
+
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
@@ -64,6 +64,7 @@ const GuestStudent = () => {
                   position={item.position}
                   image={item.profilePic}
                   status={item.status}
+                  // count={count}
                   onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
                 />
               </SwiperSlide>

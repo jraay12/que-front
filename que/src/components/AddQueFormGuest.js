@@ -24,7 +24,6 @@ const AddQueFormGuest = () => {
     const value = params;
     mutate(value, {
       onSuccess: () => {
-        console.log("success");
         navigate('/Dashboard')
       },
       onError: (err) => {

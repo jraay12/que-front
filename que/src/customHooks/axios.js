@@ -5,12 +5,12 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 let validation = sessionStorage.getItem("access_token");
 const headers = {
   Authorization: `Bearer ${validation}`,
-  "Content-Type": "application/json",
+  "Content-Type": "application/x-www-form-urlencoded",
 };
 
-//header for Login
-const loginHeader = {
-  "Content-Type": "application/x-www-form-urlencoded",
+//for Register
+const registerHeaders = {
+  "Content-Type": "multipart/form-data",
 };
 
 //For Login
@@ -28,12 +28,18 @@ export const MutateLogin = () => {
 const addQue = async (value) => {
   return await axios.post(
     `https://ustp-queueing-system.onrender.com/queue/`,
-    value, {loginHeader}
+    value,
+    { headers }
   );
 };
 
 export const MutateQue = () => {
-  return useMutation(addQue);
+  const queryClient = useQueryClient();
+  return useMutation(addQue, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("pending");
+    },
+  });
 };
 
 //For Dashboard Data
@@ -45,20 +51,31 @@ const dashboardQuery = async () => {
 };
 
 export const GetFaculty = () => {
-  return useQuery(["faculty"], dashboardQuery, {});
+  return useQuery(["faculty"], dashboardQuery);
 };
+
+//For Queue Count
+// const count = async () => {
+//   const response = await axios.get(
+//     `https://ustp-queueing-system.onrender.com/queue/count`
+//   );
+//   return response.data;w
+// };
+
+// export const GetCount = () => {
+//   return useQuery(["count"], count);
+// };
 
 //For Pending Data
 const pendingQuery = async () => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/queue/pending",
+    "https://ustp-queueing-system.onrender.com/queue/pending"
   );
   return value.data;
 };
 
 export const GetPending = () => {
-  const queryClient = useQueryClient();
-  return useQuery(["pending"], pendingQuery, {});
+  return useQuery(["pending"], pendingQuery);
 };
 
 //For Sending Email
@@ -72,4 +89,40 @@ const sendEmail = async (notify) => {
 
 export const NotifyQuery = () => {
   return useMutation(sendEmail);
+};
+
+//For Update Queue Status
+const queueStatus = async (value) => {
+  return await axios.put(
+    `https://ustp-queueing-system.onrender.com/queue/`,
+    value,
+    { headers }
+  );
+};
+
+export const QueueStatus = () => {
+  const queryClient = useQueryClient();
+  return useMutation(queueStatus, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("pending");
+    },
+  });
+};
+
+//For Register
+const register = async (value) => {
+  return await axios.post(
+    `https://ustp-queueing-system.onrender.com/auth/register`,
+    value,
+    { registerHeaders }
+  );
+};
+
+export const Register = () => {
+  const queryClient = useQueryClient();
+  return useMutation(register, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("faculty");
+    },
+  });
 };

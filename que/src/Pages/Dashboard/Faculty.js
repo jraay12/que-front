@@ -3,7 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import { Outlet } from "react-router-dom";
 const Faculty = () => {
   return (
-    <div className="flex max-h-screen">
+    <div className="flex max-h-screen bg-background bg-no-repeat bg-cover">
         <Sidebar />
         <Outlet />
     </div>
