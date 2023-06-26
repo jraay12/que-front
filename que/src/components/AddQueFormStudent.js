@@ -3,10 +3,10 @@ import Input from "./Input";
 import Button from "./Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { MutateQue } from "../customHooks/axios";
-import axios from "axios";
+
 const AddQueFormStudent = () => {
   const navigate = useNavigate();
-  const { _id } = useParams();
+  const { userId } = useParams();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,26 +17,24 @@ const AddQueFormStudent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const params = new URLSearchParams();
-    params.append("userId", _id);
+    params.append("userId", userId);
     params.append("name", name);
     params.append("idNumber", idNumber);
     params.append("email", email);
     params.append("purpose", purpose);
     const value = params;
-    console.log(value);
     mutate(value, {
       onSuccess: () => {
         console.log("success");
-        navigate('/Dashboard')
+        navigate("/Dashboard");
       },
       onError: (err) => {
         console.error(err);
       },
     });
   };
-
-
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-cover bg-no-repeat bg-background backdrop-blur-lg absolute ">

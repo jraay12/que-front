@@ -22,14 +22,14 @@ function App() {
           <Route path="AddQue/:_id" element={<AddContainer />} />
         </Route>
         <Route
-          path="/Dashboard/AddQue/Student/:_id"
+          path="/Dashboard/AddQue/Student/:userId"
           element={<AddQueFormStudent />}
         />
-        <Route path="/Dashboard/AddQue/Guest/:_id" element={<AddQueFormGuest />} />
+        <Route path="/Dashboard/AddQue/Guest/:userId" element={<AddQueFormGuest />} />
 
         <Route path="/Faculty" element={<Faculty />}>
           <Route path="PendingQueue" element={<PendingQueue />}>
-            <Route path="Information/:name" element={<InformationCard />} />
+            <Route path="Information/:_id" element={<InformationCard />} />
           </Route>
           <Route path="QueueHistory" element={<QueHistory />} />
         </Route>

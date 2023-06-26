@@ -2,14 +2,15 @@ import React, {useContext, useState} from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { GetPending } from "../../../customHooks/axios";
 import AuthContext from "../../../context/AuthProvider";
-import { CountQueue } from "../../../customHooks/axios";
 const PendingQueue = () => {
 
   const {auth} = useContext(AuthContext)
   const navigate = useNavigate()
 
   const value = Object.values(auth)
+
   const {data:Pending} = GetPending()
+  
   const filterData = Pending?.filter((item) => item.userId == value[2])
  
   
@@ -28,7 +29,7 @@ const PendingQueue = () => {
           <tbody className="flex flex-col items-center justify-between h-[50%] overflow-auto w-full ">
             {Array.isArray(filterData) &&
               filterData.map((item) => (
-                <tr className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer" key={item.idNumber} onClick={() => navigate(`/Faculty/PendingQueue/Information/${item.name}`)}>
+                <tr className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer" key={item.idNumber} onClick={() => navigate(`/Faculty/PendingQueue/Information/${item._id}`)}>
                   <td className="p-4 w-1/4 ">{item.idNumber}</td>
                   <td className="p-4 w-1/4 ">{item.name}</td>
                   <td className="p-4 w-1/4 ">{item.status}</td>

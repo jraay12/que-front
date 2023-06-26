@@ -3,23 +3,25 @@ import Button from "../components/Button";
 import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GetPending, NotifyQuery } from "../customHooks/axios";
+import { GetPending, NotifyQuery, QueueStatus } from "../customHooks/axios";
 
 const InformationCard = () => {
-  const { name } = useParams();
+  const { _id } = useParams();
   const [email, setEmail] = useState("");
+  
   const navigate = useNavigate();
 
   const { data: GetInfo } = GetPending();
-  const value = GetInfo?.filter((item) => item.name === name);
+  
+  const value = GetInfo?.filter((item) => item._id === _id);
 
   useEffect(() => {
     if (value && value.length > 0) {
-      if (value[0].name === name) {
+      if (value[0]._id === _id) {
         setEmail(value[0].email);
       }
     }
-  }, [GetInfo, name]);
+  }, [GetInfo, _id]);
 
   if (!Array.isArray(value) || value.length === 0) {
     return null;
@@ -36,7 +38,6 @@ const InformationCard = () => {
     mutate(notify, {
       onSuccess: () => {
         console.log("Success")
-        navigate("/Faculty/PendingQueue");
       },
       onError: (error) => {
         console.error(error);
@@ -44,7 +45,27 @@ const InformationCard = () => {
     });
   };
 
-  console.log(value);
+  const {mutate: Queue} = QueueStatus()
+
+  const handleDone = (e) => {
+    e.preventDefault();
+    const status = "Done"
+    const params = new URLSearchParams();
+    params.append("_id", _id);
+    params.append("status", status);
+    const value = params
+    Queue(value, {
+      onSuccess: () => {
+        console.log("success");
+        navigate('/Faculty/PendingQueue')
+      },
+      onError: (err) => {
+        console.error(err);
+      },
+    });
+  };
+  
+  
 
   return (
     <div className="flex min-h-screen justify-center items-center absolute">
@@ -76,7 +97,7 @@ const InformationCard = () => {
               <div className="bg-blue text-white rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">
                 <Button
                   buttonName="Done"
-                  onClick={() => navigate("/Faculty/PendingQueue")}
+                  onClick={handleDone}
                 />
               </div>
               <div className="bg-blue text-white rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">

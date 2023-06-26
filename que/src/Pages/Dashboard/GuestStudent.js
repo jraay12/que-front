@@ -21,8 +21,7 @@ const GuestStudent = () => {
   const navigate = useNavigate();
 
   const { data: getUser } = GetFaculty();
-
-console.log(getUser)
+  
 
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
@@ -65,7 +64,7 @@ console.log(getUser)
                   image={item.profilePic}
                   status={item.status}
                   count={item.count}
-                  onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
+                  onClick={() => navigate(`/Dashboard/AddQue/${item.userId}`)}
                 />
               </SwiperSlide>
             ))}
