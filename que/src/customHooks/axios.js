@@ -176,4 +176,5 @@ export const Status = () => {
 // Clear Token
 export const clearToken = () => {
   sessionStorage.removeItem("access_token");
+  sessionStorage.removeItem("auth");
 };

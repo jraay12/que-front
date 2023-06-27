@@ -4,12 +4,12 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(() => {
-    const storedAuth = localStorage.getItem("auth");
+    const storedAuth = sessionStorage.getItem("auth");
     return storedAuth ? JSON.parse(storedAuth) : {};
   });
 
   useEffect(() => {
-    localStorage.setItem("auth", JSON.stringify(auth));
+    sessionStorage.setItem("auth", JSON.stringify(auth));
   }, [auth]);
 
   return (
