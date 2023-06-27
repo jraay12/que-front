@@ -65,7 +65,7 @@ export const GetPending = () => {
   };
   return useQuery(["pending"], () => pendingQuery(headers), {
     refetchIntervalInBackground: true,
-    refetchInterval: 2000
+    refetchInterval: 2000,
   });
 };
 
@@ -172,6 +172,27 @@ export const Status = () => {
   });
 };
 
+// For reset Password
+
+const resetPassword = async (value, headers) => {
+  return await axios.post(
+    `https://ustp-queueing-system.onrender.com/auth/resetPassword`,
+    value,
+    { headers }
+  );
+};
+
+export const ResetPassword = () => {
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+  return useMutation((value) => resetPassword(value, headers), {
+    onSuccess: () => {
+      console.log("success")
+    },
+  })
+};
 
 // Clear Token
 export const clearToken = () => {
