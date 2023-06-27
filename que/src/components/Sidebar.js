@@ -1,19 +1,31 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import History from "../images/history.png";
 import Current from "../images/Vector.png";
 import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
-import Add from "../images/icons8-add-user-50.png"
+import Add from "../images/icons8-add-user-50.png";
 import AuthContext from "../context/AuthProvider";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
-  const {auth} = useContext(AuthContext)
-  
+  const { auth } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const sidebarRef = useRef(null);
 
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("access_token")
+    sessionStorage.clear("access_token") 
+    navigate("/Login");
+};
+
+
+
+  
   useEffect(() => {
+   
     const handleResize = () => {
       const screenWidth = window.innerWidth;
       if (screenWidth <= 768) {
@@ -49,7 +61,7 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="flex shadow-2xl bg-blue text-white  ">
+    <div className="flex shadow-2xl bg-blue text-white  z-20">
       <div
         ref={sidebarRef}
         className={`${
@@ -84,10 +96,16 @@ const Sidebar = () => {
                   index === 0 && "bg-light-white"
                 }`}
               >
-                <img src={items.src} alt={items.name} className="w-5 h-5 xxl:h-10 xxl:w-10 xxl:mt-10"/>
+                <img
+                  src={items.src}
+                  alt={items.name}
+                  className="w-5 h-5 xxl:h-10 xxl:w-10 xxl:mt-10"
+                />
 
                 <span
-                  className={`${!open && "hidden"} origin-left duration-200 xxl:mt-10`}
+                  className={`${
+                    !open && "hidden"
+                  } origin-left duration-200 xxl:mt-10`}
                 >
                   {items.name}
                 </span>
@@ -105,7 +123,10 @@ const Sidebar = () => {
             />
 
             <span className={`${!open && "hidden"} `}>
-              <button className="text-white text-lg font-semibold ml-4 xxl:text-3xl rounded-lg outline-none">
+              <button
+                className="text-white text-lg font-semibold ml-4 xxl:text-3xl rounded-lg outline-none"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </span>
