@@ -21,7 +21,6 @@ const Login = () => {
       onSuccess: (data) => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
-        console.log(access_token)
         const authName = data.data.user.name
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position

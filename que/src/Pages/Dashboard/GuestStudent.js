@@ -69,7 +69,7 @@ const GuestStudent = () => {
                   onClick={() => {
                     item.status === "Not Available" ||
                     item.status === "Present but not Available"
-                      ? toast.warning("Not Available", {
+                      ? toast.error("Not Available", {
                           autoClose: 1000,
                           theme: "dark",
                           position: "top-center",
