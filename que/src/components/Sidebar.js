@@ -6,6 +6,7 @@ import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
 import Add from "../images/icons8-add-user-50.png";
 import AuthContext from "../context/AuthProvider";
+import { clearToken } from "../customHooks/axios";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -16,8 +17,7 @@ const Sidebar = () => {
 
 
   const handleLogout = () => {
-    sessionStorage.removeItem("access_token")
-    sessionStorage.clear("access_token") 
+    clearToken()
     navigate("/Login");
 };
 
