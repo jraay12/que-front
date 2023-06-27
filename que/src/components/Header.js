@@ -10,6 +10,7 @@ const Header = () => {
     event.preventDefault();
     const newStatus = event.target.value;
     setStatus(newStatus);
+    console.log(status)
     const params = new URLSearchParams();
     params.append("status", newStatus);
     const value = params;

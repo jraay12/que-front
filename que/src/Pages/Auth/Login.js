@@ -21,6 +21,7 @@ const Login = () => {
       onSuccess: (data) => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
+        console.log(access_token)
         const authName = data.data.user.name
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position
@@ -63,6 +64,7 @@ const Login = () => {
               <div className="w-full h-10 xxl:h-20 xxl:text-4xl rounded-lg  flex justify-center items-center font-bold bg-blue hover:bg-opacity-60 text-white text-lg xxl:mt-10 mt-2">
                 <Button buttonName="Login" type="submit" />
               </div>
+              <h1 className="xxl:text-4xl">Forgot Password</h1>
             </div>
           </form>
         </div>

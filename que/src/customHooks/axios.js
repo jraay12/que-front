@@ -2,7 +2,8 @@ import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 //headers
-let validation = sessionStorage.getItem("access_token");
+const validation = sessionStorage.getItem("access_token");
+
 const headers = {
   Authorization: `Bearer ${validation}`,
   "Content-Type": "application/x-www-form-urlencoded",
@@ -116,7 +117,7 @@ export const Register = () => {
 };
 
 //For Status
-const status = async (value) => {
+const status = async(value) => {
   return await axios.post(
     `https://ustp-queueing-system.onrender.com/user/status`,
     value,

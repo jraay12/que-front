@@ -64,7 +64,7 @@ const GuestStudent = () => {
                   position={item.position}
                   image={item.profilePic}
                   status={item.status}
-                  count={item.count === null ? "0" : item.count}
+                  count={item.count === undefined ? "0" : item.count}
                   onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
                 />
               </SwiperSlide>
