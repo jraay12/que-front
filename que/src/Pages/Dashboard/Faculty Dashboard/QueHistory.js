@@ -3,7 +3,6 @@ import { GetHistory } from "../../../customHooks/axios";
 
 const QueHistory = () => {
   const { data: History } = GetHistory();
-  console.log(History);
   return (
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
       <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] w-full mx-10 overflow-x-hidden">

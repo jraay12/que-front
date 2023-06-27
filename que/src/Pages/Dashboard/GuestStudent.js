@@ -13,6 +13,7 @@ import QrContainer from "../../components/QrContainer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from "swiper";
 import "swiper/swiper-bundle.min.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const GuestStudent = () => {
   const qrOpen = false;
@@ -21,8 +22,8 @@ const GuestStudent = () => {
   const navigate = useNavigate();
 
   const { data: getUser } = GetFaculty();
-  
-  console.log(getUser)
+
+  console.log(getUser);
 
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
@@ -65,7 +66,16 @@ const GuestStudent = () => {
                   image={item.profilePic}
                   status={item.status}
                   count={item.count === undefined ? "0" : item.count}
-                  onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
+                  onClick={() => {
+                    item.status === "Not Available" ||
+                    item.status === "Present but not Available"
+                      ? toast.warning("Not Available", {
+                          autoClose: 1000,
+                          theme: "dark",
+                          position: "top-center",
+                        })
+                      : navigate(`/Dashboard/AddQue/${item._id}`);
+                  }}
                 />
               </SwiperSlide>
             ))}
@@ -75,6 +85,7 @@ const GuestStudent = () => {
 
       {openModal && <AddContainer />}
       <Outlet />
+      <ToastContainer />
     </div>
   );
 };
