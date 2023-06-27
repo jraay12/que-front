@@ -6,9 +6,9 @@ const PendingQueue = () => {
 
   const {auth} = useContext(AuthContext)
   const navigate = useNavigate()
+  
 
   const value = Object.values(auth)
-
   const {data:Pending} = GetPending()
   
   const filterData = Pending?.filter((item) => item.userId ===  value[2])
