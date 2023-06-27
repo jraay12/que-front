@@ -63,7 +63,28 @@ export const GetPending = () => {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
   };
-  return useQuery(["pending"], () => pendingQuery(headers));
+  return useQuery(["pending"], () => pendingQuery(headers), {
+    refetchIntervalInBackground: true,
+    refetchInterval: 2000
+  });
+};
+
+// For Queue History Data
+const queueHistory = async (headers) => {
+  const value = await axios.get(
+    "https://ustp-queueing-system.onrender.com/queue/done",
+    { headers }
+  );
+  return value.data;
+};
+
+export const GetHistory = () => {
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+  return useQuery(["history"], () => queueHistory(headers));
 };
 
 // For Sending Email
@@ -150,6 +171,7 @@ export const Status = () => {
     },
   });
 };
+
 
 // Clear Token
 export const clearToken = () => {

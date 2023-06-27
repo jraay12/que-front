@@ -21,8 +21,10 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-end w-full h-10 bg-blue absolute z-10 items-center gap-2">
-      <label className="font-bold text-sm text-white">Status</label>
+    <div className="flex justify-end w-full h-10 xxl:h-20 bg-blue absolute z-10 items-center gap-2">
+      <label className="font-bold text-sm text-white xxl:text-3xl">
+        Status
+      </label>
       <form onSubmit={handleSubmit}>
         <div htmlFor="options">
           <select
