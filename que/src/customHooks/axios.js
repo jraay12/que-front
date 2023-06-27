@@ -1,32 +1,25 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-//headers
-const validation = sessionStorage.getItem("access_token");
-
-const headers = {
-  Authorization: `Bearer ${validation}`,
-  "Content-Type": "application/x-www-form-urlencoded",
-};
-
-//for Register
+// For Register
 const registerHeaders = {
   "Content-Type": "multipart/form-data",
 };
 
-//For Login
+// For Login
 const facultyLogin = async (credentials) => {
   return await axios.post(
     `https://ustp-queueing-system.onrender.com/auth/login`,
     credentials
   );
 };
+
 export const MutateLogin = () => {
   return useMutation(facultyLogin);
 };
 
-//For Add Queue
-const addQue = async (value) => {
+// For Add Queue
+const addQue = async (value, headers) => {
   return await axios.post(
     `https://ustp-queueing-system.onrender.com/queue/`,
     value,
@@ -43,7 +36,7 @@ export const MutateQue = () => {
   });
 };
 
-//For Dashboard Data
+// For Dashboard Data
 const dashboardQuery = async () => {
   const value = await axios.get(
     "https://ustp-queueing-system.onrender.com/queue/count"
@@ -55,20 +48,26 @@ export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery);
 };
 
-//For Pending Data
-const pendingQuery = async () => {
+// For Pending Data
+const pendingQuery = async (headers) => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/queue/pending"
+    "https://ustp-queueing-system.onrender.com/queue/pending",
+    { headers }
   );
   return value.data;
 };
 
 export const GetPending = () => {
-  return useQuery(["pending"], pendingQuery);
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+  return useQuery(["pending"], () => pendingQuery(headers));
 };
 
-//For Sending Email
-const sendEmail = async (notify) => {
+// For Sending Email
+const sendEmail = async (notify, headers) => {
   return await axios.post(
     "https://ustp-queueing-system.onrender.com/queue/notify",
     notify,
@@ -77,11 +76,17 @@ const sendEmail = async (notify) => {
 };
 
 export const NotifyQuery = () => {
-  return useMutation(sendEmail);
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+
+  return useMutation((notify) => sendEmail(notify, headers));
 };
 
-//For Update Queue Status
-const queueStatus = async (value) => {
+// For Update Queue Status
+const queueStatus = async (value, headers) => {
   return await axios.put(
     `https://ustp-queueing-system.onrender.com/queue/`,
     value,
@@ -91,33 +96,39 @@ const queueStatus = async (value) => {
 
 export const QueueStatus = () => {
   const queryClient = useQueryClient();
-  return useMutation(queueStatus, {
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+
+  return useMutation((value) => queueStatus(value, headers), {
     onSuccess: () => {
       queryClient.invalidateQueries("pending");
     },
   });
 };
 
-//For Register
-const register = async (value) => {
+// For Register
+const register = async (value, registerHeaders) => {
   return await axios.post(
     `https://ustp-queueing-system.onrender.com/auth/register`,
     value,
-    { registerHeaders }
+    { headers: registerHeaders }
   );
 };
 
 export const Register = () => {
   const queryClient = useQueryClient();
-  return useMutation(register, {
+  return useMutation((value) => register(value, registerHeaders), {
     onSuccess: () => {
       queryClient.invalidateQueries("faculty");
     },
   });
 };
 
-//For Status
-const status = async(value) => {
+// For Status
+const status = async (value, headers) => {
   return await axios.post(
     `https://ustp-queueing-system.onrender.com/user/status`,
     value,
@@ -127,9 +138,20 @@ const status = async(value) => {
 
 export const Status = () => {
   const queryClient = useQueryClient();
-  return useMutation(status, {
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+
+  return useMutation((value) => status(value, headers), {
     onSuccess: () => {
       queryClient.invalidateQueries("faculty");
     },
   });
+};
+
+// Clear Token
+export const clearToken = () => {
+  sessionStorage.removeItem("access_token");
 };
