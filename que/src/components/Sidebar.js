@@ -49,7 +49,7 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="flex shadow-2xl bg-blue text-white  ">
+    <div className="flex shadow-2xl bg-blue text-white  z-20">
       <div
         ref={sidebarRef}
         className={`${

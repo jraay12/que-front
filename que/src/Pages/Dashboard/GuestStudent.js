@@ -52,7 +52,7 @@ const GuestStudent = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
           pagination={{ clickable: true }}
           navigation
-          slidesPerView={2}
+          slidesPerView={3}
           className="z-10"
         >
           {Array.isArray(getUser) &&
@@ -65,7 +65,7 @@ const GuestStudent = () => {
                   image={item.profilePic}
                   status={item.status}
                   count={item.count === null ? "0" : item.count}
-                  onClick={() => navigate(`/Dashboard/AddQue/${item.userId}`)}
+                  onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
                 />
               </SwiperSlide>
             ))}
