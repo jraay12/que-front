@@ -45,7 +45,7 @@ export const MutateQue = () => {
 //For Dashboard Data
 const dashboardQuery = async () => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/user/"
+    "https://ustp-queueing-system.onrender.com/queue/count"
   );
   return value.data;
 };

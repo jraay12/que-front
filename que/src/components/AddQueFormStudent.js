@@ -6,7 +6,7 @@ import { MutateQue } from "../customHooks/axios";
 
 const AddQueFormStudent = () => {
   const navigate = useNavigate();
-  const { _id } = useParams();
+  const { userId } = useParams();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ const AddQueFormStudent = () => {
     e.preventDefault();
 
     const params = new URLSearchParams();
-    params.append("userId", _id);
+    params.append("userId", userId);
     params.append("name", name);
     params.append("idNumber", idNumber);
     params.append("email", email);

@@ -22,7 +22,7 @@ const GuestStudent = () => {
 
   const { data: getUser } = GetFaculty();
   
-  
+  console.log(getUser)
 
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
@@ -52,7 +52,7 @@ const GuestStudent = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
           pagination={{ clickable: true }}
           navigation
-          slidesPerView={3}
+          slidesPerView={2}
           className="z-10"
         >
           {Array.isArray(getUser) &&
@@ -64,8 +64,8 @@ const GuestStudent = () => {
                   position={item.position}
                   image={item.profilePic}
                   status={item.status}
-                  // count={count}
-                  onClick={() => navigate(`/Dashboard/AddQue/${item._id}`)}
+                  count={item.count === null ? "0" : item.count}
+                  onClick={() => navigate(`/Dashboard/AddQue/${item.userId}`)}
                 />
               </SwiperSlide>
             ))}

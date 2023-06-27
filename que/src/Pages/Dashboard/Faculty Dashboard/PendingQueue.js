@@ -11,7 +11,7 @@ const PendingQueue = () => {
 
   const {data:Pending} = GetPending()
   
-  const filterData = Pending?.filter((item) => item.userId == value[2])
+  const filterData = Pending?.filter((item) => item.userId ===  value[2])
  
   
   return (
@@ -30,7 +30,7 @@ const PendingQueue = () => {
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer" key={item.idNumber} onClick={() => navigate(`/Faculty/PendingQueue/Information/${item._id}`)}>
-                  <td className="p-4 w-1/4 ">{item.idNumber === undefined ? "Guest" :item.idNumber}</td>
+                  <td className="p-4 w-1/4 ">{item.idNumber === null ? "Guest" :item.idNumber}</td>
                   <td className="p-4 w-1/4 ">{item.name}</td>
                   <td className="p-4 w-1/4 ">{item.status}</td>
                   <td className="p-4 w-1/4  whitespace-nowrap overflow-ellipsis overflow-x-hidden">{item.purpose}</td>
