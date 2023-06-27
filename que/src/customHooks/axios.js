@@ -48,6 +48,43 @@ export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery);
 };
 
+//For Checking Email
+const checkingEmail = async () => {
+  const response = await axios.get(
+    `https://ustp-queueing-system.onrender.com/user/`
+  );
+  return response.data;
+};
+
+export const CheckingEmail = () => {
+  return useQuery(["checking"], checkingEmail);
+};
+
+// For reset Password
+
+const resetPassword = async (value, headers) => {
+  return await axios.post(
+    `https://ustp-queueing-system.onrender.com/auth/resetPassword`,
+    value,
+    { headers }
+  );
+};
+
+export const ResetPassword = () => {
+  const queryClient = useQueryClient();
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+  return useMutation((value) => resetPassword(value, headers), {
+    onSuccess: () => {
+      queryClient.invalidateQueries("faculty");
+      console.log("success");
+    },
+  });
+};
+
 // For Pending Data
 const pendingQuery = async (headers) => {
   const value = await axios.get(
@@ -170,28 +207,6 @@ export const Status = () => {
       queryClient.invalidateQueries("faculty");
     },
   });
-};
-
-// For reset Password
-
-const resetPassword = async (value, headers) => {
-  return await axios.post(
-    `https://ustp-queueing-system.onrender.com/auth/resetPassword`,
-    value,
-    { headers }
-  );
-};
-
-export const ResetPassword = () => {
-  const headers = {
-    Authorization: `Bearer ${validation}`,
-    "Content-Type": "application/x-www-form-urlencoded",
-  };
-  return useMutation((value) => resetPassword(value, headers), {
-    onSuccess: () => {
-      console.log("success")
-    },
-  })
 };
 
 // Clear Token
