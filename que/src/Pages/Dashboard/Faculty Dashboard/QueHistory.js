@@ -3,6 +3,8 @@ import { GetHistory } from "../../../customHooks/axios";
 
 const QueHistory = () => {
   const { data: History } = GetHistory();
+
+  const sortedHistory = History?.sort((a, b) => a.timestamp - b.timestamp);
   return (
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
       <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] w-full mx-10 overflow-x-hidden">
@@ -16,8 +18,8 @@ const QueHistory = () => {
             </tr>
           </thead>
           <tbody className="flex flex-col items-center h-[50%] overflow-auto w-full ">
-            {Array.isArray(History) &&
-              History.map((item) => (
+            {Array.isArray(sortedHistory) &&
+              sortedHistory.map((item) => (
                 <tr
                   className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer"
                   key={item?.idNumber}
