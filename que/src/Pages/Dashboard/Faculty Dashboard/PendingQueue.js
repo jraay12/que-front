@@ -26,7 +26,7 @@ const PendingQueue = () => {
               <th className="p-4 w-1/4 ">Purpose</th>
             </tr>
           </thead>
-          <tbody className="flex flex-col items-center justify-between h-[50%] overflow-auto w-full ">
+          <tbody className="flex flex-col items-center h-[50%] overflow-auto w-full ">
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer" key={item.idNumber} onClick={() => navigate(`/Faculty/PendingQueue/Information/${item._id}`)}>
