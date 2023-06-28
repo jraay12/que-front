@@ -21,6 +21,8 @@ const GuestStudent = () => {
   const openModal = false;
   const navigate = useNavigate();
   const { data: getUser } = GetFaculty();
+  const slidesPerView = Math.min(getUser?.length, 3);
+
 
 
   return (
@@ -51,7 +53,7 @@ const GuestStudent = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
           pagination={{ clickable: true }}
           navigation
-          slidesPerView={3}
+          slidesPerView={slidesPerView}
           className="z-10"
         >
           {Array.isArray(getUser) &&
