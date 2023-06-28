@@ -36,9 +36,11 @@ const Login = () => {
         setAuth({ email, password, id, authName });
         navigate("/Faculty/PendingQueue");
       },
-      onError: (error) => {
-        console.error(error);
-        console.log("Invalid password");
+      onError: async () => {
+        toast.error("Invalid Credentials", {
+          autoClose: 1000,
+          theme: "dark",
+        });
       },
     });
   };
@@ -52,12 +54,11 @@ const Login = () => {
 
     Reset(value, {
       onSuccess: async () => {
-        
         toast.success("Password Change successfully", {
           autoClose: 1000,
           theme: "dark",
         });
-        setModal(false)
+        setModal(false);
       },
       onError: async () => {
         toast.error("Email doesnt exist", {
