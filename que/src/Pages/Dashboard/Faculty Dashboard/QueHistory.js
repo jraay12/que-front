@@ -17,25 +17,19 @@ const QueHistory = () => {
               <th className="p-4 w-1/4 ">Purpose</th>
             </tr>
           </thead>
-          <tbody className="flex flex-col items-center h-[50%] overflow-auto w-full ">
+          <tbody className="flex flex-col items-center h-[50%] overflow-auto w-full px-4 ">
             {Array.isArray(sortedHistory) &&
               sortedHistory.map((item) => (
                 <tr
-                  className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer"
+                  className="flex w-full mt-4 text-white bg-blue hover:cursor-pointer rounded-3xl mb-4"
                   key={item?.idNumber}
                 >
                   <td className="p-4 w-1/4 ">
                     {item?.idNumber === null ? "N/A" : item.idNumber}
                   </td>
-                  <td className="p-4 w-1/4 ">
-                    {item?.name}
-                  </td>
-                  <td className="p-4 w-1/4 ">
-                    {item?.status}
-                  </td>
-                  <td className="p-4 w-1/4 ">
-                    {item?.purpose}
-                  </td>
+                  <td className="p-4 w-1/4 ">{item?.name}</td>
+                  <td className="p-4 w-1/4 ">{item?.status}</td>
+                  <td className="p-4 w-1/4 ">{item?.purpose}</td>
                 </tr>
               ))}
           </tbody>
