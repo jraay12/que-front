@@ -69,10 +69,7 @@ export const GetPending = () => {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
   };
-  return useQuery(["pending"], () => pendingQuery(headers), {
-    refetchIntervalInBackground: true,
-    refetchInterval: 2000,
-  });
+  return useQuery(['pending'], () => pendingQuery(headers));
 };
 
 // For Add Queue
@@ -88,7 +85,7 @@ export const MutateQue = () => {
   const queryClient = useQueryClient();
   return useMutation(addQue, {
     onSuccess: () => {
-      queryClient.invalidateQueries("pending");
+      queryClient.invalidateQueries('pending');
     },
   });
 };
