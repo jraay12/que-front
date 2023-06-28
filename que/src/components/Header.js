@@ -31,7 +31,7 @@ const Header = () => {
             id="options"
             value={status}
             onChange={handleSubmit}
-            className="w-full h-full rounded-2xl bg-blue text-white outline-none"
+            className="w-full h-full rounded-2xl xxl:text-3xl bg-blue text-white outline-none"
           >
             <option value=""></option>
             <option value="Available">Available</option>

@@ -65,7 +65,7 @@ const GuestStudent = () => {
                   status={item.status}
                   count={item.count === undefined ? "0" : item.count}
                   onClick={() => {
-                    item.status === "Not Available"
+                    item.status === "Not Available" || item.status === undefined
                       ? toast.error("Not Available", {
                           autoClose: 1000,
                           theme: "dark",
