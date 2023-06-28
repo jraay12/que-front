@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
 import { GetFaculty } from "../../customHooks/axios";
@@ -20,10 +20,8 @@ const GuestStudent = () => {
 
   const openModal = false;
   const navigate = useNavigate();
-
   const { data: getUser } = GetFaculty();
-
-  console.log(getUser);
+  const slidesPerView = Math.min(getUser?.length, 3);
 
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
@@ -53,7 +51,7 @@ const GuestStudent = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
           pagination={{ clickable: true }}
           navigation
-          slidesPerView={3}
+          slidesPerView={slidesPerView}
           className="z-10"
         >
           {Array.isArray(getUser) &&
@@ -67,8 +65,7 @@ const GuestStudent = () => {
                   status={item.status}
                   count={item.count === undefined ? "0" : item.count}
                   onClick={() => {
-                    item.status === "Not Available" ||
-                    item.status === "Present but not Available"
+                    item.status === "Not Available" || item.status === undefined
                       ? toast.error("Not Available", {
                           autoClose: 1000,
                           theme: "dark",

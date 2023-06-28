@@ -31,14 +31,12 @@ const Header = () => {
             id="options"
             value={status}
             onChange={handleSubmit}
-            className="w-full h-full rounded-2xl bg-blue text-white outline-none"
+            className="w-full h-full rounded-2xl xxl:text-3xl bg-blue text-white outline-none"
           >
             <option value=""></option>
             <option value="Available">Available</option>
             <option value="Not Available">Not Available</option>
-            <option value="Present but not Available">
-              Present but not Available
-            </option>
+            
           </select>
         </div>
       </form>

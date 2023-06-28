@@ -29,11 +29,22 @@ const PendingQueue = () => {
           <tbody className="flex flex-col items-center h-[50%] overflow-auto w-full ">
             {Array.isArray(filterData) &&
               filterData.map((item) => (
-                <tr className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer" key={item.idNumber} onClick={() => navigate(`/Faculty/PendingQueue/Information/${item._id}`)}>
-                  <td className="p-4 w-1/4 ">{item.idNumber === null ? "Guest" :item.idNumber}</td>
-                  <td className="p-4 w-1/4 ">{item.name}</td>
-                  <td className="p-4 w-1/4 ">{item.status}</td>
-                  <td className="p-4 w-1/4  whitespace-nowrap overflow-ellipsis overflow-x-hidden">{item.purpose}</td>
+                <tr
+                  className="flex w-full mb-4 hover:bg-gray-500 hover:cursor-pointer"
+                  key={item?.idNumber} onClick={() => navigate(`/Faculty/PendingQueue/Information/${item._id}`)}
+                >
+                  <td className="p-4 w-1/4 ">
+                    {item?.idNumber === null ? "N/A" : item.idNumber}
+                  </td>
+                  <td className="p-4 w-1/4 ">
+                    {item?.name}
+                  </td>
+                  <td className="p-4 w-1/4 ">
+                    {item?.status}
+                  </td>
+                  <td className="p-4 w-1/4 ">
+                    {item?.purpose}
+                  </td>
                 </tr>
               ))}
           </tbody>

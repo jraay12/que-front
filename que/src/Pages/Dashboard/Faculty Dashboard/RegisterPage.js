@@ -3,10 +3,11 @@ import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { Register } from "../../../customHooks/axios";
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [position, setPosition] = useState("");
@@ -24,15 +25,21 @@ const RegisterPage = () => {
     formdata.append("position", position);
     formdata.append("profilePic", picture);
 
-    const value = formdata
+    const value = formdata;
     RegisterUser(value, {
-      onSuccess: () => {
-        navigate("/Faculty/PendingQueue")
+      onSuccess: async () => {
+        toast.success("Registered Successfuly", {
+          autoClose: 1000,
+          theme: "dark",
+        });
+        setTimeout(() => {
+          navigate("/Faculty/PendingQueue");
+        }, 2000);
       },
-      onError:(err) => {
-        console.error(err)
-      }
-    })
+      onError: (err) => {
+        console.error(err);
+      },
+    });
   };
   return (
     <div className="w-full min-h-full justify-center items-center flex flex-col gap-4">
@@ -85,7 +92,6 @@ const RegisterPage = () => {
                   <Input
                     label="Picture"
                     type="file"
-                    
                     onChange={(e) => setPicture(e.target.files[0])}
                   />
                 </div>
@@ -97,6 +103,7 @@ const RegisterPage = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

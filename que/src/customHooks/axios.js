@@ -18,24 +18,6 @@ export const MutateLogin = () => {
   return useMutation(facultyLogin);
 };
 
-// For Add Queue
-const addQue = async (value, headers) => {
-  return await axios.post(
-    `https://ustp-queueing-system.onrender.com/queue/`,
-    value,
-    { headers }
-  );
-};
-
-export const MutateQue = () => {
-  const queryClient = useQueryClient();
-  return useMutation(addQue, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("pending");
-    },
-  });
-};
-
 // For Dashboard Data
 const dashboardQuery = async () => {
   const value = await axios.get(
@@ -46,18 +28,6 @@ const dashboardQuery = async () => {
 
 export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery);
-};
-
-//For Checking Email
-const checkingEmail = async () => {
-  const response = await axios.get(
-    `https://ustp-queueing-system.onrender.com/user/`
-  );
-  return response.data;
-};
-
-export const CheckingEmail = () => {
-  return useQuery(["checking"], checkingEmail);
 };
 
 // For reset Password
@@ -80,7 +50,6 @@ export const ResetPassword = () => {
   return useMutation((value) => resetPassword(value, headers), {
     onSuccess: () => {
       queryClient.invalidateQueries("faculty");
-      console.log("success");
     },
   });
 };
@@ -103,6 +72,24 @@ export const GetPending = () => {
   return useQuery(["pending"], () => pendingQuery(headers), {
     refetchIntervalInBackground: true,
     refetchInterval: 2000,
+  });
+};
+
+// For Add Queue
+const addQue = async (value, headers) => {
+  return await axios.post(
+    `https://ustp-queueing-system.onrender.com/queue/`,
+    value,
+    { headers }
+  );
+};
+
+export const MutateQue = () => {
+  const queryClient = useQueryClient();
+  return useMutation(addQue, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("pending");
+    },
   });
 };
 

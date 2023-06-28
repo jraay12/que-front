@@ -3,11 +3,9 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import {
   MutateLogin,
-  CheckingEmail,
   ResetPassword,
 } from "../../customHooks/axios";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../images/Logo.png";
 import AuthContext from "../../context/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -19,7 +17,6 @@ const Login = () => {
   const [newPassword, setNewPassword] = useState("");
   const [modal, setModal] = useState(false);
   const { mutate: Reset } = ResetPassword();
-  const { data: Check } = CheckingEmail();
   const { mutate } = MutateLogin();
 
   const handleLogin = (e) => {
@@ -30,20 +27,21 @@ const Login = () => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
         const authName = data.data.user.name;
+        const profilePic = data.data.user.profilePic
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position
         const id = data?.data?.user._id;
-        setAuth({ email, password, id, authName });
+        setAuth({ email, password, id, authName, profilePic});
         navigate("/Faculty/PendingQueue");
       },
-      onError: (error) => {
-        console.error(error);
-        console.log("Invalid password");
+      onError: async () => {
+        toast.error("Invalid Credentials", {
+          autoClose: 1000,
+          theme: "dark",
+        });
       },
     });
   };
-
-  const filterEmail = Check?.map((item) => item.email);
 
   const handleReset = (e) => {
     e.preventDefault();
@@ -52,7 +50,21 @@ const Login = () => {
     params.append("password", newPassword);
     const value = params;
 
-    Reset(value);
+    Reset(value, {
+      onSuccess: async () => {
+        toast.success("Password Change successfully", {
+          autoClose: 1000,
+          theme: "dark",
+        });
+        setModal(false);
+      },
+      onError: async () => {
+        toast.error("Email doesnt exist", {
+          autoClose: 1000,
+          theme: "dark",
+        });
+      },
+    });
   };
   return (
     <div className="flex justify-center items-center min-h-screen h-screen min-w-max bg-gradient-to-l from-white via-cyan-300 to-cyan-400">
@@ -114,20 +126,26 @@ const Login = () => {
                 <div className="w-full h-10 xxl:h-20 xxl:text-4xl rounded-lg  flex justify-center items-center font-bold bg-blue hover:bg-opacity-60 text-white text-lg xxl:mt-10 mt-2">
                   <Button buttonName="Login" type="submit" />
                 </div>
-                <div className="w-full flex justify-start">
+                <div className="w-full flex flex-col items-start">
                   <button
-                    className="xxl:text-4xl"
+                    className="xxl:text-4xl hover:text-red-600"
                     onClick={() => setModal(true)}
                   >
-                    Forget Password
+                    Forgot Password?
+                  </button>
+                  <button
+                    className="xxl:text-4xl hover:text-blue"
+                    onClick={() => navigate("/Dashboard")}
+                  >
+                    Guest or Student?
                   </button>
                 </div>
               </div>
             </form>
           )}
-          <ToastContainer />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
