@@ -126,12 +126,18 @@ const Login = () => {
                 <div className="w-full h-10 xxl:h-20 xxl:text-4xl rounded-lg  flex justify-center items-center font-bold bg-blue hover:bg-opacity-60 text-white text-lg xxl:mt-10 mt-2">
                   <Button buttonName="Login" type="submit" />
                 </div>
-                <div className="w-full flex justify-start">
+                <div className="w-full flex flex-col items-start">
                   <button
-                    className="xxl:text-4xl"
+                    className="xxl:text-4xl hover:text-red-600"
                     onClick={() => setModal(true)}
                   >
-                    Forget Password
+                    Forgot Password?
+                  </button>
+                  <button
+                    className="xxl:text-4xl hover:text-blue"
+                    onClick={() => navigate("/Dashboard")}
+                  >
+                    Guest or Student?
                   </button>
                 </div>
               </div>
