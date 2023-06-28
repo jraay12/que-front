@@ -25,7 +25,7 @@ const QueHistory = () => {
                   key={item?.idNumber}
                 >
                   <td className="p-4 w-1/4 ">
-                    {item?.idNumber === null ? "Guest" : item.idNumber}
+                    {item?.idNumber === null ? "N/A" : item.idNumber}
                   </td>
                   <td className="p-4 w-1/4 ">
                     {item?.name}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
 import { GetFaculty } from "../../customHooks/axios";
@@ -20,10 +20,8 @@ const GuestStudent = () => {
 
   const openModal = false;
   const navigate = useNavigate();
-
   const { data: getUser } = GetFaculty();
 
-  console.log(getUser);
 
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
@@ -64,10 +62,10 @@ const GuestStudent = () => {
                   name={item.name}
                   position={item.position}
                   image={item.profilePic}
-                  status={item.status === undefined ? "Not Available" : item.status}
+                  status={item.status}
                   count={item.count === undefined ? "0" : item.count}
                   onClick={() => {
-                    item.status == "Not Available"
+                    item.status === "Not Available"
                       ? toast.error("Not Available", {
                           autoClose: 1000,
                           theme: "dark",

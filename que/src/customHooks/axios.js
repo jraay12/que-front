@@ -18,8 +18,6 @@ export const MutateLogin = () => {
   return useMutation(facultyLogin);
 };
 
-
-
 // For Dashboard Data
 const dashboardQuery = async () => {
   const value = await axios.get(
@@ -31,7 +29,6 @@ const dashboardQuery = async () => {
 export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery);
 };
-
 
 // For reset Password
 
@@ -53,7 +50,6 @@ export const ResetPassword = () => {
   return useMutation((value) => resetPassword(value, headers), {
     onSuccess: () => {
       queryClient.invalidateQueries("faculty");
-      console.log("success");
     },
   });
 };
@@ -78,7 +74,6 @@ export const GetPending = () => {
     refetchInterval: 2000,
   });
 };
-
 
 // For Add Queue
 const addQue = async (value, headers) => {

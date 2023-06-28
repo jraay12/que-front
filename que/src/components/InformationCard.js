@@ -67,7 +67,7 @@ const InformationCard = () => {
 
   return (
     <div className="flex min-h-screen justify-center items-center absolute">
-      <div className="min-w-[400px] h-96 bg-white shadow-2xl shadow-blue xxl:min-w-[40%] xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px] max-h-screen rounded-3xl">
+      <div className="max-w-full min-w-[400px] h-96 bg-white shadow-2xl shadow-blue xxl:min-w-[40%] xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px] max-h-screen rounded-3xl">
         <div className="flex flex-col h-full items-center mt-4">
           <div
             className="flex justify-end w-full mr-5 hover:text-red-600 cursor-pointer text-xl"
@@ -80,7 +80,7 @@ const InformationCard = () => {
           </h1>
           <div className="flex flex-col items-start px-5 gap-6 xxl:text-4xl xxl:mt-20 xxl:gap-12 font-normal text-blue mt-10">
             <div className="flex gap-6 xxl:gap-10">
-              <h1>Student Number:</h1>
+              <h1>ID Number:</h1>
               <h1 className="font-bold">
                 {value[0].idNumber === null ? "N/A" : value[0].idNumber}
               </h1>
@@ -93,7 +93,7 @@ const InformationCard = () => {
               <h1>Email :</h1>
               <h1 className="font-bold whitespace-normal">{value[0].email}</h1>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-6">
               <h1>Purpose:</h1>
               <h1 className="whitespace-normal font-bold">
                 {value[0].purpose}
