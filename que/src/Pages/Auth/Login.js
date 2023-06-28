@@ -31,7 +31,7 @@ const Login = () => {
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position
         const id = data?.data?.user._id;
-        setAuth({ email, password, id, authName, profilePic });
+        setAuth({ email, password, id, authName, profilePic});
         navigate("/Faculty/PendingQueue");
       },
       onError: async () => {

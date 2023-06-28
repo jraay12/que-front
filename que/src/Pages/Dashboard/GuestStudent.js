@@ -23,8 +23,6 @@ const GuestStudent = () => {
   const { data: getUser } = GetFaculty();
   const slidesPerView = Math.min(getUser?.length, 3);
 
-
-
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
