@@ -32,17 +32,6 @@ export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery);
 };
 
-//For Checking Email
-const checkingEmail = async () => {
-  const response = await axios.get(
-    `https://ustp-queueing-system.onrender.com/user/`
-  );
-  return response.data;
-};
-
-export const CheckingEmail = () => {
-  return useQuery(["checking"], checkingEmail);
-};
 
 // For reset Password
 

@@ -64,11 +64,10 @@ const GuestStudent = () => {
                   name={item.name}
                   position={item.position}
                   image={item.profilePic}
-                  status={item.status}
+                  status={item.status === undefined ? "Not Available" : item.status}
                   count={item.count === undefined ? "0" : item.count}
                   onClick={() => {
-                    item.status === "Not Available" ||
-                    item.status === "Present but not Available"
+                    item.status == "Not Available"
                       ? toast.error("Not Available", {
                           autoClose: 1000,
                           theme: "dark",

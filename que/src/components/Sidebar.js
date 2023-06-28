@@ -11,21 +11,17 @@ import { clearToken } from "../customHooks/axios";
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const { auth } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const sidebarRef = useRef(null);
 
-
   const handleLogout = () => {
-    clearToken()
+    clearToken();
     navigate("/Login");
-};
+  };
 
-
-
-  
   useEffect(() => {
-   
     const handleResize = () => {
       const screenWidth = window.innerWidth;
       if (screenWidth <= 768) {
@@ -68,13 +64,22 @@ const Sidebar = () => {
           open ? "w-52 xxl:w-96" : "w-20 xxl:w-36"
         } bg-dark-purple h-screen p-5 pt-8 relative duration-300 ease-in md:${!open}`}
       >
-        <h1
-          className={`${
-            !open && "hidden"
-          } origin-left duration-200 text-xl xxl:text-3xl`}
-        >
-          {auth.authName}
-        </h1>
+        <div className={`${open && "flex justify-center items-center xxl:mt-20" } w-32 h-32 m-auto xxl:w-56 xxl:h-56`}>
+          <img
+            src={auth.profilePic}
+            alt="my-picture"
+            className={`${!open && "h-10 w-10 mt-20 xxl:h-28 xxl:w-28"} rounded-full`}
+          />
+        </div>
+        <div className="flex justify-center items-center mt-4">
+          <h1
+            className={`${
+              !open && "hidden"
+            } origin-left duration-200 text-xl xxl:text-4xl`}
+          >
+            {auth.authName}
+          </h1>
+        </div>
         <div className={`flex justify-end ${!open && "justify-center"}`}>
           <img
             src={Toggle}
@@ -86,7 +91,7 @@ const Sidebar = () => {
         </div>
         <div className="flex gap-x-4 items-center"></div>
         <div className="flex flex-col flex-grow items-center ">
-          <ul className="pt-6 mt-20 flex-grow xxl:mt-96 ">
+          <ul className="pt-6 flex-grow xxl:mt-96 ">
             {menuItem.map((items, index) => (
               <NavLink
                 key={index}
@@ -113,7 +118,6 @@ const Sidebar = () => {
             ))}
           </ul>
         </div>
-
         <div className="absolute bottom-5 left-5 right-5">
           <div className="flex justify-center items-center">
             <img

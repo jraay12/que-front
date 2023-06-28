@@ -3,11 +3,9 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import {
   MutateLogin,
-  CheckingEmail,
   ResetPassword,
 } from "../../customHooks/axios";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../images/Logo.png";
 import AuthContext from "../../context/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -19,7 +17,6 @@ const Login = () => {
   const [newPassword, setNewPassword] = useState("");
   const [modal, setModal] = useState(false);
   const { mutate: Reset } = ResetPassword();
-  const { data: Check } = CheckingEmail();
   const { mutate } = MutateLogin();
 
   const handleLogin = (e) => {
@@ -30,10 +27,11 @@ const Login = () => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
         const authName = data.data.user.name;
+        const profilePic = data.data.user.profilePic
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position
         const id = data?.data?.user._id;
-        setAuth({ email, password, id, authName });
+        setAuth({ email, password, id, authName, profilePic });
         navigate("/Faculty/PendingQueue");
       },
       onError: async () => {

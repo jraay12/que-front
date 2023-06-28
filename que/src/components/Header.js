@@ -36,9 +36,7 @@ const Header = () => {
             <option value=""></option>
             <option value="Available">Available</option>
             <option value="Not Available">Not Available</option>
-            <option value="Present but not Available">
-              Present but not Available
-            </option>
+            
           </select>
         </div>
       </form>
