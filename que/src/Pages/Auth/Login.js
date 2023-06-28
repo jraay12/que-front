@@ -43,8 +43,6 @@ const Login = () => {
     });
   };
 
-  const filterEmail = Check?.map((item) => item.email);
-
   const handleReset = (e) => {
     e.preventDefault();
     const params = new URLSearchParams();
@@ -52,7 +50,22 @@ const Login = () => {
     params.append("password", newPassword);
     const value = params;
 
-    Reset(value);
+    Reset(value, {
+      onSuccess: async () => {
+        
+        toast.success("Password Change successfully", {
+          autoClose: 1000,
+          theme: "dark",
+        });
+        setModal(false)
+      },
+      onError: async () => {
+        toast.error("Email doesnt exist", {
+          autoClose: 1000,
+          theme: "dark",
+        });
+      },
+    });
   };
   return (
     <div className="flex justify-center items-center min-h-screen h-screen min-w-max bg-gradient-to-l from-white via-cyan-300 to-cyan-400">
@@ -125,9 +138,9 @@ const Login = () => {
               </div>
             </form>
           )}
-          <ToastContainer />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
