@@ -11,6 +11,7 @@ import InformationCard from "./components/InformationCard";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RegisterPage from "./Pages/Dashboard/Faculty Dashboard/RegisterPage";
+import ProtectedRoute from "./customHooks/ProtectedRoute";
 const queryClient = new QueryClient();
 
 function App() {
@@ -26,16 +27,21 @@ function App() {
           path="/Dashboard/AddQue/Student/:_id"
           element={<AddQueFormStudent />}
         />
-        <Route path="/Dashboard/AddQue/Guest/:_id" element={<AddQueFormGuest />} />
+        <Route
+          path="/Dashboard/AddQue/Guest/:_id"
+          element={<AddQueFormGuest />}
+        />
 
-        <Route path="/Faculty" element={<Faculty />}>
-          <Route path="PendingQueue" element={<PendingQueue />}>
-            <Route path="Information/:_id" element={<InformationCard />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/Faculty" element={<Faculty />}>
+            <Route path="PendingQueue" element={<PendingQueue />}>
+              <Route path="Information/:_id" element={<InformationCard />} />
+            </Route>
+            <Route path="QueueHistory" element={<QueHistory />} />
+            <Route path="Register" element={<RegisterPage />} />
           </Route>
-          <Route path="QueueHistory" element={<QueHistory />} />
-          <Route path="Register" element={<RegisterPage />} />
-
         </Route>
+
         <Route path="/Login" element={<Login />} />
       </Routes>
     </QueryClientProvider>

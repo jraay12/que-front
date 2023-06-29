@@ -6,6 +6,8 @@ const AddContainer = () => {
 
   const navigate = useNavigate();
   const {_id} = useParams()
+
+  
   
   return (
     <div className='fixed top-0 inset-0 z-20 backdrop-blur-sm flex justify-center items-center'>
