@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
 import { GetFaculty } from "../../customHooks/axios";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { BsQrCodeScan } from "react-icons/bs";
 import {
   MdOutlineKeyboardArrowDown,
@@ -17,9 +17,8 @@ import { toast, ToastContainer } from "react-toastify";
 
 const GuestStudent = () => {
   const qrOpen = false;
-
+  const location = useLocation()
   const openModal = false;
-  const navigate = useNavigate();
   const { data: getUser } = GetFaculty();
   const slidesPerView = Math.min(getUser?.length, 3);
 
@@ -28,7 +27,7 @@ const GuestStudent = () => {
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
         <div className="text-white font-bold flex justify-center gap-28 md:gap-10 items-center mx-10 ">
           <div className="flex flex-col items-center leading-3 text-2xl hover:cursor-pointer xxl:text-4xl">
-            <div className="flex" onClick={() => navigate("/Dashboard/QrCode")}>
+            <div className="flex" onClick={() => <Navigate to="/Dashboard/QrCode" state={{from:location}} replace/>}>
               <BsQrCodeScan />
               {qrOpen ? (
                 <MdOutlineKeyboardArrowDown />
@@ -41,7 +40,7 @@ const GuestStudent = () => {
             </p>
           </div>
           <div className="select-none font-bold xxl:text-4xl">
-            <Button buttonName="LOGIN" onClick={() => navigate("/Login")} />
+            <Button buttonName="LOGIN" onClick={() => <Navigate to="/Login" state={{from: location}} replace/>} />
           </div>
         </div>
       </div>
@@ -71,7 +70,7 @@ const GuestStudent = () => {
                           theme: "dark",
                           position: "top-center",
                         })
-                      : navigate(`/Dashboard/AddQue/${item._id}`);
+                      : <Navigate to={`/Dashboard/AddQue/${item._id}`}/>;
                   }}
                 />
               </SwiperSlide>
