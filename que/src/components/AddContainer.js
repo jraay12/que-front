@@ -34,26 +34,14 @@ const AddContainer = () => {
             <Button
               buttonName="Guest"
               type="submit"
-              onClick={() => (
-                <Navigate
-                  to={`/Dashboard/AddQue/Guest/${_id}`}
-                  state={{ from: location }}
-                  replace
-                />
-              )}
+              onClick={() => navigate(`/Dashboard/AddQue/Guest/${_id}`, {state: {from: location}})}
             />
           </div>
           <div className="text-white font-bold mt-4 rounded-full hover:cursor-pointer hover:opacity-70 h-16 bg-blue w-[100px] flex justify-center">
             <Button
               buttonName="Student"
               type="submit"
-              onClick={() => (
-                <Navigate
-                  to={`/Dashboard/AddQue/Student/${_id}`}
-                  state={{ from: location }}
-                  replace
-                />
-              )}
+              onClick={() => navigate(`/Dashboard/AddQue/Student/${_id}`, {state: {from: location}})}
             />
           </div>
         </div>

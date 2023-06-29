@@ -111,13 +111,14 @@ export const GetHistory = () => {
   return useQuery(["history"], () => queueHistory(headers));
 };
 
-const qr = async (headers) => {
-  const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/",
-    { headers }
-  );
-  return value.data;
-};
+// const qr = async (headers) => {
+//   const value = await axios.get(
+//     "https://ustp-queueing-system.onrender.com/",
+//     { headers }
+//   );
+//   return value.data;
+// };
+
 // For Sending Email
 const sendEmail = async (notify, headers) => {
   return await axios.post(
