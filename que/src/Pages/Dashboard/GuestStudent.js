@@ -17,18 +17,23 @@ import { toast, ToastContainer } from "react-toastify";
 
 const GuestStudent = () => {
   const qrOpen = false;
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
   const openModal = false;
   const { data: getUser } = GetFaculty();
   const slidesPerView = Math.min(getUser?.length, 3);
-  
+
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
         <div className="text-white font-bold flex justify-center gap-28 md:gap-10 items-center mx-10 ">
           <div className="flex flex-col items-center leading-3 text-2xl hover:cursor-pointer xxl:text-4xl">
-            <div className="flex" onClick={() => navigate("/Dashboard/QrCode" , {state: {from: location}})}>
+            <div
+              className="flex"
+              onClick={() =>
+                navigate("/Dashboard/QrCode", { state: { from: location } })
+              }
+            >
               <BsQrCodeScan />
               {qrOpen ? (
                 <MdOutlineKeyboardArrowDown />
@@ -41,15 +46,17 @@ const GuestStudent = () => {
             </p>
           </div>
           <div className="select-none font-bold xxl:text-4xl">
-            <Button buttonName="LOGIN" onClick={() => navigate('/Login', {state: {from: location}})} />
+            <Button
+              buttonName="LOGIN"
+              onClick={() => navigate("/Login", { state: { from: location } })}
+            />
           </div>
         </div>
       </div>
       <div className="flex mx-7 inset-0 justify-center h-screen items-center">
         <Swiper
           spaceBetween={50}
-          modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
-          pagination={{ clickable: true }}
+          modules={[Navigation, Scrollbar, A11y, EffectCube]}
           navigation
           slidesPerView={slidesPerView}
           className="z-10"

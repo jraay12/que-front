@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { QueryClientProvider, useMutation, useQuery, useQueryClient } from "react-query";
 
 // For Register
 const registerHeaders = {
@@ -193,7 +193,12 @@ const setLimit = async (value) => {
 };
 
 export const SetLimit = () => {
-  return useMutation(setLimit);
+  const queryClient = useQueryClient()
+  return useMutation(setLimit, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('faculty')
+    }
+  });
 };
 
 // For Status
