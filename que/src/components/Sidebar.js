@@ -7,6 +7,7 @@ import Toggle from "../images/Toggle.png";
 import Add from "../images/icons8-add-user-50.png";
 import AuthContext from "../context/AuthProvider";
 import { clearToken, SetLimit } from "../customHooks/axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -14,7 +15,6 @@ const Sidebar = () => {
   const [queueLimit, setQueueLimit] = useState(() => {
     return "";
   });
- 
 
   const navigate = useNavigate();
   const { mutate: Limit } = SetLimit();
@@ -35,13 +35,16 @@ const Sidebar = () => {
     const newLimit = e.target.value;
     setQueueLimit(newLimit);
     const params = new URLSearchParams();
-    params.append("userId", auth?.id)
+    params.append("userId", auth?.id);
     params.append("queueLimit", queueLimit);
     console.log(JSON.stringify(Object.fromEntries(params))); // Log the params object
     const value = params;
     Limit(value, {
-      onSuccess: () => {
-        console.log("success");
+      onSuccess: async() => {
+        toast.success("Queue Limit Changed", {
+          autoClose: 1000,
+          theme: "dark",
+        });
       },
     });
   };
@@ -123,11 +126,11 @@ const Sidebar = () => {
         <div className="flex flex-col flex-grow items-center ">
           <ul className="pt-6 flex-grow xxl:mt-96 ">
             <form onSubmit={handleLimit}>
-              <div className="flex justify-center xxl:text-3xl ">
-                <h1 className="font-bold">Set Queue Limit</h1>
-                <div className="w-10 xxl:w-20">
+              <div className="flex justify-center gap-2 xxl:text-4xl ">
+                <h1 className={` ${!open && "hidden"} font-bold`}>Limit</h1>
+                <div className=" w-full xxl:w-20">
                   <input
-                    className="w-full xxl:px-5 rounded-sm outline-none ml-2 text-black"
+                    className="w-full rounded-sm outline-none ml-2 text-black"
                     value={queueLimit}
                     type="number"
                     onChange={(e) => setQueueLimit(e.target.value)}
@@ -181,6 +184,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

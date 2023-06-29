@@ -23,6 +23,9 @@ const Container = (props) => {
         <h1 className=" text-md xxl:text-2xl">
           <span className="font-bold ">Current Count Queue</span> : {props.count}
         </h1>
+        <h1 className=" text-md xxl:text-2xl">
+          <span className="font-bold ">Queue Limit</span> : {props.limit}
+        </h1>
       </div>
     </div>
   );
