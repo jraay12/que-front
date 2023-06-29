@@ -45,17 +45,17 @@ const AddQueFormStudent = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="w-full px-10 flex flex-col gap-4 mt-6">
+          <Input
+              label="ID Number"
+              py={3}
+              value={idNumber}
+              onChange={(e) => setIdNumber(e.target.value)}
+            />
             <Input
               label="Student Name"
               py={3}
               value={name}
               onChange={(e) => setName(e.target.value)}
-            />
-            <Input
-              label="ID Number"
-              py={3}
-              value={idNumber}
-              onChange={(e) => setIdNumber(e.target.value)}
             />
             <Input
               label="Student Email"

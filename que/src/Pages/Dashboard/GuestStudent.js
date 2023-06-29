@@ -78,8 +78,15 @@ const GuestStudent = () => {
                           autoClose: 1000,
                           theme: "dark",
                           position: "top-center",
+                        }) : item.queueLimit <= item.count ?
+                        toast.error("Queue Limit Exceeded", {
+                          autoClose: 1000,
+                          theme: "dark",
+                          position: "top-center",
                         })
-                      : navigate(`/Dashboard/AddQue/${item._id}`);
+                        :
+                        navigate(`/Dashboard/AddQue/${item._id}`)
+
                   }}
                 />
               </SwiperSlide>

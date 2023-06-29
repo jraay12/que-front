@@ -33,7 +33,7 @@ const PendingQueue = () => {
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr
-                  className={`${done ? "bg-green-800" : " bg-blue"} flex w-full mt-4 text-white hover:cursor-pointer rounded-full`}
+                  className=" flex w-full mt-4 text-white hover:cursor-pointer rounded-full bg-blue"
                   key={item?.idNumber}
                   onClick={() =>
                     navigate(`/Faculty/PendingQueue/Information/${item._id}`)

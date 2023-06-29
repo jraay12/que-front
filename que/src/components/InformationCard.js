@@ -10,24 +10,19 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const InformationCard = () => {
   const navigate = useNavigate();
-  const [done, setDone] = useState(false);
   const { _id } = useParams();
   const [email, setEmail] = useState("");
-
   const { data: GetInfo } = GetPending();
-  const value = GetInfo?.filter((item) => item._id === _id);
+
+  const value = GetInfo?.filter((item) => item?._id === _id);
 
   useEffect(() => {
-    if (value && value.length > 0) {
-      if (value[0]._id === _id) {
-        setEmail(value[0].email);
-      }
+    if (Array.isArray(value) && value?.length > 0) {
+      setEmail(value[0]?.email);
     }
-  }, [GetInfo, _id]);
+  }, [GetInfo]);
 
-  if (!Array.isArray(value) || value.length === 0) {
-    return null;
-  }
+  console.log(email);
 
   const { mutate: Notify } = NotifyQuery();
 
@@ -40,8 +35,8 @@ const InformationCard = () => {
           theme: "dark",
         });
         setTimeout(() => {
-          navigate('/Faculty/PendingQueue')
-        }, 1500)
+          navigate("/Faculty/PendingQueue");
+        }, 1500);
       },
       onError: (error) => {
         console.error(error);
@@ -67,6 +62,10 @@ const InformationCard = () => {
       },
     });
   };
+
+  if (!Array.isArray(value) || value.length === 0) {
+    return null;
+  }
 
   return (
     <div className="flex min-h-screen justify-center items-center absolute">
