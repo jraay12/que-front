@@ -40,7 +40,7 @@ const Sidebar = () => {
     console.log(JSON.stringify(Object.fromEntries(params))); // Log the params object
     const value = params;
     Limit(value, {
-      onSuccess: async() => {
+      onSuccess: async () => {
         toast.success("Queue Limit Changed", {
           autoClose: 1000,
           theme: "dark",
@@ -128,14 +128,13 @@ const Sidebar = () => {
             <form onSubmit={handleLimit}>
               <div className="flex justify-center gap-2 xxl:text-4xl ">
                 <h1 className={` ${!open && "hidden"} font-bold`}>Limit</h1>
-                <div className=" w-full xxl:w-20">
-                  <input
-                    className="w-full rounded-sm outline-none ml-2 text-black"
-                    value={queueLimit}
-                    type="number"
-                    onChange={(e) => setQueueLimit(e.target.value)}
-                  />
-                </div>
+
+                <input
+                  className="w-full rounded-sm outline-none ml-2 text-black"
+                  value={queueLimit}
+                  type="number"
+                  onChange={(e) => setQueueLimit(e.target.value)}
+                />
               </div>
             </form>
 
