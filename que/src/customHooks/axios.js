@@ -1,5 +1,10 @@
 import axios from "axios";
-import { QueryClientProvider, useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  QueryClientProvider,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 
 // For Register
 const registerHeaders = {
@@ -172,12 +177,6 @@ export const Register = () => {
   });
 };
 
-// Clear Token
-export const clearToken = () => {
-  sessionStorage.removeItem("access_token");
-  sessionStorage.removeItem("auth");
-};
-
 //for Set limit queue
 const setLimit = async (value) => {
   const validation = sessionStorage.getItem("access_token");
@@ -193,11 +192,11 @@ const setLimit = async (value) => {
 };
 
 export const SetLimit = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   return useMutation(setLimit, {
     onSuccess: () => {
-      queryClient.invalidateQueries('faculty')
-    }
+      queryClient.invalidateQueries("faculty");
+    },
   });
 };
 
@@ -223,4 +222,21 @@ export const Status = () => {
       queryClient.invalidateQueries("faculty");
     },
   });
+};
+
+//For Logout
+export const MutateLogout = async () => {
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+  };
+  return await axios
+    .post("https://ustp-queueing-system.onrender.com/auth/logout", null, {
+      headers,
+    })
+    .then((res) => {
+      sessionStorage.removeItem("access_token");
+      sessionStorage.removeItem("auth");
+    })
+    .catch((err) => console.error(err));
 };

@@ -6,8 +6,9 @@ import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
 import Add from "../images/icons8-add-user-50.png";
 import AuthContext from "../context/AuthProvider";
-import { clearToken, SetLimit } from "../customHooks/axios";
+import { clearToken, SetLimit, MutateLogout } from "../customHooks/axios";
 import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -21,8 +22,8 @@ const Sidebar = () => {
 
   const sidebarRef = useRef(null);
 
-  const handleLogout = () => {
-    clearToken();
+  const handleLogout = async() => {
+   MutateLogout()
     navigate("/Login");
   };
 
