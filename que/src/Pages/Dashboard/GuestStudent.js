@@ -65,6 +65,7 @@ const GuestStudent = () => {
             getUser.map((item, index) => (
               <SwiperSlide>
                 <Container
+                className={item.status === "Available" ? "text-green-600" : "text-red-600"}
                   key={index}
                   name={item.name}
                   position={item.position}
