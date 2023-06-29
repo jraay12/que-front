@@ -6,13 +6,18 @@ import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
 import Add from "../images/icons8-add-user-50.png";
 import AuthContext from "../context/AuthProvider";
-import { clearToken } from "../customHooks/axios";
+import { clearToken, SetLimit } from "../customHooks/axios";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const { auth } = useContext(AuthContext);
+  const [queueLimit, setQueueLimit] = useState(() => {
+    return "";
+  });
+ 
 
   const navigate = useNavigate();
+  const { mutate: Limit } = SetLimit();
 
   const sidebarRef = useRef(null);
 
@@ -21,6 +26,25 @@ const Sidebar = () => {
     navigate("/Login");
   };
 
+  useEffect(() => {
+    setQueueLimit(auth?.limit);
+  }, []);
+
+  const handleLimit = (e) => {
+    e.preventDefault();
+    const newLimit = e.target.value;
+    setQueueLimit(newLimit);
+    const params = new URLSearchParams();
+    params.append("userId", auth?.id)
+    params.append("queueLimit", queueLimit);
+    console.log(JSON.stringify(Object.fromEntries(params))); // Log the params object
+    const value = params;
+    Limit(value, {
+      onSuccess: () => {
+        console.log("success");
+      },
+    });
+  };
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
@@ -64,11 +88,17 @@ const Sidebar = () => {
           open ? "w-52 xxl:w-96" : "w-20 xxl:w-36"
         } bg-dark-purple h-screen p-5 pt-8 relative duration-300 ease-in md:${!open}`}
       >
-        <div className={`${open && "flex justify-center items-center xxl:mt-20" } w-32 h-32 m-auto xxl:w-56 xxl:h-56`}>
+        <div
+          className={`${
+            open && "flex justify-center items-center xxl:mt-20"
+          } w-32 h-32 m-auto xxl:w-56 xxl:h-56`}
+        >
           <img
             src={auth.profilePic}
             alt="my-picture"
-            className={`${!open && "h-10 w-10 mt-20 xxl:h-28 xxl:w-28"} rounded-full`}
+            className={`${
+              !open && "h-10 w-10 mt-20 xxl:h-28 xxl:w-28"
+            } rounded-full`}
           />
         </div>
         <div className="flex justify-center items-center mt-4">
@@ -92,11 +122,25 @@ const Sidebar = () => {
         <div className="flex gap-x-4 items-center"></div>
         <div className="flex flex-col flex-grow items-center ">
           <ul className="pt-6 flex-grow xxl:mt-96 ">
+            <form onSubmit={handleLimit}>
+              <div className="flex justify-center xxl:text-3xl ">
+                <h1 className="font-bold">Set Queue Limit</h1>
+                <div className="w-10 xxl:w-20">
+                  <input
+                    className="w-full xxl:px-5 rounded-sm outline-none ml-2 text-black"
+                    value={queueLimit}
+                    type="number"
+                    onChange={(e) => setQueueLimit(e.target.value)}
+                  />
+                </div>
+              </div>
+            </form>
+
             {menuItem.map((items, index) => (
               <NavLink
                 key={index}
                 to={items.path}
-                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold text-md items-center gap-x-4 
+                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  text-md items-center gap-x-4 
               ${items.gap ? "mt-9" : "mt-4"} ${
                   index === 0 && "bg-light-white"
                 }`}

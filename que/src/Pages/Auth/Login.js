@@ -27,11 +27,12 @@ const Login = () => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
         const authName = data.data.user.name;
+        const limit = data.data.user.queueLimit
         const profilePic = data.data.user.profilePic
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position
         const id = data?.data?.user._id;
-        setAuth({ email, password, id, authName, profilePic});
+        setAuth({ email, password, id, authName, profilePic, limit});
         navigate("/Faculty/PendingQueue");
       },
       onError: async () => {

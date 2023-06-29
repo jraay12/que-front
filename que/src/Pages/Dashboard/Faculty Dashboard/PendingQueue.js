@@ -1,19 +1,22 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { GetPending } from "../../../customHooks/axios";
 import AuthContext from "../../../context/AuthProvider";
+
+export const useDoneState = () => {
+  const [done, setDone] = useState(false);
+  return { done, setDone };
+};
+
 const PendingQueue = () => {
+  const { auth } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { done, setDone } = useDoneState();
+  const value = Object.values(auth);
+  const { data: Pending } = GetPending();
 
-  const {auth} = useContext(AuthContext)
-  const navigate = useNavigate()
-  
+  const filterData = Pending?.filter((item) => item.userId === value[2]);
 
-  const value = Object.values(auth)
-  const {data:Pending} = GetPending()
-  
-  const filterData = Pending?.filter((item) => item.userId ===  value[2])
- 
-  
   return (
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
       <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] w-full mx-10 overflow-x-hidden">
@@ -30,21 +33,18 @@ const PendingQueue = () => {
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr
-                  className="flex w-full mt-4 text-white bg-blue hover:cursor-pointer rounded-full"
-                  key={item?.idNumber} onClick={() => navigate(`/Faculty/PendingQueue/Information/${item._id}`)}
+                  className={`${done ? "bg-green-800" : " bg-blue"} flex w-full mt-4 text-white hover:cursor-pointer rounded-full`}
+                  key={item?.idNumber}
+                  onClick={() =>
+                    navigate(`/Faculty/PendingQueue/Information/${item._id}`)
+                  }
                 >
                   <td className="p-4 w-1/4 ">
                     {item?.idNumber === null ? "N/A" : item.idNumber}
                   </td>
-                  <td className="p-4 w-1/4 ">
-                    {item?.name}
-                  </td>
-                  <td className="p-4 w-1/4 ">
-                    {item?.status}
-                  </td>
-                  <td className="p-4 w-1/4 ">
-                    {item?.purpose}
-                  </td>
+                  <td className="p-4 w-1/4 ">{item?.name}</td>
+                  <td className="p-4 w-1/4 ">{item?.status}</td>
+                  <td className="p-4 w-1/4 ">{item?.purpose}</td>
                 </tr>
               ))}
           </tbody>

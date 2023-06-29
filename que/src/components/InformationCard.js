@@ -10,6 +10,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const InformationCard = () => {
   const navigate = useNavigate();
+  const [done, setDone] = useState(false);
   const { _id } = useParams();
   const [email, setEmail] = useState("");
 
@@ -35,10 +36,12 @@ const InformationCard = () => {
     Notify(notify, {
       onSuccess: async () => {
         toast.success("Email Sent", {
-          autoClose: 1000,
+          autoClose: 500,
           theme: "dark",
-          
         });
+        setTimeout(() => {
+          navigate('/Faculty/PendingQueue')
+        }, 1500)
       },
       onError: (error) => {
         console.error(error);

@@ -111,14 +111,6 @@ export const GetHistory = () => {
   return useQuery(["history"], () => queueHistory(headers));
 };
 
-// const qr = async (headers) => {
-//   const value = await axios.get(
-//     "https://ustp-queueing-system.onrender.com/",
-//     { headers }
-//   );
-//   return value.data;
-// };
-
 // For Sending Email
 const sendEmail = async (notify, headers) => {
   return await axios.post(
@@ -180,6 +172,30 @@ export const Register = () => {
   });
 };
 
+// Clear Token
+export const clearToken = () => {
+  sessionStorage.removeItem("access_token");
+  sessionStorage.removeItem("auth");
+};
+
+//for Set limit queue
+const setLimit = async (value) => {
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+  return await axios.post(
+    `https://ustp-queueing-system.onrender.com/user/limit`,
+    value,
+    { headers }
+  );
+};
+
+export const SetLimit = () => {
+  return useMutation(setLimit);
+};
+
 // For Status
 const status = async (value, headers) => {
   return await axios.post(
@@ -202,10 +218,4 @@ export const Status = () => {
       queryClient.invalidateQueries("faculty");
     },
   });
-};
-
-// Clear Token
-export const clearToken = () => {
-  sessionStorage.removeItem("access_token");
-  sessionStorage.removeItem("auth");
 };
