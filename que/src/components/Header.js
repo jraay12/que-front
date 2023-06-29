@@ -6,12 +6,22 @@ const Header = () => {
 
   const { mutate: UserStatus } = Status();
 
+  const validation = sessionStorage.getItem("access_token");
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newStatus = event.target.value;
-    setStatus(newStatus);
     const params = new URLSearchParams();
-    params.append("status", newStatus);
+    if (validation) {
+      const newStatus = "Available";
+      setStatus(newStatus);
+      params.append("status", newStatus);
+
+    } else {
+      const newStatus = event.target.value;
+      setStatus(newStatus);
+      params.append("status", newStatus);
+
+    }
+    
     const value = params;
     UserStatus(value, {
       onSuccess: () => {
@@ -33,10 +43,8 @@ const Header = () => {
             onChange={handleSubmit}
             className="w-full h-full rounded-2xl xxl:text-3xl bg-blue text-white outline-none"
           >
-            <option value=""></option>
             <option value="Available">Available</option>
             <option value="Not Available">Not Available</option>
-            
           </select>
         </div>
       </form>
