@@ -73,7 +73,7 @@ const Login = () => {
         <div className="w-full min-h-full rounded-l-3xl bg-background bg-no-repeat bg-cover"></div>
         <div className="flex flex-col xxl:gap-52 gap-20 justify-center items-center w-full min-h-full rounded-r-3xl bg-slate-300">
           <h1 className="font-black text-blue text-4xl xxl:text-8xl">
-            QUEUE SYSTEM
+            IT QUEUE SYSTEM
           </h1>
           {modal ? (
             <form onSubmit={handleReset}>

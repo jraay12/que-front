@@ -31,7 +31,7 @@ const PendingQueue = () => {
 
   return (
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
-      <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
+      <div className="drop-shadow-2xl shadow-2xl bg-opacity-60 max-h-[80%] shadow-blue backdrop-blur-sm rounded-3xl  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className="bg-yellow-300 ">
             <tr className="font-bold text-lg xxl:text-4xl">

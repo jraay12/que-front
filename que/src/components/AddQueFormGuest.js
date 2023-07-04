@@ -41,7 +41,7 @@ const AddQueFormGuest = () => {
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-background bg-no-repeat bg-cover backdrop-blur-lg absolute ">
-      <div className="container bg-slate-300 flex flex-col xxl:h-[55%] shadow-2xl drop-shadow-2xl xxl:max-h-[40%] w-[40%] xxl:max-w-[30%] rounded-3xl">
+      <div className="container bg-slate-300 flex flex-col  shadow-2xl drop-shadow-2xl xxl:max-h-[60%] w-[40%] xxl:max-w-[30%] rounded-3xl">
         <div className="flex mt-10 items-center flex-col">
           <h1 className="font-extrabold md:text-lg lg:text-2xl xl:text-4xl">
             Add Queue
