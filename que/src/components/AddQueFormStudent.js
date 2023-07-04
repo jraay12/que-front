@@ -3,6 +3,7 @@ import Input from "./Input";
 import Button from "./Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { MutateQue } from "../customHooks/axios";
+import PriorityNumber from "../components/PriorityNumber";
 
 const AddQueFormStudent = () => {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ const AddQueFormStudent = () => {
   const [email, setEmail] = useState("");
   const [idNumber, setIdNumber] = useState("");
   const [purpose, setPurpose] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [priorityNumber, setPriorityNumber] = useState("");
 
   const { mutate } = MutateQue();
 
@@ -26,8 +29,13 @@ const AddQueFormStudent = () => {
     params.append("purpose", purpose);
     const value = params;
     mutate(value, {
-      onSuccess: () => {
-        navigate("/Dashboard");
+      onSuccess: (data) => {
+        setIsSuccess(true);
+        setPriorityNumber(data.data.priorityNumber);
+        setTimeout(() => {
+          setIsSuccess(false);
+          navigate("/Dashboard");
+        }, 3000);
       },
       onError: (err) => {
         console.error(err);
@@ -45,7 +53,7 @@ const AddQueFormStudent = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="w-full px-10 flex flex-col gap-4 mt-6">
-          <Input
+            <Input
               label="ID Number"
               py={3}
               value={idNumber}
@@ -82,6 +90,7 @@ const AddQueFormStudent = () => {
           </div>
         </form>
       </div>
+      {isSuccess && <PriorityNumber number={priorityNumber} />}
     </div>
   );
 };

@@ -27,7 +27,6 @@ const AddQueFormGuest = () => {
     mutate(value, {
       onSuccess: async (data) => {
         setIsSuccess(true);
-        console.log("success", data);
         setPriorityNumber(data.data.priorityNumber);
         setTimeout(() => {
           setIsSuccess(false)

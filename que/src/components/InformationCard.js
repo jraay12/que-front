@@ -68,8 +68,8 @@ const InformationCard = () => {
   }
 
   return (
-    <div className="flex min-h-screen justify-center items-center absolute">
-      <div className="max-w-full min-w-[400px] h-96 bg-white shadow-2xl shadow-blue xxl:min-w-[40%] xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px] max-h-screen rounded-3xl">
+    <div className="flex min-h-screen max-w-full justify-center items-center absolute ">
+      <div className="max-w-[80%] min-w-[400px] pb-5 bg-white shadow-2xl shadow-blue xxl:min-w-[40%] xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px]  rounded-3xl">
         <div className="flex flex-col h-full items-center mt-4">
           <div
             className="flex justify-end w-full mr-5 hover:text-red-600 cursor-pointer text-xl"
