@@ -19,7 +19,7 @@ const PendingQueue = () => {
 
   return (
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
-      <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] w-full mx-10 overflow-x-hidden">
+      <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className=" bg-yellow-400 text-black w-full sticky top-0">
             <tr className="flex justify-evenly mb-4">
@@ -33,7 +33,7 @@ const PendingQueue = () => {
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr
-                  className=" flex w-full mt-4 text-white hover:cursor-pointer rounded-full bg-blue"
+                  className=" flex text-ellipsis w-full mt-4 text-white hover:cursor-pointer rounded-full bg-blue"
                   key={item?.idNumber}
                   onClick={() =>
                     navigate(`/Faculty/PendingQueue/Information/${item._id}`)

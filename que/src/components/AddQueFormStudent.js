@@ -37,7 +37,7 @@ const AddQueFormStudent = () => {
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-cover bg-no-repeat bg-background backdrop-blur-lg absolute ">
-      <div className="container bg-slate-300 flex flex-col xxl:h-[70%] shadow-2xl drop-shadow-2xl xxl:w-[30%] h-[90%] xl:h-[65%] w-[40%] rounded-3xl">
+      <div className="container bg-slate-300 flex flex-col xxl:max-h-[50%] shadow-2xl drop-shadow-2xl xxl:w-[30%] h-[90%] xl:max-h-[60%] w-[40%] rounded-3xl">
         <div className="flex mt-10 items-center flex-col">
           <h1 className="font-extrabold md:text-lg lg:text-2xl xl:text-4xl ">
             Add Queue

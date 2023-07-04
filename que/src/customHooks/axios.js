@@ -36,8 +36,8 @@ const dashboardQuery = async () => {
 export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery, {
     refetchIntervalInBackground: true,
-    refetchInterval: 5000
-  
+    refetchInterval: 5000,
+   
   });
 };
 
