@@ -7,7 +7,7 @@ const QueHistory = () => {
   const sortedHistory = History?.sort((a, b) => a.timestamp - b.timestamp);
   return (
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
-      <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] w-full mx-10  pb-10 overflow-x-hidden">
+      <div className="drop-shadow shadow-2xl bg-opacity-60 max-h-[80%] shadow-black backdrop-blur-sm rounded-3xl  overflow-auto bg-gradient-to-r from-sky-400 to-sky-50 min-h-[70%] w-full mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className=" bg-yellow-400 text-black w-full sticky top-0">
             <tr className="flex justify-evenly mb-4">
@@ -17,19 +17,19 @@ const QueHistory = () => {
               <th className="p-4 w-1/4 ">Purpose</th>
             </tr>
           </thead>
-          <tbody className="flex flex-col items-center h-[50%] overflow-auto w-full px-4">
+          <tbody className="flex flex-col items-center h-[50%] overflow-auto w-full px-4 ">
             {Array.isArray(sortedHistory) &&
               sortedHistory.map((item) => (
                 <tr
-                  className="flex w-full mt-4 text-white bg-blue hover:cursor-pointer text-ellipsis overflow-hidden rounded-3xl mb-4"
+                  className="flex w-full mt-4 text-white bg-blue hover:cursor-pointer rounded-3xl text-ellipsis overflow-x-hidden mb-4"
                   key={item?.idNumber}
                 >
-                  <td className="p-4 w-1/4">
+                  <td className="p-4 w-1/4 ">
                     {item?.idNumber === null ? "N/A" : item.idNumber}
                   </td>
                   <td className="p-4 w-1/4 ">{item?.name}</td>
                   <td className="p-4 w-1/4 ">{item?.status}</td>
-                  <td className="p-4 w-1/4 ">{item?.purpose}</td>
+                  <td className="p-4 w-1/4 text-ellipsis">{item?.purpose}</td>
                 </tr>
               ))}
           </tbody>
