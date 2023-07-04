@@ -123,9 +123,8 @@ const Sidebar = () => {
             alt="Toggle Sidebar"
           />
         </div>
-        <div className="flex gap-x-4 items-center"></div>
         <div className="flex flex-col flex-grow items-center ">
-          <ul className="pt-6 flex-grow xxl:mt-96 ">
+          <ul className="pt-6 flex-grow xxl:mt-40 ">
             <form onSubmit={handleLimit}>
               <div className="flex justify-center gap-2 xxl:text-4xl ">
                 <h1 className={` ${!open && "hidden"} font-bold`}>Limit</h1>

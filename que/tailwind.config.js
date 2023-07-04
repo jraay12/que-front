@@ -7,7 +7,7 @@ module.exports = {
         background: "url('/src/images/background.jpg')",
       },
       colors: {
-        blue: "#05046A",
+        blue: "#05046A",  
       },
       screens: {
         sm: "320px",
@@ -15,7 +15,7 @@ module.exports = {
         lg: "1024px",
         xl: "1440px",
         xxl: "2560px",
-      },
+      },  
     },
   },
   plugins: [],

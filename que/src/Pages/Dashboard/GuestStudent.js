@@ -71,8 +71,9 @@ const GuestStudent = () => {
                   position={item.position}
                   image={item.profilePic}
                   status={item.status}
-                  limit={item.queueLimit}
                   count={item.count === undefined ? "0" : item.count}
+                  limit={item.queueLimit}
+                  latestPriorityNumber={item.priorityNumber === undefined ? "0" : item.priorityNumber}
                   onClick={() => {
                     item.status === "Not Available" || item.status === undefined
                       ? toast.error("Not Available", {

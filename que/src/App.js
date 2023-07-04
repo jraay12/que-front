@@ -7,6 +7,7 @@ import AddQueFormStudent from "./components/AddQueFormStudent";
 import AddQueFormGuest from "./components/AddQueFormGuest";
 import PendingQueue from "./Pages/Dashboard/Faculty Dashboard/PendingQueue";
 import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
+import PriorityNumber from "./components/PriorityNumber";
 import InformationCard from "./components/InformationCard";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -43,6 +44,7 @@ function App() {
         </Route>
 
         <Route path="/Login" element={<Login />} />
+        <Route path="/test" element={<PriorityNumber />} />
       </Routes>
     </QueryClientProvider>
   );

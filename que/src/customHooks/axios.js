@@ -6,6 +6,8 @@ import {
   useQueryClient,
 } from "react-query";
 
+const BASEURL = "https://ustp-queueing-system.onrender.com"
+
 // For Register
 const registerHeaders = {
   "Content-Type": "multipart/form-data",
@@ -14,7 +16,7 @@ const registerHeaders = {
 // For Login
 const facultyLogin = async (credentials) => {
   return await axios.post(
-    `https://ustp-queueing-system.onrender.com/auth/login`,
+    `${BASEURL}/auth/login`,
     credentials
   );
 };
@@ -26,7 +28,7 @@ export const MutateLogin = () => {
 // For Dashboard Data
 const dashboardQuery = async () => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/queue/count"
+    `${BASEURL}/queue/count`
   );
   return value.data;
 };
@@ -34,8 +36,8 @@ const dashboardQuery = async () => {
 export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery, {
     refetchIntervalInBackground: true,
-    refetchInterval: 5000
-  
+    refetchInterval: 5000,
+   
   });
 };
 
@@ -43,7 +45,7 @@ export const GetFaculty = () => {
 
 const resetPassword = async (value, headers) => {
   return await axios.post(
-    `https://ustp-queueing-system.onrender.com/auth/resetPassword`,
+    `${BASEURL}/auth/resetPassword`,
     value,
     { headers }
   );
@@ -66,7 +68,7 @@ export const ResetPassword = () => {
 // For Pending Data
 const pendingQuery = async (headers) => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/queue/pending",
+    `${BASEURL}/queue/pending`,
     { headers }
   );
   return value.data;
@@ -87,7 +89,7 @@ export const GetPending = () => {
 // For Add Queue
 const addQue = async (value, headers) => {
   return await axios.post(
-    `https://ustp-queueing-system.onrender.com/queue/`,
+    `${BASEURL}/queue/`,
     value,
     { headers }
   );
@@ -105,7 +107,7 @@ export const MutateQue = () => {
 // For Queue History Data
 const queueHistory = async (headers) => {
   const value = await axios.get(
-    "https://ustp-queueing-system.onrender.com/queue/done",
+    `${BASEURL}/queue/done`,
     { headers }
   );
   return value.data;
@@ -123,7 +125,7 @@ export const GetHistory = () => {
 // For Sending Email
 const sendEmail = async (notify, headers) => {
   return await axios.post(
-    "https://ustp-queueing-system.onrender.com/queue/notify",
+    `${BASEURL}/queue/notify`,
     notify,
     { headers }
   );
@@ -142,7 +144,7 @@ export const NotifyQuery = () => {
 // For Update Queue Status
 const queueStatus = async (value, headers) => {
   return await axios.put(
-    `https://ustp-queueing-system.onrender.com/queue/`,
+    `${BASEURL}/queue/`,
     value,
     { headers }
   );
@@ -166,7 +168,7 @@ export const QueueStatus = () => {
 // For Register
 const register = async (value, registerHeaders) => {
   return await axios.post(
-    `https://ustp-queueing-system.onrender.com/auth/register`,
+    `${BASEURL}/auth/register`,
     value,
     { headers: registerHeaders }
   );
@@ -189,7 +191,7 @@ const setLimit = async (value) => {
     "Content-Type": "application/x-www-form-urlencoded",
   };
   return await axios.post(
-    `https://ustp-queueing-system.onrender.com/user/limit`,
+    `${BASEURL}/user/limit`,
     value,
     { headers }
   );
@@ -207,7 +209,7 @@ export const SetLimit = () => {
 // For Status
 const status = async (value, headers) => {
   return await axios.post(
-    `https://ustp-queueing-system.onrender.com/user/status`,
+    `${BASEURL}/user/status`,
     value,
     { headers }
   );
@@ -235,7 +237,7 @@ export const MutateLogout = async () => {
     Authorization: `Bearer ${validation}`,
   };
   return await axios
-    .post("https://ustp-queueing-system.onrender.com/auth/logout", null, {
+    .post(`${BASEURL}/auth/logout`, null, {
       headers,
     })
     .then((res) => {

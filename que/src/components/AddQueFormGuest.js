@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import { useNavigate, useParams } from "react-router-dom";
-import { MutateQue } from "../customHooks/axios";
+import { MutateQue, GetFaculty } from "../customHooks/axios";
+import PriorityNumber from "../components/PriorityNumber";
 
 const AddQueFormGuest = () => {
   const navigate = useNavigate();
@@ -11,7 +12,8 @@ const AddQueFormGuest = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [purpose, setPurpose] = useState("");
-
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [priorityNumber, setPriorityNumber] = useState("");
   const { mutate } = MutateQue();
 
   const handleSubmit = (e) => {
@@ -23,8 +25,13 @@ const AddQueFormGuest = () => {
     params.append("purpose", purpose);
     const value = params;
     mutate(value, {
-      onSuccess: () => {
-        navigate('/Dashboard')
+      onSuccess: async (data) => {
+        setIsSuccess(true);
+        setPriorityNumber(data.data.priorityNumber);
+        setTimeout(() => {
+          setIsSuccess(false)
+          navigate('/Dashboard')
+        }, 3000)
       },
       onError: (err) => {
         console.error(err);
@@ -34,14 +41,14 @@ const AddQueFormGuest = () => {
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-background bg-no-repeat bg-cover backdrop-blur-lg absolute ">
-      <div className="container bg-slate-300 flex flex-col xxl:h-[55%] shadow-2xl drop-shadow-2xl h-[80%] xl:h-[60%] w-[40%] xxl:w-[30%] rounded-3xl">
+      <div className="container bg-slate-300 flex flex-col xxl:h-[55%] shadow-2xl drop-shadow-2xl xxl:max-h-[40%] w-[40%] xxl:max-w-[30%] rounded-3xl">
         <div className="flex mt-10 items-center flex-col">
           <h1 className="font-extrabold md:text-lg lg:text-2xl xl:text-4xl">
             Add Queue
           </h1>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="w-full px-10 flex flex-col gap-4 mt-6">
+          <div className="w-full px-10 flex flex-col gap-4 mt-6 ">
             <Input
               label="Guest Name"
               py={3}
@@ -60,7 +67,7 @@ const AddQueFormGuest = () => {
               onChange={(e) => setPurpose(e.target.value)}
             />
           </div>
-          <div className="flex justify-evenly gap-4 mt-10">
+          <div className="flex justify-evenly gap-4 mt-10 pb-10">
             <div className="bg-blue hover:bg-red-600 text-white rounded-2xl xxl:h-14 xxl:w-28 xxl:text-4xl h-10 w-20 flex justify-center items-center">
               <Button
                 buttonName="Cancel"
@@ -73,6 +80,7 @@ const AddQueFormGuest = () => {
           </div>
         </form>
       </div>
+      {isSuccess && <PriorityNumber number={priorityNumber} />}
     </div>
   );
 };
