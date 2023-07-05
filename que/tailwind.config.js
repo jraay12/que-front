@@ -8,7 +8,7 @@ module.exports = {
       },
       colors: {
         jet: "#3C3744",
-        dukeBlue: "#090C9B",
+        blue: "#090C9B",
         Byzantine: "#3D52D5",
         powderBlue: "#B4C5E4",
         Ivory: "#FBFFF1",
