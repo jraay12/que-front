@@ -31,7 +31,7 @@ const PendingQueue = () => {
 
   return (
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
-      <div className="drop-shadow-2xl shadow-2xl shadow-jet bg-opacity-60 max-h-[80%] shadow-blue backdrop-blur-sm rounded-3xl  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
+      <div className="drop-shadow-2xl shadow-2xl  bg-opacity-60 max-h-[80%]  backdrop-blur-sm rounded-3xl  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className="bg-powderBlue ">
             <tr className="font-bold text-lg xxl:text-4xl">
@@ -47,7 +47,7 @@ const PendingQueue = () => {
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr
-                  className={`hover:ease-in cursor-pointer bg-blue text-white transition ease-in duration-75 font-semibold border-y-2 border-white ${item?.status === "On Hold" && "bg-red-700"}`}
+                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold border-y-2 border-white ${item?.status === "On Hold" && "bg-red-700"}`}
                   key={item?.idNumber}
                 >
                   <td
