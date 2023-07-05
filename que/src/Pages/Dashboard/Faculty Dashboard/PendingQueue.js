@@ -47,7 +47,7 @@ const PendingQueue = () => {
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr
-                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold border-b-2 border-black ${item?.status === "On Hold" && ""}`}
+                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold border-b-2 border-black ${item?.status === "On Hold" && "bg-red-200"}`}
                   key={item?.idNumber}
                 >
                   <td
