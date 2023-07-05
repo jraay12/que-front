@@ -4,7 +4,8 @@ import History from "../images/history.png";
 import Current from "../images/Vector.png";
 import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
-import Add from "../images/icons8-add-user-50.png";
+import Add from '../images/add.png'
+import Pending from "../../src/images/pending.png"
 import AuthContext from "../context/AuthProvider";
 import { clearToken, SetLimit, MutateLogout } from "../customHooks/axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -71,7 +72,7 @@ const Sidebar = () => {
     {
       path: `/Faculty/PendingQueue`,
       name: "Pending Queue",
-      src: Current,
+      src: Pending,
     },
     {
       path: `/Faculty/QueueHistory`,
@@ -85,11 +86,11 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="flex shadow-2xl bg-blue text-white  z-20">
+    <div className="flex shadow-2xl bg-white text-black  z-20 select-none">
       <div
         ref={sidebarRef}
         className={`${
-          open ? "w-52 xxl:w-96" : "w-20 xxl:w-36"
+          open ? "w-52 xxl:w-96" : "w-24 xxl:w-36"
         } bg-dark-purple h-screen p-5 pt-8 relative duration-300 ease-in md:${!open}`}
       >
         <div
@@ -109,7 +110,7 @@ const Sidebar = () => {
           <h1
             className={`${
               !open && "hidden"
-            } origin-left duration-200 text-xl xxl:text-4xl`}
+            } origin-left font-bold duration-200 text-xl xxl:text-4xl`}
           >
             {auth.authName}
           </h1>
@@ -130,7 +131,7 @@ const Sidebar = () => {
                 <h1 className={` ${!open && "hidden"} font-bold`}>Limit</h1>
 
                 <input
-                  className="w-full rounded-sm outline-none ml-2 text-black"
+                  className="w-full rounded-sm border-2 border-black ml-2 text-black"
                   value={queueLimit}
                   type="number"
                   onChange={(e) => setQueueLimit(e.target.value)}
@@ -142,7 +143,7 @@ const Sidebar = () => {
               <NavLink
                 key={index}
                 to={items.path}
-                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  text-md items-center gap-x-4 
+                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  focus:bg-powderBlue text-md items-center gap-x-4 
               ${items.gap ? "mt-9" : "mt-4"} ${
                   index === 0 && "bg-light-white"
                 }`}
@@ -150,7 +151,7 @@ const Sidebar = () => {
                 <img
                   src={items.src}
                   alt={items.name}
-                  className="w-5 h-5 xxl:h-10 xxl:w-10 xxl:mt-10"
+                  className="w-5 h-5 xxl:h-10 xxl:w-10 text-black xxl:mt-10"
                 />
 
                 <span
@@ -174,7 +175,7 @@ const Sidebar = () => {
 
             <span className={`${!open && "hidden"} `}>
               <button
-                className="text-white text-lg font-semibold ml-4 xxl:text-3xl rounded-lg outline-none"
+                className="text-black text-lg font-semibold ml-4 xxl:text-3xl rounded-lg outline-none"
                 onClick={handleLogout}
               >
                 Logout
