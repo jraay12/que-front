@@ -110,7 +110,7 @@ const Sidebar = () => {
           <h1
             className={`${
               !open && "hidden"
-            } origin-left duration-200 text-xl xxl:text-4xl`}
+            } origin-left font-bold duration-200 text-xl xxl:text-4xl`}
           >
             {auth.authName}
           </h1>
@@ -143,7 +143,7 @@ const Sidebar = () => {
               <NavLink
                 key={index}
                 to={items.path}
-                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  text-md items-center gap-x-4 
+                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  focus:bg-powderBlue text-md items-center gap-x-4 
               ${items.gap ? "mt-9" : "mt-4"} ${
                   index === 0 && "bg-light-white"
                 }`}

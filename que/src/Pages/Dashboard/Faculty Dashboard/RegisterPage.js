@@ -47,7 +47,7 @@ const RegisterPage = () => {
         <h1 className="m-4 font-bold text-3xl xxl:text-5xl text-white">
           Register User
         </h1>
-        <div className="w-full rounded-3xl h-full bg-gradient-to-r py-10 from-sky-400 to-sky-50">
+        <div className="w-full rounded-3xl h-full bg-white">
           <form onSubmit={handleRegister} encType="multipart/form-data">
             <div className="flex flex-col ">
               <div className="flex max-w-full">
