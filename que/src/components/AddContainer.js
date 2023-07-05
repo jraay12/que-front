@@ -4,9 +4,9 @@ import Button from "./Button";
 import {
   useNavigate,
   useParams,
-  Navigate,
   useLocation,
 } from "react-router-dom";
+
 const AddContainer = () => {
   const navigate = useNavigate();
   const { _id } = useParams();
