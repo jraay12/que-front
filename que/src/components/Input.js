@@ -1,6 +1,6 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
   return (
     <div className="flex flex-col gap-2 xxl:gap-6 ">
       <label className="font-bold text-xl ml-2 md:text-[15px] leading-3 xxl:text-4xl">
@@ -12,12 +12,13 @@ const Input = (props) => {
         type={props.type}
         value={props.value}
         onChange={props.onChange}
+        ref={ref}
         required
       >
         {props.name}
       </input>
     </div>
   );
-};
+});
 
 export default Input;

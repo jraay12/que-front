@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import { useNavigate, useParams } from "react-router-dom";
-import { MutateQue, GetFaculty } from "../customHooks/axios";
+import { MutateQue } from "../customHooks/axios";
 import PriorityNumber from "../components/PriorityNumber";
 
 const AddQueFormGuest = () => {
   const navigate = useNavigate();
   const { _id } = useParams();
-
+  const inputRef = useRef();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [purpose, setPurpose] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [priorityNumber, setPriorityNumber] = useState("");
   const { mutate } = MutateQue();
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,9 +33,9 @@ const AddQueFormGuest = () => {
         setIsSuccess(true);
         setPriorityNumber(data.data.priorityNumber);
         setTimeout(() => {
-          setIsSuccess(false)
-          navigate('/Dashboard')
-        }, 3000)
+          setIsSuccess(false);
+          navigate("/Dashboard");
+        }, 3000);
       },
       onError: (err) => {
         console.error(err);
@@ -50,6 +54,7 @@ const AddQueFormGuest = () => {
         <form onSubmit={handleSubmit}>
           <div className="w-full px-10 flex flex-col gap-4 mt-6 ">
             <Input
+              ref={inputRef}
               label="Guest Name"
               py={3}
               value={name}

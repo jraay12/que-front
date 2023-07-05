@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,13 +8,17 @@ import PriorityNumber from "../components/PriorityNumber";
 const AddQueFormStudent = () => {
   const navigate = useNavigate();
   const { _id } = useParams();
-
+  const inputRef = useRef();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [idNumber, setIdNumber] = useState("");
   const [purpose, setPurpose] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [priorityNumber, setPriorityNumber] = useState("");
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
   const { mutate } = MutateQue();
 
@@ -54,6 +58,7 @@ const AddQueFormStudent = () => {
         <form onSubmit={handleSubmit}>
           <div className="w-full px-10 flex flex-col gap-4 mt-6">
             <Input
+            ref={inputRef}
               label="ID Number"
               py={3}
               value={idNumber}
