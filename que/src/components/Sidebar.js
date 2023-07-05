@@ -90,7 +90,7 @@ const Sidebar = () => {
       <div
         ref={sidebarRef}
         className={`${
-          open ? "w-52 xxl:w-96" : "w-20 xxl:w-36"
+          open ? "w-52 xxl:w-96" : "w-24 xxl:w-36"
         } bg-dark-purple h-screen p-5 pt-8 relative duration-300 ease-in md:${!open}`}
       >
         <div
