@@ -30,24 +30,24 @@ const PendingQueue = () => {
   const filterData = Pending?.filter((item) => item.userId === value[2]);
 
   return (
-    <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
-      <div className="drop-shadow-2xl shadow-2xl  bg-opacity-60 max-h-[80%]  backdrop-blur-sm rounded-3xl  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
+    <div className="flex w-full justify-center  overflow-hidden items-center min-h-screen">
+      <div className="drop-shadow-2xl shadow-2xl bg-white shadow-Ivory max-h-[80%]  backdrop-blur-sm  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
-          <thead className="bg-powderBlue ">
-            <tr className="font-bold text-lg xxl:text-4xl">
-              <th className="p-4">ID Number</th>
-              <th className="p-4">Priority Number</th>
-              <th className="p-4">Name</th>
-              <th className="p-4">Status</th>
-              <th className="p-4">Purpose</th>
-              <th className="p-4">Option</th>
+          <thead className="border-2 text-white bg-powderBlue">
+            <tr className="font-bold text-lg text-black xxl:text-4xl">
+              <th className="p-4  ">ID Number</th>
+              <th className="p-4 ">Priority Number</th>
+              <th className="p-4 ">Name</th>
+              <th className="p-4 ">Status</th>
+              <th className="p-4 ">Purpose</th>
+              <th className="p-4 ">Option</th>
             </tr>
           </thead>
           <tbody>
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <tr
-                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold border-y-2 border-white ${item?.status === "On Hold" && "bg-red-700"}`}
+                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold border-b-2 border-black ${item?.status === "On Hold" && ""}`}
                   key={item?.idNumber}
                 >
                   <td
@@ -93,7 +93,7 @@ const PendingQueue = () => {
                   </td>
                   <td className="h-10 border-l-2">
                     <Button
-                      
+                      className="bg-red-800"
                       buttonName="Hold"
                       onClick={() => handleOnHold(item?._id)}
                     />
