@@ -7,12 +7,11 @@ module.exports = {
         background: "url('/src/images/background.jpg')",
       },
       colors: {
-        blue: "#05046A",
-        aqumarine: "#73FBD3",
-        cyan: "#73FBD3",
-        skyBlue: "#59D2FE",
-        chefBlue: "#4A8FE7",
-        crayola: "#4A8FE7"
+        jet: "#3C3744",
+        dukeBlue: "#090C9B",
+        Byzantine: "#3D52D5",
+        powderBlue: "#B4C5E4",
+        Ivory: "#FBFFF1",
       },
       screens: {
         sm: "320px",

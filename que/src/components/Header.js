@@ -6,7 +6,6 @@ const Header = () => {
 
   const { mutate: UserStatus } = Status();
 
-  const validation = sessionStorage.getItem("access_token");
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new URLSearchParams();
@@ -14,15 +13,11 @@ const Header = () => {
     setStatus(newStatus);
     params.append("status", newStatus);
     const value = params;
-    UserStatus(value, {
-      onSuccess: () => {
-        console.log("success");
-      },
-    });
+    UserStatus(value);
   };
 
   return (
-    <div className="flex justify-end w-full h-10 xxl:h-20 bg-blue absolute z-10 items-center gap-2">
+    <div className="flex justify-end w-full h-10 xxl:h-20 bg-dukeBlue absolute z-10 items-center gap-2">
       <label className="font-bold text-sm text-white xxl:text-3xl">
         Status
       </label>
@@ -32,7 +27,7 @@ const Header = () => {
             id="options"
             value={status}
             onChange={handleSubmit}
-            className="w-full h-full rounded-2xl xxl:text-3xl bg-blue text-white outline-none"
+            className="w-full h-full rounded-2xl xxl:text-3xl bg-ivory text-black outline-none"
           >
             <option value=""></option>
             <option value="Available">Available</option>
