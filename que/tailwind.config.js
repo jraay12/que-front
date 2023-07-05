@@ -12,6 +12,7 @@ module.exports = {
         Byzantine: "#3D52D5",
         powderBlue: "#B4C5E4",
         Ivory: "#FBFFF1",
+        darkgray : "#F2F6FC"
       },
       screens: {
         sm: "320px",

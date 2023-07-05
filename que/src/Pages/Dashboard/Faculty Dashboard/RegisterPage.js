@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { Register } from "../../../customHooks/axios";
@@ -13,7 +13,12 @@ const RegisterPage = () => {
   const [position, setPosition] = useState("");
   const [password, setPassword] = useState("");
   const [picture, setPicture] = useState("");
+  const inputRef = useRef();
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+  
   const { mutate: RegisterUser } = Register();
 
   const handleRegister = (e) => {
@@ -53,6 +58,7 @@ const RegisterPage = () => {
               <div className="flex max-w-full">
                 <div className="m-4 w-full">
                   <Input
+                    ref={inputRef}
                     label="Name"
                     placeholder="Name"
                     value={name}

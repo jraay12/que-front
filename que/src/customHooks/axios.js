@@ -82,7 +82,7 @@ export const GetPending = () => {
   };
   return useQuery(["pending"], () => pendingQuery(headers), {
     refetchIntervalInBackground: true,
-    refetchInterval: 2000,
+    refetchInterval: 30000,
   });
 };
 

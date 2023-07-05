@@ -28,12 +28,12 @@ const PendingQueue = () => {
   };
 
   const filterData = Pending?.filter((item) => item.userId === value[2]);
-
+  console.log(filterData)
   return (
     <div className="flex w-full justify-center  overflow-hidden items-center min-h-screen">
       <div className=" drop-shadow-2xl shadow-2xl bg-white  max-h-[80%]  backdrop-blur-sm  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
-          <thead className="border-2 text-white bg-powderBlue">
+          <thead className="border-2 text-white bg-powderBlue sticky top-0">
             <tr className="font-bold text-lg text-black xxl:text-4xl">
               <th className="p-4  ">ID Number</th>
               <th className="p-4 ">Priority Number</th>
@@ -45,10 +45,10 @@ const PendingQueue = () => {
           </thead>
           <tbody>
             {Array.isArray(filterData) &&
-              filterData.map((item) => (
+              filterData.map((item, index) => (
                 <tr
-                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold border-b-2 border-black ${item?.status === "On Hold" && "bg-red-200"}`}
-                  key={item?.idNumber}
+                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold hover:border-2 hover:shadow-black hover:shadow-md ${item?.status === "On Hold" && "bg-darkgray"}`}
+                  key={item?.index}
                 >
                   <td
                     className="p-4 "

@@ -22,7 +22,6 @@ const InformationCard = () => {
     }
   }, [GetInfo]);
 
-  console.log(email);
 
   const { mutate: Notify } = NotifyQuery();
 

@@ -9,7 +9,7 @@ const QueHistory = () => {
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
       <div className="drop-shadow shadow-2xl max-h-[80%] bg-white shadow-black backdrop-blur-sm  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
-          <thead className="bg-powderBlue ">
+          <thead className="bg-powderBlue sticky top-0">
             <tr className="font-bold text-lg xxl:text-4xl">
               <th className="p-4">ID Number</th>
               <th className="p-4">Name</th>
@@ -21,7 +21,7 @@ const QueHistory = () => {
             {Array.isArray(sortedHistory) &&
               sortedHistory.map((item) => (
                 <tr
-                  className="hover:ease-in cursor-pointer text-black  transition ease-in duration-75 font-semibold border-b-2 border-black"
+                  className="hover:ease-in cursor-pointer text-black  transition ease-in duration-75 font-semibold hover:border-2 hover:shadow-black hover:shadow-md"
                   key={item?.idNumber}
                 >
                   <td className="p-4 ">
