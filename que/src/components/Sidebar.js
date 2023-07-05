@@ -1,15 +1,13 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import History from "../images/history.png";
-import Current from "../images/Vector.png";
 import Logout from "../images/Logout.png";
 import Toggle from "../images/Toggle.png";
 import Add from '../images/add.png'
 import Pending from "../../src/images/pending.png"
 import AuthContext from "../context/AuthProvider";
-import { clearToken, SetLimit, MutateLogout } from "../customHooks/axios";
+import { SetLimit, MutateLogout } from "../customHooks/axios";
 import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);

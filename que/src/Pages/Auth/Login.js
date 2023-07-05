@@ -1,16 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import {
-  MutateLogin,
-  ResetPassword,
-} from "../../customHooks/axios";
+import { MutateLogin, ResetPassword } from "../../customHooks/axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
+  const inputRef = useRef();
   const { setAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,6 +16,10 @@ const Login = () => {
   const [modal, setModal] = useState(false);
   const { mutate: Reset } = ResetPassword();
   const { mutate } = MutateLogin();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -27,12 +29,12 @@ const Login = () => {
         const access_token = data.data.accessToken;
         sessionStorage.setItem("access_token", access_token);
         const authName = data.data.user.name;
-        const limit = data.data.user.queueLimit
-        const profilePic = data.data.user.profilePic
+        const limit = data.data.user.queueLimit;
+        const profilePic = data.data.user.profilePic;
         // const authEmail = data.data.user.email
         // const authPosition = data.data.user.position
         const id = data?.data?.user._id;
-        setAuth({ email, password, id, authName, profilePic, limit});
+        setAuth({ email, password, id, authName, profilePic, limit });
         navigate("/Faculty/PendingQueue");
       },
       onError: async () => {
@@ -79,6 +81,7 @@ const Login = () => {
             <form onSubmit={handleReset}>
               <div className="flex w-[400px] xxl:w-[1000px] font-medium  flex-col gap-2">
                 <Input
+                  ref={inputRef}
                   label="Email"
                   type="email"
                   placeholder="Email"
@@ -101,7 +104,10 @@ const Login = () => {
                     <Button
                       buttonName="Cancel"
                       type="submit"
-                      onClick={() => setModal(false)}
+                      onClick={() => {
+                        setModal(false);
+                        inputRef.current.focus();
+                      }}
                     />
                   </div>
                 </div>
@@ -111,6 +117,7 @@ const Login = () => {
             <form onSubmit={handleLogin}>
               <div className="flex w-[400px] xxl:w-[1000px] font-medium  flex-col gap-4">
                 <Input
+                  ref={inputRef}
                   label="Email"
                   type="email"
                   placeholder="Email"
@@ -130,7 +137,10 @@ const Login = () => {
                 <div className="w-full flex flex-col items-start">
                   <button
                     className="xxl:text-4xl hover:text-red-600"
-                    onClick={() => setModal(true)}
+                    onClick={() => {
+                      setModal(true);
+                      inputRef.current.focus();
+                    }}
                   >
                     Forgot Password?
                   </button>
