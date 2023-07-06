@@ -9,6 +9,7 @@ import PendingQueue from "./Pages/Dashboard/Faculty Dashboard/PendingQueue";
 import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
 import PriorityNumber from "./components/PriorityNumber";
 import InformationCard from "./components/InformationCard";
+import Display from "./Pages/Display";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RegisterPage from "./Pages/Dashboard/Faculty Dashboard/RegisterPage";
@@ -44,7 +45,7 @@ function App() {
         </Route>
 
         <Route path="/Login" element={<Login />} />
-        <Route path="/test" element={<PriorityNumber />} />
+        <Route path="/Display" element={<Display />} />
       </Routes>
     </QueryClientProvider>
   );

@@ -6,7 +6,7 @@ import {
   useQueryClient,
 } from "react-query";
 
-const BASEURL = "https://ustp-queueing-system.onrender.com"
+const BASEURL = "http://192.168.136.115:5000"
 
 // For Register
 const registerHeaders = {
