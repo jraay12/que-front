@@ -8,7 +8,6 @@ import Notification from "../sound/Notification.mp3";
 
 const Display = () => {
   const { data: faculty } = GetFaculty();
-  const [priorityNumber, setPriorityNumber] = useState([]);
   const [prevPriorityNumber, setPrevPriorityNumber] = useState(null);
 
   const slidesPerView = Math.min(faculty?.length, 2);
@@ -48,6 +47,7 @@ const Display = () => {
       if (sound.current && sound.current.play) {
         sound.current.play();
       }
+
       setPrevPriorityNumber(currentPriorityNumbers);
     }
   }, [faculty]);
