@@ -43,7 +43,7 @@ const PendingQueue = () => {
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className=" bg-newBlue sticky top-0">
             <tr className="font-bold text-lg text-white xxl:text-4xl">
-              <th className="p-4">ID Number</th>
+              <th className="p-4 ">#</th>
               <th className="p-4">Priority Number</th>
               <th className="p-4">Name</th>
               <th className="p-4">Status</th>
@@ -115,7 +115,7 @@ const PendingQueue = () => {
                     <td className="h-10">
                       <Button
                         className={` text-white font-bold ${
-                          statuses[item._id] ? "bg-blue" : "bg-red-900"
+                          statuses[item._id] ? "bg-blue" : "bg-red-600"
                         } `}
                         buttonName={statuses[item._id] ? "UnHold" : "Hold"}
                         onClick={() => handleOnHold(item._id)}

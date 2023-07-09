@@ -9,9 +9,9 @@ const QueHistory = () => {
     <div className="flex w-full justify-center overflow-hidden items-center min-h-screen">
       <div className="drop-shadow shadow-2xl max-h-[80%] bg-white shadow-black backdrop-blur-sm  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
-          <thead className="bg-powderBlue sticky top-0">
-            <tr className="font-bold text-lg xxl:text-4xl">
-              <th className="p-4">ID Number</th>
+          <thead className="bg-newBlue sticky top-0">
+            <tr className="font-bold text-lg text-white xxl:text-4xl">
+              <th className="p-4">#</th>
               <th className="p-4">Name</th>
               <th className="p-4">Status</th>
               <th className="p-4">Purpose</th>

@@ -22,29 +22,11 @@ const GuestStudent = () => {
   const openModal = false;
   const { data: getUser } = GetFaculty();
   const slidesPerView = Math.min(getUser?.length, 3);
-  console.log(getUser)
+  console.log(getUser);
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
         <div className="text-white font-bold flex justify-center gap-28 md:gap-10 items-center mx-10 ">
-          <div className="flex flex-col items-center leading-3 text-2xl hover:cursor-pointer xxl:text-4xl">
-            <div
-              className="flex"
-              onClick={() =>
-                navigate("/Dashboard/QrCode", { state: { from: location } })
-              }
-            >
-              <BsQrCodeScan />
-              {qrOpen ? (
-                <MdOutlineKeyboardArrowDown />
-              ) : (
-                <MdOutlineKeyboardArrowUp />
-              )}
-            </div>
-            <p className="text-[10px] font-bold select-none	xxl:text-2xl">
-              Generate QR code
-            </p>
-          </div>
           <div className="select-none font-bold xxl:text-4xl">
             <Button
               buttonName="LOGIN"
@@ -65,7 +47,11 @@ const GuestStudent = () => {
             getUser.map((item, index) => (
               <SwiperSlide>
                 <Container
-                className={item.status === "Available" ? "text-green-600" : "text-red-600"}
+                  className={
+                    item.status === "Available"
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }
                   key={index}
                   name={item.name}
                   position={item.position}
@@ -73,22 +59,25 @@ const GuestStudent = () => {
                   status={item.status}
                   count={item.count === undefined ? "0" : item.count}
                   limit={item.queueLimit}
-                  latestPriorityNumber={item.priorityNumber === undefined ? "0" : item.priorityNumber}
+                  latestPriorityNumber={
+                    item.priorityNumber === undefined
+                      ? "0"
+                      : item.priorityNumber
+                  }
                   onClick={() => {
                     item.status === "Not Available" || item.status === undefined
                       ? toast.error("Not Available", {
                           autoClose: 1000,
                           theme: "dark",
                           position: "top-center",
-                        }) : item.queueLimit <= item.count ?
-                        toast.error("Queue Limit Exceeded", {
+                        })
+                      : item.queueLimit <= item.count
+                      ? toast.error("Queue Limit Exceeded", {
                           autoClose: 1000,
                           theme: "dark",
                           position: "top-center",
                         })
-                        :
-                        navigate(`/Dashboard/AddQue/${item._id}`)
-
+                      : navigate(`/Dashboard/AddQue/${item._id}`);
                   }}
                 />
               </SwiperSlide>
