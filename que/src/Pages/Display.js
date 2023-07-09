@@ -1,15 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GetFaculty } from "../customHooks/axios";
 import "swiper/swiper-bundle.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { Howl } from "howler";
-import Notification from "../sound/Notification.mp3"
+import Notification from "../sound/Notification.mp3";
+
 const Display = () => {
   const { data: faculty } = GetFaculty();
+  const [priorityNumber, setPriorityNumber] = useState([]);
+  const [prevPriorityNumber, setPrevPriorityNumber] = useState(null);
+
   const slidesPerView = Math.min(faculty?.length, 2);
 
-  const previousPriorityNumberRef = useRef(null);
   const sound = useRef(null);
 
   useEffect(() => {
@@ -36,14 +39,30 @@ const Display = () => {
   }, []);
 
   useEffect(() => {
-    faculty?.forEach((item) => {
-      if (item.priorityNumber !== previousPriorityNumberRef.current) {
-        sound.current?.play();
-        console.log("changes")
-        previousPriorityNumberRef.current = item.priorityNumber;
+    const currentPriorityNumbers = faculty?.map((item) => item.priorityNumber);
+
+    if (
+      currentPriorityNumbers &&
+      !arraysEqual(currentPriorityNumbers, prevPriorityNumber)
+    ) {
+      if (sound.current && sound.current.play) {
+        sound.current.play();
       }
-    });
-  }, [previousPriorityNumberRef.current]);
+      setPrevPriorityNumber(currentPriorityNumbers);
+    }
+  }, [faculty]);
+
+  const arraysEqual = (a, b) => {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    for (let i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return false;
+    }
+
+    return true;
+  };
 
   return (
     <div className="flex flex-col justify-center max-w-screen-xxl min-h-screen bg-background bg-cover bg-no-repeat backdrop-blur-sm">
@@ -55,10 +74,6 @@ const Display = () => {
       <div className="flex justify-center items-center p-20 xxl:p-96 ">
         <Swiper
           spaceBetween={50}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-          }}
           modules={[Autoplay]}
           slidesPerView={slidesPerView}
         >
@@ -74,7 +89,6 @@ const Display = () => {
                     />
                     <h1 className="font-bold text-3xl">{item.name}</h1>
                   </div>
-
                   <div className="text-center text-[150px]">
                     <h1>
                       {item.priorityNumber === undefined
