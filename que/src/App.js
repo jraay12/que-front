@@ -2,13 +2,12 @@ import Login from "./Pages/Auth/Login";
 import Faculty from "./Pages/Dashboard/Faculty";
 import GuestStudent from "./Pages/Dashboard/GuestStudent";
 import AddContainer from "./components/AddContainer";
-import QrContainer from "./components/QrContainer";
 import AddQueFormStudent from "./components/AddQueFormStudent";
 import AddQueFormGuest from "./components/AddQueFormGuest";
 import PendingQueue from "./Pages/Dashboard/Faculty Dashboard/PendingQueue";
 import QueHistory from "./Pages/Dashboard/Faculty Dashboard/QueHistory";
-import PriorityNumber from "./components/PriorityNumber";
 import InformationCard from "./components/InformationCard";
+import Display from "./Pages/Display";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RegisterPage from "./Pages/Dashboard/Faculty Dashboard/RegisterPage";
@@ -21,7 +20,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/Dashboard" />} />
         <Route path="/Dashboard" element={<GuestStudent />}>
-          <Route path="QrCode" element={<QrContainer />} />
           <Route path="AddQue/:_id" element={<AddContainer />} />
         </Route>
         <Route
@@ -44,7 +42,7 @@ function App() {
         </Route>
 
         <Route path="/Login" element={<Login />} />
-        <Route path="/test" element={<PriorityNumber />} />
+        <Route path="/Display" element={<Display />} />
       </Routes>
     </QueryClientProvider>
   );

@@ -9,6 +9,8 @@ const ProtectedRoute = () => {
   ) : (
     <Navigate to="/Login" state={{ from: location }} replace />
   );
+
+  
 };
 
 export default ProtectedRoute;

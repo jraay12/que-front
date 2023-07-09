@@ -71,9 +71,9 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center items-center min-h-screen h-screen min-w-max bg-gradient-to-l from-white via-cyan-300 to-cyan-400">
-      <div className="flex min-w-[90%] max-w-full rounded-3xl h-[80%] shadow-2xl drop-shadow-2xl shadow-blue bg-white">
+      <div className="flex min-w-[90%] max-w-full rounded-3xl h-[80%] shadow-2xl drop-shadow-2xl shadow-blue bg-white border-[1px] border-black border-opacity-20">
         <div className="w-full min-h-full rounded-l-3xl bg-background bg-no-repeat bg-cover"></div>
-        <div className="flex flex-col xxl:gap-52 gap-20 justify-center items-center w-full min-h-full rounded-r-3xl bg-slate-300">
+        <div className="flex flex-col xxl:gap-52 bg-slate-200 px-4 gap-20 justify-center items-center w-full min-h-full rounded-r-3xl ">
           <h1 className="font-black text-blue text-4xl xxl:text-8xl">
             IT QUEUE SYSTEM
           </h1>

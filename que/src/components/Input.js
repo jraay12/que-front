@@ -3,11 +3,11 @@ import React, { forwardRef } from "react";
 const Input = forwardRef((props, ref) => {
   return (
     <div className="flex flex-col gap-2 xxl:gap-6 ">
-      <label className="font-bold text-xl ml-2 md:text-[15px] leading-3 xxl:text-4xl">
+      <label className=" text-base font-normal  md:text-[15px] leading-3 xxl:text-4xl">
         {props.label}
       </label>
       <input
-        className="rounded-3xl xxl:rounded-full px-4 py-3 border-2 xxl:py-9 xxl:text-4xl border-black"
+        className="rounded-xl xxl:rounded-full px-4 outline-none focus:border-blue py-3 border-[1px] xxl:py-9 xxl:text-4xl border-[#0000006f]"
         placeholder={props.placeholder}
         type={props.type}
         value={props.value}

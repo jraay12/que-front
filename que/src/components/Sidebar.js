@@ -126,10 +126,10 @@ const Sidebar = () => {
           <ul className="pt-6 flex-grow xxl:mt-40 ">
             <form onSubmit={handleLimit}>
               <div className="flex justify-center gap-2 xxl:text-4xl ">
-                <h1 className={` ${!open && "hidden"} font-bold`}>Limit</h1>
+                <h1 className={` ${!open && "hidden"} font-bold `}>Limit</h1>
 
                 <input
-                  className="w-full rounded-sm border-2 border-black ml-2 text-black"
+                  className="w-full rounded-sm  border-black ml-2 pl-3 text-black border-[1px]"
                   value={queueLimit}
                   type="number"
                   onChange={(e) => setQueueLimit(e.target.value)}
@@ -141,7 +141,7 @@ const Sidebar = () => {
               <NavLink
                 key={index}
                 to={items.path}
-                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  focus:bg-powderBlue text-md items-center gap-x-4 
+                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  focus:bg-powderBlue  text-base items-center gap-x-4 
               ${items.gap ? "mt-9" : "mt-4"} ${
                   index === 0 && "bg-light-white"
                 }`}

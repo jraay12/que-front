@@ -10,13 +10,21 @@ const PendingQueue = () => {
   const value = Object.values(auth);
   const { data: Pending } = GetPending();
   const { mutate: Status } = QueueStatus();
+  const [statuses, setStatuses] = useState({});
 
   const handleOnHold = (id) => {
-    const status = "On Hold";
+    setStatuses((prevStatuses) => ({
+      ...prevStatuses,
+      [id]: !prevStatuses[id],
+    }));
+
+    const status = statuses[id] ? "Pending" : "On Hold";
+
     const params = new URLSearchParams();
     params.append("_id", id);
     params.append("status", status);
     const value = params;
+
     Status(value, {
       onSuccess: () => {
         console.log("success");
@@ -28,77 +36,94 @@ const PendingQueue = () => {
   };
 
   const filterData = Pending?.filter((item) => item.userId === value[2]);
-  console.log(filterData)
+
   return (
     <div className="flex w-full justify-center  overflow-hidden items-center min-h-screen">
-      <div className=" drop-shadow-2xl shadow-2xl bg-white  max-h-[80%]  backdrop-blur-sm  overflow-auto  min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
+      <div className="drop-shadow-2xl shadow-2xl  max-h-[80%] backdrop-blur-sm overflow-auto min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
-          <thead className="border-2 text-white bg-powderBlue sticky top-0">
-            <tr className="font-bold text-lg text-black xxl:text-4xl">
-              <th className="p-4  ">ID Number</th>
-              <th className="p-4 ">Priority Number</th>
-              <th className="p-4 ">Name</th>
-              <th className="p-4 ">Status</th>
-              <th className="p-4 ">Purpose</th>
-              <th className="p-4 ">Option</th>
+          <thead className=" bg-newBlue sticky top-0">
+            <tr className="font-bold text-lg text-white xxl:text-4xl">
+              <th className="p-4 ">#</th>
+              <th className="p-4">Priority Number</th>
+              <th className="p-4">Name</th>
+              <th className="p-4">Status</th>
+              <th className="p-4">Purpose</th>
+              <th className="p-4">Action</th>
             </tr>
           </thead>
           <tbody>
             {Array.isArray(filterData) &&
-              filterData.map((item, index) => (
-                <tr
-                  className={`hover:ease-in cursor-pointer  text-black transition ease-in duration-75 font-semibold hover:border-2 hover:shadow-black hover:shadow-md ${item?.status === "On Hold" && "bg-darkgray"}`}
-                  key={item?.index}
-                >
-                  <td
-                    className="p-4 "
-                    onClick={() =>
-                      navigate(`/Faculty/PendingQueue/Information/${item._id}`)
-                    }
-                  >
-                    {item?.idNumber === null ? "N/A" : item.idNumber}
-                  </td>
-                  <td
-                    className="p-4  "
-                    onClick={() =>
-                      navigate(`/Faculty/PendingQueue/Information/${item._id}`)
-                    }
-                  >
-                    {item?.priorityNumber}
-                  </td>
+              filterData.map((item) => (
+                <React.Fragment key={item._id}>
+                  <hr className="mt-4 border-none" />
 
-                  <td
-                    className="p-4  "
-                    onClick={() =>
-                      navigate(`/Faculty/PendingQueue/Information/${item._id}`)
-                    }
+                  <tr
+                    className={`hover:ease-in cursor-pointer text-black n ease-in duration-75 font-norml text-base  hover:scale-[1.01]  hover:shadow-black hover:shadow-md ${
+                      item.status === "On Hold" ? "bg-darkgray" : "bg-white"
+                    }`}
                   >
-                    {item?.name}
-                  </td>
-                  <td
-                    className="p-4  "
-                    onClick={() =>
-                      navigate(`/Faculty/PendingQueue/Information/${item._id}`)
-                    }
-                  >
-                    {item?.status}
-                  </td>
-                  <td
-                    className="max-w-[100px] truncate overflow-x-hidden whitespace-nowrap"
-                    onClick={() =>
-                      navigate(`/Faculty/PendingQueue/Information/${item._id}`)
-                    }
-                  >
-                    {item?.purpose}
-                  </td>
-                  <td className="h-10 ">
-                    <Button
-                      className="bg-blue text-white font-bold"
-                      buttonName="Hold"
-                      onClick={() => handleOnHold(item?._id)}
-                    />
-                  </td>
-                </tr>
+                    <td
+                      className="p-4"
+                      onClick={() =>
+                        navigate(
+                          `/Faculty/PendingQueue/Information/${item._id}`
+                        )
+                      }
+                    >
+                      {item.idNumber === null ? "N/A" : item.idNumber}
+                    </td>
+                    <td
+                      className="p-4"
+                      onClick={() =>
+                        navigate(
+                          `/Faculty/PendingQueue/Information/${item._id}`
+                        )
+                      }
+                    >
+                      {item.priorityNumber}
+                    </td>
+                    <td
+                      className="p-4"
+                      onClick={() =>
+                        navigate(
+                          `/Faculty/PendingQueue/Information/${item._id}`
+                        )
+                      }
+                    >
+                      {item.name}
+                    </td>
+                    <td
+                      className="p-4"
+                      onClick={() =>
+                        navigate(
+                          `/Faculty/PendingQueue/Information/${item._id}`
+                        )
+                      }
+                    >
+                      {item.status}
+                    </td>
+                    <td
+                      className="max-w-[100px] truncate overflow-x-hidden whitespace-nowrap"
+                      onClick={() =>
+                        navigate(
+                          `/Faculty/PendingQueue/Information/${item._id}`
+                        )
+                      }
+                    >
+                      {item.purpose}
+                    </td>
+                    <td className="h-10">
+                      <Button
+                        className={` text-white font-bold ${
+                          statuses[item._id] ? "bg-blue" : "bg-red-600"
+                        } `}
+                        buttonName={statuses[item._id] ? "UnHold" : "Hold"}
+                        onClick={() => handleOnHold(item._id)}
+                      />
+                    </td>
+                  </tr>
+                  <hr className="mb-3 border-none" />
+                </React.Fragment>
               ))}
           </tbody>
         </table>
