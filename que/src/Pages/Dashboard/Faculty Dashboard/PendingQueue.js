@@ -15,7 +15,7 @@ const PendingQueue = () => {
   const handleOnHold = (id) => {
     setStatuses((prevStatuses) => ({
       ...prevStatuses,
-      [id]: !prevStatuses[id], // Toggle the hold status
+      [id]: !prevStatuses[id],
     }));
 
     const status = statuses[id] ? "Pending" : "On Hold";
@@ -39,25 +39,27 @@ const PendingQueue = () => {
 
   return (
     <div className="flex w-full justify-center  overflow-hidden items-center min-h-screen">
-      <div className="drop-shadow-2xl shadow-2xl bg-white max-h-[80%] backdrop-blur-sm overflow-auto min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
+      <div className="drop-shadow-2xl shadow-2xl  max-h-[80%] backdrop-blur-sm overflow-auto min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
-          <thead className="border-2 text-white bg-powderBlue sticky top-0">
-            <tr className="font-bold text-lg text-black xxl:text-4xl">
+          <thead className=" bg-newBlue sticky top-0">
+            <tr className="font-bold text-lg text-white xxl:text-4xl">
               <th className="p-4">ID Number</th>
               <th className="p-4">Priority Number</th>
               <th className="p-4">Name</th>
               <th className="p-4">Status</th>
               <th className="p-4">Purpose</th>
-              <th className="p-4">Option</th>
+              <th className="p-4">Action</th>
             </tr>
           </thead>
           <tbody>
             {Array.isArray(filterData) &&
               filterData.map((item) => (
                 <React.Fragment key={item._id}>
+                  <hr className="mt-4 border-none" />
+
                   <tr
-                    className={`hover:ease-in cursor-pointer text-black n ease-in duration-75 font-semibold hover:border-0 hover:scale-[1.01]  hover:shadow-black hover:shadow-md ${
-                      item.status === "On Hold" && "bg-darkgray"
+                    className={`hover:ease-in cursor-pointer text-black n ease-in duration-75 font-norml text-base  hover:scale-[1.01]  hover:shadow-black hover:shadow-md ${
+                      item.status === "On Hold" ? "bg-darkgray" : "bg-white"
                     }`}
                   >
                     <td
