@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-  QueryClientProvider,
   useMutation,
   useQuery,
   useQueryClient,

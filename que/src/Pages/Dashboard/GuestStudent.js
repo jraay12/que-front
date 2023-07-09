@@ -2,21 +2,14 @@ import React from "react";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
 import { GetFaculty } from "../../customHooks/axios";
-import { Outlet, useNavigate, Navigate, useLocation } from "react-router-dom";
-import { BsQrCodeScan } from "react-icons/bs";
-import {
-  MdOutlineKeyboardArrowDown,
-  MdOutlineKeyboardArrowUp,
-} from "react-icons/md";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import AddContainer from "../../components/AddContainer";
-import QrContainer from "../../components/QrContainer";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from "swiper";
+import { Navigation, Scrollbar, A11y, EffectCube } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import { toast, ToastContainer } from "react-toastify";
 
 const GuestStudent = () => {
-  const qrOpen = false;
   const location = useLocation();
   const navigate = useNavigate();
   const openModal = false;
@@ -83,7 +76,6 @@ const GuestStudent = () => {
               </SwiperSlide>
             ))}
         </Swiper>
-        {qrOpen && <QrContainer />}
       </div>
 
       {openModal && <AddContainer />}
