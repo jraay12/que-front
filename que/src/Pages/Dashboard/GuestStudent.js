@@ -9,6 +9,7 @@ import { Navigation, Scrollbar, A11y, EffectCube } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import { toast, ToastContainer } from "react-toastify";
 
+
 const GuestStudent = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const GuestStudent = () => {
   const { data: getUser } = GetFaculty();
   const slidesPerView = Math.min(getUser?.length, 3);
   console.log(getUser);
+  
   return (
     <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
       <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
