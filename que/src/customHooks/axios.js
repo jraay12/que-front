@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-
 const validation = sessionStorage.getItem("access_token");
 const BASEURL = "http://192.168.1.8:5000";
-
 
 // For Register
 const registerHeaders = {
@@ -29,7 +27,7 @@ const dashboardQuery = async () => {
 export const GetFaculty = () => {
   return useQuery(["faculty"], dashboardQuery, {
     refetchInterval: 10000,
-    refetchIntervalInBackground: true
+    refetchIntervalInBackground: true,
   });
 };
 
@@ -182,12 +180,13 @@ export const Status = () => {
 
 //For Logout
 export const MutateLogout = async () => {
-  const headers = {
-    Authorization: `Bearer ${validation}`,
+  const token = sessionStorage.getItem("access_token");
+  const header = {
+    Authorization: `Bearer ${token}`,
   };
   return await axios
     .post(`${BASEURL}/auth/logout`, null, {
-      headers,
+      headers: header,
     })
     .then((res) => {
       sessionStorage.removeItem("access_token");
@@ -195,4 +194,3 @@ export const MutateLogout = async () => {
     })
     .catch((err) => console.error(err));
 };
-

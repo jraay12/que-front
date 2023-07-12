@@ -8,7 +8,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 const validation = sessionStorage.getItem('access_token')
-const socket = io("http://192.168.1.8:5000/queue/pending", {
+const socket = io("ws://192.168.1.8:5000/queue/pending", {
     transports: ["websocket"],
     query: {
       token: validation,
@@ -40,13 +40,20 @@ const PendingQueue = () => {
     fetchData(token)
   );
 
+  socket.on('message', (data) => {
+    console.log(data)
+  })
+  
   useEffect(() => {
     socket.on('queue', () => {
       refetch();
     });
 
+    
+
     return () => {
       socket.off('queue');
+      socket.disconnect()
     };
   }, [refetch]);
 
