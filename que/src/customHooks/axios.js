@@ -27,7 +27,10 @@ const dashboardQuery = async () => {
 };
 
 export const GetFaculty = () => {
-  return useQuery(["faculty"], dashboardQuery);
+  return useQuery(["faculty"], dashboardQuery, {
+    refetchInterval: 10000,
+    refetchIntervalInBackground: true
+  });
 };
 
 // For reset Password
