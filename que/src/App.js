@@ -12,7 +12,14 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RegisterPage from "./Pages/Dashboard/Faculty Dashboard/RegisterPage";
 import ProtectedRoute from "./customHooks/ProtectedRoute";
-const queryClient = new QueryClient();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
 
 function App() {
   return (

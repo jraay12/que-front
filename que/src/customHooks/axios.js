@@ -1,11 +1,10 @@
 import axios from "axios";
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
-const BASEURL = "https://ustp-queueing-system.onrender.com"
+
+const validation = sessionStorage.getItem("access_token");
+const BASEURL = "http://192.168.1.8:5000";
+
 
 // For Register
 const registerHeaders = {
@@ -14,10 +13,7 @@ const registerHeaders = {
 
 // For Login
 const facultyLogin = async (credentials) => {
-  return await axios.post(
-    `${BASEURL}/auth/login`,
-    credentials
-  );
+  return await axios.post(`${BASEURL}/auth/login`, credentials);
 };
 
 export const MutateLogin = () => {
@@ -26,33 +22,22 @@ export const MutateLogin = () => {
 
 // For Dashboard Data
 const dashboardQuery = async () => {
-  const value = await axios.get(
-    `${BASEURL}/queue/count`
-  );
+  const value = await axios.get(`${BASEURL}/queue/count`);
   return value.data;
 };
 
 export const GetFaculty = () => {
-  return useQuery(["faculty"], dashboardQuery, {
-    refetchIntervalInBackground: true,
-    refetchInterval: 5000,
-   
-  });
+  return useQuery(["faculty"], dashboardQuery);
 };
 
 // For reset Password
 
 const resetPassword = async (value, headers) => {
-  return await axios.post(
-    `${BASEURL}/auth/resetPassword`,
-    value,
-    { headers }
-  );
+  return await axios.post(`${BASEURL}/auth/resetPassword`, value, { headers });
 };
 
 export const ResetPassword = () => {
   const queryClient = useQueryClient();
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -66,32 +51,21 @@ export const ResetPassword = () => {
 
 // For Pending Data
 const pendingQuery = async (headers) => {
-  const value = await axios.get(
-    `${BASEURL}/queue/pending`,
-    { headers }
-  );
+  const value = await axios.get(`${BASEURL}/queue/pending`, { headers });
   return value.data;
 };
 
 export const GetPending = () => {
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
   };
-  return useQuery(["pending"], () => pendingQuery(headers), {
-    refetchIntervalInBackground: true,
-    refetchInterval: 30000,
-  });
+  return useQuery(["pending"], () => pendingQuery(headers));
 };
 
 // For Add Queue
 const addQue = async (value, headers) => {
-  return await axios.post(
-    `${BASEURL}/queue/`,
-    value,
-    { headers }
-  );
+  return await axios.post(`${BASEURL}/queue/`, value, { headers });
 };
 
 export const MutateQue = () => {
@@ -105,15 +79,11 @@ export const MutateQue = () => {
 
 // For Queue History Data
 const queueHistory = async (headers) => {
-  const value = await axios.get(
-    `${BASEURL}/queue/done`,
-    { headers }
-  );
+  const value = await axios.get(`${BASEURL}/queue/done`, { headers });
   return value.data;
 };
 
 export const GetHistory = () => {
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -123,15 +93,10 @@ export const GetHistory = () => {
 
 // For Sending Email
 const sendEmail = async (notify, headers) => {
-  return await axios.post(
-    `${BASEURL}/queue/notify`,
-    notify,
-    { headers }
-  );
+  return await axios.post(`${BASEURL}/queue/notify`, notify, { headers });
 };
 
 export const NotifyQuery = () => {
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -142,16 +107,11 @@ export const NotifyQuery = () => {
 
 // For Update Queue Status
 const queueStatus = async (value, headers) => {
-  return await axios.put(
-    `${BASEURL}/queue/`,
-    value,
-    { headers }
-  );
+  return await axios.put(`${BASEURL}/queue/`, value, { headers });
 };
 
 export const QueueStatus = () => {
   const queryClient = useQueryClient();
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -166,11 +126,9 @@ export const QueueStatus = () => {
 
 // For Register
 const register = async (value, registerHeaders) => {
-  return await axios.post(
-    `${BASEURL}/auth/register`,
-    value,
-    { headers: registerHeaders }
-  );
+  return await axios.post(`${BASEURL}/auth/register`, value, {
+    headers: registerHeaders,
+  });
 };
 
 export const Register = () => {
@@ -184,16 +142,11 @@ export const Register = () => {
 
 //for Set limit queue
 const setLimit = async (value) => {
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
   };
-  return await axios.post(
-    `${BASEURL}/user/limit`,
-    value,
-    { headers }
-  );
+  return await axios.post(`${BASEURL}/user/limit`, value, { headers });
 };
 
 export const SetLimit = () => {
@@ -207,16 +160,11 @@ export const SetLimit = () => {
 
 // For Status
 const status = async (value, headers) => {
-  return await axios.post(
-    `${BASEURL}/user/status`,
-    value,
-    { headers }
-  );
+  return await axios.post(`${BASEURL}/user/status`, value, { headers });
 };
 
 export const Status = () => {
   const queryClient = useQueryClient();
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -231,7 +179,6 @@ export const Status = () => {
 
 //For Logout
 export const MutateLogout = async () => {
-  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
   };
@@ -245,3 +192,4 @@ export const MutateLogout = async () => {
     })
     .catch((err) => console.error(err));
 };
+
