@@ -2,7 +2,7 @@ import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const validation = sessionStorage.getItem("access_token");
-const BASEURL = "http://192.168.1.8:5000";
+const BASEURL = "http://localhost:5000";
 
 // For Register
 const registerHeaders = {
@@ -178,15 +178,14 @@ export const Status = () => {
   });
 };
 
-//For Logout
 export const MutateLogout = async () => {
-  const token = sessionStorage.getItem("access_token");
-  const header = {
-    Authorization: `Bearer ${token}`,
+  const validation = sessionStorage.getItem("access_token");
+  const headers = {
+    Authorization: `Bearer ${validation}`,
   };
   return await axios
     .post(`${BASEURL}/auth/logout`, null, {
-      headers: header,
+      headers,
     })
     .then((res) => {
       sessionStorage.removeItem("access_token");

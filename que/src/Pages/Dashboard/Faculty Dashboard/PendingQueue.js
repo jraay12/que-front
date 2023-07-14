@@ -7,57 +7,49 @@ import { io } from "socket.io-client";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-const validation = sessionStorage.getItem('access_token')
-const socket = io("ws://192.168.1.8:5000/queue/pending", {
-    transports: ["websocket"],
-    query: {
-      token: validation,
+const validation = sessionStorage.getItem("access_token");
+
+const fetchData = async (token) => {
+  const response = await axios.get("http://localhost:5000/queue/pending", {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
   });
-
-
-  const fetchData = async (token) => {
-    const response = await axios.get('http://192.168.1.8:5000/queue/pending', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  };
+  return response.data;
+};
 
 const PendingQueue = () => {
-  const token = sessionStorage.getItem('access_token'); // Retrieve the stored token
+  const token = sessionStorage.getItem("access_token"); // Retrieve the stored token
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const value = Object.values(auth);
   const { mutate: Status } = QueueStatus();
   const [statuses, setStatuses] = useState({});
 
-  
-  
+  const { data, refetch } = useQuery("pending", () => fetchData(token));
 
-  const { data, refetch } = useQuery('pending', () =>
-    fetchData(token)
-  );
-
-  socket.on('message', (data) => {
-    console.log(data)
-  })
-  
   useEffect(() => {
-    socket.on('queue', () => {
+    if (!token) return; 
+
+    const socket = io.connect("http://localhost:5000/queue/pending", {
+      transports: ["websocket"],
+      query: {
+        token: token,
+      },
+    });
+
+    socket.on("queue", () => {
       refetch();
     });
 
-    
+    socket.on("message", (data) => {
+      console.log(data);
+    });
 
     return () => {
-      socket.off('queue');
-      socket.disconnect()
+      socket.disconnect();
     };
-  }, [refetch]);
-
-
+  }, [token, refetch]);
 
   const handleOnHold = (id) => {
     setStatuses((prevStatuses) => ({
@@ -79,10 +71,8 @@ const PendingQueue = () => {
     });
   };
 
-
-
   const filterData = data?.filter((item) => item.userId === value[2]);
-  
+
   return (
     <div className="flex w-full justify-center  overflow-hidden items-center min-h-screen">
       <div className="drop-shadow-2xl shadow-2xl  max-h-[80%] backdrop-blur-sm overflow-auto min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">

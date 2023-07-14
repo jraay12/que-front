@@ -36,6 +36,7 @@ const Login = () => {
         const id = data?.data?.user._id;
         setAuth({ email, password, id, authName, profilePic, limit });
         navigate("/Faculty/PendingQueue");
+        
       },
       onError: async () => {
         toast.error("Invalid Credentials", {
