@@ -7,7 +7,6 @@ import { io } from "socket.io-client";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-const validation = sessionStorage.getItem("access_token");
 
 const fetchData = async (token) => {
   const response = await axios.get("http://localhost:5000/queue/pending", {
@@ -19,7 +18,7 @@ const fetchData = async (token) => {
 };
 
 const PendingQueue = () => {
-  const token = sessionStorage.getItem("access_token"); // Retrieve the stored token
+  const token = sessionStorage.getItem("access_token"); 
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const value = Object.values(auth);
