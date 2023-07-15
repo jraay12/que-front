@@ -75,7 +75,7 @@ const Display = () => {
         <Swiper
           spaceBetween={50}
           modules={[Autoplay]}
-          autoplay={{delay: 2000}}
+          autoplay={{ delay: 2000 }}
           slidesPerView={slidesPerView}
         >
           {Array.isArray(faculty) &&

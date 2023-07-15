@@ -57,7 +57,7 @@ const PendingQueue = () => {
 
   return (
     <div className="flex w-full justify-center  overflow-hidden items-center min-h-screen">
-      <div className="drop-shadow-2xl shadow-2xl  max-h-[80%] backdrop-blur-sm overflow-auto min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
+      <div className="  max-h-[80%]  overflow-auto min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className=" bg-newBlue sticky top-0">
             <tr className="font-bold text-lg text-white xxl:text-4xl">
@@ -135,7 +135,7 @@ const PendingQueue = () => {
                         className={` text-white font-bold ${
                           statuses[item._id] ? "bg-blue" : "bg-red-600"
                         } `}
-                        buttonName={statuses[item._id] ? "UnHold" : "Hold"}
+                        buttonName={statuses[item._id] ? "Unhold" : "Hold"}
                         onClick={() => handleOnHold(item._id)}
                       />
                     </td>
