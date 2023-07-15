@@ -83,31 +83,31 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="flex shadow-2xl bg-white text-black  z-20 select-none">
+    <div className="z-20 flex select-none bg-white  text-black shadow-2xl">
       <div
         ref={sidebarRef}
         className={`${
           open ? "w-52 xxl:w-96" : "w-24 xxl:w-36"
-        } bg-dark-purple h-screen p-5 pt-8 relative duration-300 ease-in md:${!open}`}
+        } bg-dark-purple relative h-screen p-5 pt-8 duration-300 ease-in md:${!open}`}
       >
         <div
           className={`${
-            open && "flex justify-center items-center xxl:mt-20"
-          } w-32 h-32 m-auto xxl:w-56 xxl:h-56`}
+            open && "flex items-center justify-center xxl:mt-20"
+          } m-auto h-32 w-32 xxl:h-56 xxl:w-56`}
         >
           <img
             src={auth.profilePic}
             alt="my-picture"
             className={`${
-              !open && "h-10 w-10 mt-20 xxl:h-28 xxl:w-28"
+              !open && "mt-20 h-10 w-10 xxl:h-28 xxl:w-28"
             } rounded-full`}
           />
         </div>
-        <div className="flex justify-center items-center mt-4">
+        <div className="mt-4 flex items-center justify-center">
           <h1
             className={`${
               !open && "hidden"
-            } origin-left font-bold duration-200 text-xl xxl:text-4xl`}
+            } origin-left text-xl font-bold duration-200 xxl:text-4xl`}
           >
             {auth.authName}
           </h1>
@@ -115,20 +115,20 @@ const Sidebar = () => {
         <div className={`flex justify-end ${!open && "justify-center"}`}>
           <img
             src={Toggle}
-            className={`absolute cursor-pointer top-9 w-4 xxl:w-7 border-dark-purple
+            className={`border-dark-purple absolute top-9 w-4 cursor-pointer xxl:w-7
            ${!open && "rotate-180"}`}
             onClick={() => setOpen(!open)}
             alt="Toggle Sidebar"
           />
         </div>
-        <div className="flex flex-col flex-grow items-center ">
-          <ul className="pt-6 flex-grow xxl:mt-40 ">
+        <div className="flex flex-grow flex-col items-center ">
+          <ul className="flex-grow pt-6 xxl:mt-40 ">
             <form onSubmit={handleLimit}>
               <div className="flex justify-center gap-2 xxl:text-4xl ">
                 <h1 className={` ${!open && "hidden"} font-bold `}>Limit</h1>
 
                 <input
-                  className="w-full rounded-sm  border-black ml-2 pl-3 text-black border-[1px]"
+                  className="ml-2 w-full  rounded-sm border-[1px] border-black pl-3 text-black"
                   value={queueLimit}
                   type="number"
                   onChange={(e) => setQueueLimit(e.target.value)}
@@ -140,15 +140,15 @@ const Sidebar = () => {
               <NavLink
                 key={index}
                 to={items.path}
-                className={`flex rounded-md p-2 cursor-pointer xxl:text-3xl hover:bg-light-white font-semibold  focus:bg-powderBlue  text-base items-center gap-x-4 
+                className={`hover:bg-light-white flex cursor-pointer items-center gap-x-4 rounded-md p-2  text-base  font-semibold focus:bg-powderBlue xxl:text-3xl 
               ${items.gap ? "mt-9" : "mt-4"} ${
-                  index === 0 && "bg-light-white"
-                }`}
+                index === 0 && "bg-light-white"
+              }`}
               >
                 <img
                   src={items.src}
                   alt={items.name}
-                  className="w-5 h-5 xxl:h-10 xxl:w-10 text-black xxl:mt-10"
+                  className="h-5 w-5 text-black xxl:mt-10 xxl:h-10 xxl:w-10"
                 />
 
                 <span
@@ -163,16 +163,16 @@ const Sidebar = () => {
           </ul>
         </div>
         <div className="absolute bottom-5 left-5 right-5">
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             <img
               src={Logout}
-              className="object-contain h-5 w-5 xxl:h-7 xxl:w-7"
+              className="h-5 w-5 object-contain xxl:h-7 xxl:w-7"
               alt="Logout"
             />
 
             <span className={`${!open && "hidden"} `}>
               <button
-                className="text-black text-lg font-semibold ml-4 xxl:text-3xl rounded-lg outline-none"
+                className="ml-4 rounded-lg text-lg font-semibold text-black outline-none xxl:text-3xl"
                 onClick={handleLogout}
               >
                 Logout

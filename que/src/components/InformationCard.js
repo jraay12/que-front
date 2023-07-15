@@ -22,7 +22,6 @@ const InformationCard = () => {
     }
   }, [GetInfo]);
 
-
   const { mutate: Notify } = NotifyQuery();
 
   const handleNotify = () => {
@@ -67,19 +66,19 @@ const InformationCard = () => {
   }
 
   return (
-    <div className="flex min-h-screen max-w-full justify-center items-center absolute ">
-      <div className="max-w-[1000px] min-w-[400px] pb-5 bg-white shadow-2xl shadow-blue xxl:min-w-[40%] xxl:max-w-[90%] xxl:mx-32 xxl:h-[800px]  rounded-3xl ">
-        <div className="flex flex-col h-full items-center mt-4">
+    <div className="absolute flex min-h-screen max-w-full items-center justify-center ">
+      <div className="min-w-[400px] max-w-[1000px] rounded-3xl bg-white pb-5 shadow-2xl shadow-blue xxl:mx-32 xxl:h-[800px] xxl:min-w-[40%]  xxl:max-w-[90%] ">
+        <div className="mt-4 flex h-full flex-col items-center">
           <div
-            className="flex justify-end w-full  mr-5 hover:text-red-600 cursor-pointer text-xl"
+            className="mr-5 flex w-full  cursor-pointer justify-end text-xl hover:text-red-600"
             onClick={() => navigate("/Faculty/PendingQueue/")}
           >
             <AiOutlineClose />
           </div>
-          <h1 className="xxl:mt-10 xxl:text-5xl text-2xl font-bold text-blue">
+          <h1 className="text-2xl font-bold text-blue xxl:mt-10 xxl:text-5xl">
             Information
           </h1>
-          <div className="flex flex-col items-start px-5 gap-6 xxl:text-4xl xxl:mt-20 xxl:gap-12 font-normal text-blue mt-10 max-w-[1000px] break-all">
+          <div className="mt-10 flex max-w-[1000px] flex-col items-start gap-6 break-all px-5 font-normal text-blue xxl:mt-20 xxl:gap-12 xxl:text-4xl">
             <div className="flex gap-3 xxl:gap-10">
               <h1>ID Number:</h1>
               <h1 className="font-bold">
@@ -92,7 +91,7 @@ const InformationCard = () => {
             </div>
             <div className="flex gap-12 xxl:gap-20">
               <h1>Email :</h1>
-              <h1 className="font-bold whitespace-normal">{value[0].email}</h1>
+              <h1 className="whitespace-normal font-bold">{value[0].email}</h1>
             </div>
             <div className="flex gap-6">
               <h1 className="min-w-[70px]">Purpose:</h1>
@@ -100,19 +99,19 @@ const InformationCard = () => {
                 {value[0].purpose}
               </h1>
             </div>
-            <div className="flex justify-center w-full gap-10 font-semibold xxl:gap-20 xxl:mt-10">
-              <div className="bg-blue text-white rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">
+            <div className="flex w-full justify-center gap-10 font-semibold xxl:mt-10 xxl:gap-20">
+              <div className="flex h-10 w-20 items-center justify-center rounded-2xl bg-blue text-white xxl:h-20 xxl:w-40">
                 <Button buttonName="Done" onClick={handleDone} />
               </div>
-              <div className="bg-blue text-white rounded-2xl xxl:h-20 xxl:w-40 h-10 w-20 flex justify-center items-center">
+              <div className="flex h-10 w-20 items-center justify-center rounded-2xl bg-blue text-white xxl:h-20 xxl:w-40">
                 <Button buttonName="Notify" onClick={handleNotify} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="absolute top-0 right-0 m-4">
-        <ToastContainer className="w-80 h-48" />
+      <div className="absolute right-0 top-0 m-4">
+        <ToastContainer className="h-48 w-80" />
       </div>
     </div>
   );

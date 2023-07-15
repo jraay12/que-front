@@ -29,8 +29,6 @@ const PendingQueue = () => {
     socket.on("queue", () => {
       refetch();
     });
-
-    
   }, [token, refetch]);
 
   const handleOnHold = (id) => {
@@ -53,11 +51,11 @@ const PendingQueue = () => {
   const filterData = data?.filter((item) => item.userId === value[2]);
 
   return (
-    <div className="flex w-full justify-center  overflow-hidden items-center min-h-screen">
-      <div className="  max-h-[80%]  overflow-auto min-h-[70%] w-full pb-10 mx-10 overflow-x-hidden">
-        <table className="text-left w-full font-semibold xxl:text-4xl">
-          <thead className=" bg-newBlue sticky top-0">
-            <tr className="font-bold text-lg text-white xxl:text-4xl">
+    <div className="flex min-h-screen w-full  items-center justify-center overflow-hidden">
+      <div className="mx-10  max-h-[80%] min-h-[70%] w-full overflow-auto overflow-x-hidden pb-10">
+        <table className="w-full text-left font-semibold xxl:text-4xl">
+          <thead className=" sticky top-0 bg-newBlue">
+            <tr className="text-lg font-bold text-white xxl:text-4xl">
               <th className="p-4 ">ID #</th>
               <th className="p-4">Priority Number</th>
               <th className="p-4">Name</th>
@@ -72,7 +70,7 @@ const PendingQueue = () => {
                 <React.Fragment key={item._id}>
                   <hr className="mt-4 border-none" />
                   <tr
-                    className={`hover:ease-in cursor-pointer text-black ease-in duration-75 font-normal text-base  hover:scale-[1.01]  hover:shadow-black hover:shadow-md ${
+                    className={`cursor-pointer text-base font-normal text-black duration-75 ease-in hover:scale-[1.01]  hover:shadow-md  hover:shadow-black hover:ease-in ${
                       item.status === "On Hold" ? "bg-slate-400" : "bg-white"
                     }`}
                   >
@@ -80,7 +78,7 @@ const PendingQueue = () => {
                       className="p-4"
                       onClick={() =>
                         navigate(
-                          `/Faculty/PendingQueue/Information/${item._id}`
+                          `/Faculty/PendingQueue/Information/${item._id}`,
                         )
                       }
                     >
@@ -90,7 +88,7 @@ const PendingQueue = () => {
                       className="p-4"
                       onClick={() =>
                         navigate(
-                          `/Faculty/PendingQueue/Information/${item._id}`
+                          `/Faculty/PendingQueue/Information/${item._id}`,
                         )
                       }
                     >
@@ -100,7 +98,7 @@ const PendingQueue = () => {
                       className="p-4"
                       onClick={() =>
                         navigate(
-                          `/Faculty/PendingQueue/Information/${item._id}`
+                          `/Faculty/PendingQueue/Information/${item._id}`,
                         )
                       }
                     >
@@ -110,17 +108,17 @@ const PendingQueue = () => {
                       className="p-4"
                       onClick={() =>
                         navigate(
-                          `/Faculty/PendingQueue/Information/${item._id}`
+                          `/Faculty/PendingQueue/Information/${item._id}`,
                         )
                       }
                     >
                       {item.status}
                     </td>
                     <td
-                      className="max-w-[100px] truncate overflow-x-hidden whitespace-nowrap"
+                      className="max-w-[100px] overflow-x-hidden truncate whitespace-nowrap"
                       onClick={() =>
                         navigate(
-                          `/Faculty/PendingQueue/Information/${item._id}`
+                          `/Faculty/PendingQueue/Information/${item._id}`,
                         )
                       }
                     >
@@ -128,7 +126,7 @@ const PendingQueue = () => {
                     </td>
                     <td className="h-10">
                       <Button
-                        className={` text-white font-bold ${
+                        className={` font-bold text-white ${
                           statuses[item._id] ? "bg-blue" : "bg-red-600"
                         } `}
                         buttonName={statuses[item._id] ? "Unhold" : "Hold"}

@@ -9,7 +9,6 @@ import { Navigation, Scrollbar, A11y, EffectCube } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import { toast, ToastContainer } from "react-toastify";
 
-
 const GuestStudent = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -17,11 +16,11 @@ const GuestStudent = () => {
   const { data: getUser } = GetFaculty();
   const slidesPerView = Math.min(getUser?.length, 3);
   console.log(getUser);
-  
+
   return (
-    <div className="flex flex-col min-h-screen max-h-screen bg-no-repeat w-screen bg-background bg-cover bg-black ">
-      <div className="flex justify-evenly md:justify-end w-screen h-14 xxl:h-32 ">
-        <div className="text-white font-bold flex justify-center gap-28 md:gap-10 items-center mx-10 ">
+    <div className="flex max-h-screen min-h-screen w-screen flex-col bg-black bg-background bg-cover bg-no-repeat ">
+      <div className="flex h-14 w-screen justify-evenly md:justify-end xxl:h-32 ">
+        <div className="mx-10 flex items-center justify-center gap-28 font-bold text-white md:gap-10 ">
           <div className="select-none font-bold xxl:text-4xl">
             <Button
               buttonName="LOGIN"
@@ -30,7 +29,7 @@ const GuestStudent = () => {
           </div>
         </div>
       </div>
-      <div className="flex mx-7 inset-0 justify-center h-screen items-center">
+      <div className="inset-0 mx-7 flex h-screen items-center justify-center">
         <Swiper
           spaceBetween={50}
           modules={[Navigation, Scrollbar, A11y, EffectCube]}

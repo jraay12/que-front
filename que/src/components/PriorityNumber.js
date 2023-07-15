@@ -1,12 +1,13 @@
 import React from "react";
 
 const PriorityNumber = (props) => {
-   
   return (
-    <div className="flex justify-center items-center  inset-0 fixed top-0 backdrop-blur-sm ">
-      <div className="flex flex-col items-center h-96 xxl:h-[50%] xxl:w-[50%] bg-powderBlue w-96 border-2 border-black bg-cover bg-no-repeat rounded-3xl">
-      <h1 className="font-extrabold text-black text-[35px] m-4 xxl:text-[60px]">PRIORITY NUMBER</h1>
-        <h1 className="font-bold text-red-600 text-[200px] xxl:text-[300px]">
+    <div className="fixed inset-0 top-0  flex items-center justify-center backdrop-blur-sm ">
+      <div className="flex h-96 w-96 flex-col items-center rounded-3xl border-2 border-black bg-powderBlue bg-cover bg-no-repeat xxl:h-[50%] xxl:w-[50%]">
+        <h1 className="m-4 text-[35px] font-extrabold text-black xxl:text-[60px]">
+          PRIORITY NUMBER
+        </h1>
+        <h1 className="text-[200px] font-bold text-red-600 xxl:text-[300px]">
           {props.number}
         </h1>
       </div>

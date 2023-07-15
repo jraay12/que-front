@@ -17,8 +17,8 @@ const AddQueFormStudent = () => {
   const [priorityNumber, setPriorityNumber] = useState("");
 
   useEffect(() => {
-    inputRef.current.focus()
-  }, [])
+    inputRef.current.focus();
+  }, []);
 
   const { mutate } = MutateQue();
 
@@ -48,17 +48,17 @@ const AddQueFormStudent = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-cover bg-no-repeat bg-background backdrop-blur-lg absolute ">
-      <div className="container bg-slate-300 flex flex-col  shadow-2xl drop-shadow-2xl  xl:max-h-full w-[40%] rounded-3xl pb-10">
-        <div className="flex mt-10 items-center flex-col">
+    <div className="absolute flex h-screen w-screen items-center justify-center bg-background bg-cover bg-no-repeat backdrop-blur-lg ">
+      <div className="container flex w-[40%] flex-col  rounded-3xl bg-slate-300  pb-10 shadow-2xl drop-shadow-2xl xl:max-h-full">
+        <div className="mt-10 flex flex-col items-center">
           <h1 className="font-extrabold md:text-lg lg:text-2xl xl:text-4xl ">
             Add Queue
           </h1>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="w-full px-10 flex flex-col gap-4 mt-6">
+          <div className="mt-6 flex w-full flex-col gap-4 px-10">
             <Input
-            ref={inputRef}
+              ref={inputRef}
               label="ID Number"
               py={3}
               value={idNumber}
@@ -82,14 +82,14 @@ const AddQueFormStudent = () => {
               onChange={(e) => setPurpose(e.target.value)}
             />
           </div>
-          <div className="flex justify-evenly gap-4 mt-10">
-            <div className="bg-blue hover:bg-red-600 text-white rounded-2xl xxl:h-14 xxl:w-28 xxl:text-4xl h-10 w-20 flex justify-center items-center">
+          <div className="mt-10 flex justify-evenly gap-4">
+            <div className="flex h-10 w-20 items-center justify-center rounded-2xl bg-blue text-white hover:bg-red-600 xxl:h-14 xxl:w-28 xxl:text-4xl">
               <Button
                 buttonName="Cancel"
                 onClick={() => navigate("/Dashboard")}
               />
             </div>
-            <div className="bg-blue text-white rounded-2xl h-10 w-20 flex xxl:h-14 xxl:w-28 xxl:text-4xl justify-center items-center">
+            <div className="flex h-10 w-20 items-center justify-center rounded-2xl bg-blue text-white xxl:h-14 xxl:w-28 xxl:text-4xl">
               <Button buttonName="Submit" />
             </div>
           </div>

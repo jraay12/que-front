@@ -18,7 +18,7 @@ const RegisterPage = () => {
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-  
+
   const { mutate: RegisterUser } = Register();
 
   const handleRegister = (e) => {
@@ -47,12 +47,12 @@ const RegisterPage = () => {
     });
   };
   return (
-    <div className="w-full min-h-full justify-center items-center flex flex-col gap-4">
-      <div className="max-w-max min-h-[400px] xxl:min-h-[700px] flex flex-col justify-start">
-        <h1 className="m-4 font-bold text-3xl xxl:text-5xl text-white">
+    <div className="flex min-h-full w-full flex-col items-center justify-center gap-4">
+      <div className="flex min-h-[400px] max-w-max flex-col justify-start xxl:min-h-[700px]">
+        <h1 className="m-4 text-3xl font-bold text-white xxl:text-5xl">
           Register User
         </h1>
-        <div className="w-full rounded-3xl h-full bg-white">
+        <div className="h-full w-full rounded-3xl bg-white">
           <form onSubmit={handleRegister} encType="multipart/form-data">
             <div className="flex flex-col ">
               <div className="flex max-w-full">
@@ -84,7 +84,7 @@ const RegisterPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className="max-w-full flex">
+              <div className="flex max-w-full">
                 <div className="m-4 w-full">
                   <Input
                     label="Position"
@@ -102,7 +102,7 @@ const RegisterPage = () => {
                   />
                 </div>
               </div>
-              <div className="bg-blue hover:bg-opacity-30 text-left text-white w-[20%] m-4 xxl:text-5xl xxl:h-20 rounded-3xl h-10">
+              <div className="m-4 h-10 w-[20%] rounded-3xl bg-blue text-left text-white hover:bg-opacity-30 xxl:h-20 xxl:text-5xl">
                 <Button type="submit" buttonName="Register" />
               </div>
             </div>

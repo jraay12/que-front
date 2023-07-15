@@ -65,13 +65,13 @@ const Display = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center max-w-screen-xxl min-h-screen bg-background bg-cover bg-no-repeat backdrop-blur-sm">
+    <div className="flex min-h-screen max-w-screen-xxl flex-col justify-center bg-background bg-cover bg-no-repeat backdrop-blur-sm">
       <div className="flex justify-center ">
-        <h1 className="text-Ivory text-5xl font-extrabold xxl:text-9xl">
+        <h1 className="text-5xl font-extrabold text-Ivory xxl:text-9xl">
           PRIORITY NUMBERS
         </h1>
       </div>
-      <div className="flex justify-center items-center p-20 xxl:p-96 ">
+      <div className="flex items-center justify-center p-20 xxl:p-96 ">
         <Swiper
           spaceBetween={50}
           modules={[Autoplay]}
@@ -81,14 +81,14 @@ const Display = () => {
           {Array.isArray(faculty) &&
             faculty.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="bg-powderBlue rounded-md min-w-max">
+                <div className="min-w-max rounded-md bg-powderBlue">
                   <div className="flex items-center justify-center border-b-2 border-black pb-2">
                     <img
                       src={item.profilePic}
-                      className="max-h-20 min-w-0 rounded-full m-4 object-contain"
+                      className="m-4 max-h-20 min-w-0 rounded-full object-contain"
                       alt={item.name}
                     />
-                    <h1 className="font-bold text-3xl">{item.name}</h1>
+                    <h1 className="text-3xl font-bold">{item.name}</h1>
                   </div>
                   <div className="text-center text-[150px]">
                     <h1>

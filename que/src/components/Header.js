@@ -17,8 +17,8 @@ const Header = () => {
   };
 
   return (
-    <div className="flex  justify-end w-full h-10 xxl:h-20 bg-newBlue absolute z-10 items-center gap-2">
-      <label className="font-bold text-sm text-white xxl:text-3xl">
+    <div className="absolute  z-10 flex h-10 w-full items-center justify-end gap-2 bg-newBlue xxl:h-20">
+      <label className="text-sm font-bold text-white xxl:text-3xl">
         Status
       </label>
       <form onSubmit={handleSubmit}>
@@ -27,7 +27,7 @@ const Header = () => {
             id="options"
             value={status}
             onChange={handleSubmit}
-            className="w-full h-full rounded-2xl xxl:text-3xl bg-ivory text-black outline-none"
+            className="bg-ivory h-full w-full rounded-2xl text-black outline-none xxl:text-3xl"
           >
             <option value=""></option>
             <option value="Available">Available</option>
