@@ -61,12 +61,12 @@ const PendingQueue = () => {
         <table className="text-left w-full font-semibold xxl:text-4xl">
           <thead className=" bg-newBlue sticky top-0">
             <tr className="font-bold text-lg text-white xxl:text-4xl">
-              <th className="p-4 ">#</th>
+              <th className="p-4 ">ID #</th>
               <th className="p-4">Priority Number</th>
               <th className="p-4">Name</th>
               <th className="p-4">Status</th>
-              <th className="p-4">Purpose</th>
-              <th className="p-4">Action</th>
+              <th>Purpose</th>
+              <th className="p-4 text-center">Action</th>
             </tr>
           </thead>
           <tbody>
