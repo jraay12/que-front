@@ -5,6 +5,8 @@ import { MutateLogin, ResetPassword } from "../../customHooks/axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
+import  secureLocalStorage  from  "react-secure-storage";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const Login = () => {
     mutate(credentials, {
       onSuccess: (data) => {
         const access_token = data.data.accessToken;
-        sessionStorage.setItem("access_token", access_token);
+        secureLocalStorage.setItem("access_token", access_token);
         const authName = data.data.user.name;
         const limit = data.data.user.queueLimit;
         const profilePic = data.data.user.profilePic;

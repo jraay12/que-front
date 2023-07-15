@@ -5,9 +5,11 @@ import AuthContext from "../../../context/AuthProvider";
 import Button from "../../../components/Button";
 import { io } from "socket.io-client";
 import { GetPending } from "../../../customHooks/axios";
+import  secureLocalStorage  from  "react-secure-storage";
+
 
 const PendingQueue = () => {
-  const token = sessionStorage.getItem("access_token");
+  const token = secureLocalStorage.getItem("access_token");
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const value = Object.values(auth);
@@ -34,7 +36,7 @@ const PendingQueue = () => {
     socket.io.on("reconnect", (attempt) => {
       refetch()
     });
-    
+
     socket.on("queue", () => {
       refetch();
     });

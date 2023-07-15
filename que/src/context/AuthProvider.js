@@ -1,15 +1,16 @@
 import { createContext, useState, useEffect } from "react";
+import  secureLocalStorage  from  "react-secure-storage";
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(() => {
-    const storedAuth = sessionStorage.getItem("auth");
+    const storedAuth = secureLocalStorage.getItem("auth");
     return storedAuth ? JSON.parse(storedAuth) : {};
   });
 
   useEffect(() => {
-    sessionStorage.setItem("auth", JSON.stringify(auth));
+    secureLocalStorage.setItem("auth", JSON.stringify(auth));
   }, [auth]);
 
   return (

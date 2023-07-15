@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import  secureLocalStorage  from  "react-secure-storage";
+
 
 const BASEURL = "http://localhost:5000";
 
@@ -38,7 +40,7 @@ const resetPassword = async (value, headers) => {
 
 export const ResetPassword = () => {
   const queryClient = useQueryClient();
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -57,7 +59,7 @@ const pendingQuery = async (headers) => {
 };
 
 export const GetPending = () => {
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -86,7 +88,7 @@ const queueHistory = async (headers) => {
 };
 
 export const GetHistory = () => {
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -100,7 +102,7 @@ const sendEmail = async (notify, headers) => {
 };
 
 export const NotifyQuery = () => {
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -116,7 +118,7 @@ const queueStatus = async (value, headers) => {
 
 export const QueueStatus = () => {
   const queryClient = useQueryClient();
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -147,7 +149,7 @@ export const Register = () => {
 
 //for Set limit queue
 const setLimit = async (value) => {
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -166,7 +168,7 @@ export const SetLimit = () => {
 
 // For Status
 const status = async (value) => {
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -184,7 +186,7 @@ export const Status = () => {
 };
 
 export const MutateLogout = async () => {
-  const validation = sessionStorage.getItem("access_token");
+  const validation = secureLocalStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
   };
@@ -193,8 +195,8 @@ export const MutateLogout = async () => {
       headers,
     })
     .then((res) => {
-      sessionStorage.removeItem("access_token");
-      sessionStorage.removeItem("auth");
+      secureLocalStorage.removeItem("access_token");
+      secureLocalStorage.removeItem("auth");
     })
     .catch((err) => console.error(err));
 };
