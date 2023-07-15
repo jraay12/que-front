@@ -4,18 +4,10 @@ import { QueueStatus } from "../../../customHooks/axios";
 import AuthContext from "../../../context/AuthProvider";
 import Button from "../../../components/Button";
 import { io } from "socket.io-client";
-import axios from "axios";
-import { useQuery } from "react-query";
+import { GetPending } from "../../../customHooks/axios";
 
 
-const fetchData = async (token) => {
-  const response = await axios.get("http://localhost:5000/queue/pending", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
-};
+
 
 const PendingQueue = () => {
   const token = sessionStorage.getItem("access_token"); 
@@ -25,7 +17,7 @@ const PendingQueue = () => {
   const { mutate: Status } = QueueStatus();
   const [statuses, setStatuses] = useState({});
 
-  const { data, refetch } = useQuery("pending", () => fetchData(token));
+  const { data, refetch } = GetPending()
 
   useEffect(() => {
     if (!token) return; 
