@@ -160,18 +160,17 @@ export const SetLimit = () => {
 };
 
 // For Status
-const status = async (value, headers) => {
+const status = async (value) => {
+  const headers = {
+    Authorization: `Bearer ${validation}`,
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
   return await axios.post(`${BASEURL}/user/status`, value, { headers });
 };
 
 export const Status = () => {
   const queryClient = useQueryClient();
-  const headers = {
-    Authorization: `Bearer ${validation}`,
-    "Content-Type": "application/x-www-form-urlencoded",
-  };
-
-  return useMutation((value) => status(value, headers), {
+  return useMutation((value) => status(value), {
     onSuccess: () => {
       queryClient.invalidateQueries("faculty");
     },
