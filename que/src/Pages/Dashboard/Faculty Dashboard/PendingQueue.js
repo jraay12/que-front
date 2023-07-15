@@ -23,7 +23,7 @@ const PendingQueue = () => {
       transports: ["websocket"],
       query: {
         token: token,
-      },
+      },  
     });
 
     socket.on("queue", () => {
