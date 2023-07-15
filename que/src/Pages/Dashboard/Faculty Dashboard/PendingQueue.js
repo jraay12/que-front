@@ -7,8 +7,6 @@ import { io } from "socket.io-client";
 import { GetPending } from "../../../customHooks/axios";
 
 
-
-
 const PendingQueue = () => {
   const token = sessionStorage.getItem("access_token"); 
   const { auth } = useContext(AuthContext);
@@ -33,10 +31,6 @@ const PendingQueue = () => {
       refetch();
     });
 
-    socket.on("message", (data) => {
-      console.log(data);
-    });
-
     return () => {
       socket.disconnect();
     };
@@ -53,9 +47,6 @@ const PendingQueue = () => {
     params.append("status", status);
     const value = params;
     Status(value, {
-      onSuccess: () => {
-        console.log("success");
-      },
       onError: (err) => {
         console.error(err);
       },

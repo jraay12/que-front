@@ -37,7 +37,6 @@ const Sidebar = () => {
     const params = new URLSearchParams();
     params.append("userId", auth?.id);
     params.append("queueLimit", queueLimit);
-    console.log(JSON.stringify(Object.fromEntries(params))); // Log the params object
     const value = params;
     Limit(value, {
       onSuccess: async () => {
