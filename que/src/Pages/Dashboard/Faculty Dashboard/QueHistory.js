@@ -21,7 +21,7 @@ const QueHistory = () => {
             {Array.isArray(sortedHistory) &&
               sortedHistory.map((item) => (
                 <tr
-                  className="hover:ease-in cursor-pointer text-black  transition ease-in duration-75 font-semibold hover:border-2 hover:shadow-black hover:shadow-md"
+                  className="hover:ease-in cursor-pointer text-black  transition ease-in duration-75 font-normal hover:border-2 hover:shadow-black hover:shadow-md"
                   key={item?.idNumber}
                 >
                   <td className="p-4 ">

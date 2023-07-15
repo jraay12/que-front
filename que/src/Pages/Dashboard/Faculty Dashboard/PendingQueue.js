@@ -6,19 +6,18 @@ import Button from "../../../components/Button";
 import { io } from "socket.io-client";
 import { GetPending } from "../../../customHooks/axios";
 
-
 const PendingQueue = () => {
-  const token = sessionStorage.getItem("access_token"); 
+  const token = sessionStorage.getItem("access_token");
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const value = Object.values(auth);
   const { mutate: Status } = QueueStatus();
   const [statuses, setStatuses] = useState({});
 
-  const { data, refetch } = GetPending()
+  const { data, refetch } = GetPending();
 
   useEffect(() => {
-    if (!token) return; 
+    if (!token) return;
 
     const socket = io.connect("http://localhost:5000/queue/pending", {
       transports: ["websocket"],
@@ -31,9 +30,7 @@ const PendingQueue = () => {
       refetch();
     });
 
-    return () => {
-      socket.disconnect();
-    };
+    
   }, [token, refetch]);
 
   const handleOnHold = (id) => {
@@ -74,10 +71,9 @@ const PendingQueue = () => {
               filterData.map((item) => (
                 <React.Fragment key={item._id}>
                   <hr className="mt-4 border-none" />
-
                   <tr
-                    className={`hover:ease-in cursor-pointer text-black n ease-in duration-75 font-norml text-base  hover:scale-[1.01]  hover:shadow-black hover:shadow-md ${
-                      item.status === "On Hold" ? "bg-darkgray" : "bg-white"
+                    className={`hover:ease-in cursor-pointer text-black ease-in duration-75 font-normal text-base  hover:scale-[1.01]  hover:shadow-black hover:shadow-md ${
+                      item.status === "On Hold" ? "bg-slate-400" : "bg-white"
                     }`}
                   >
                     <td
