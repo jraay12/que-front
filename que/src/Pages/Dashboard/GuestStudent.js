@@ -15,7 +15,6 @@ const GuestStudent = () => {
   const openModal = false;
   const { data: getUser } = GetFaculty();
   const slidesPerView = Math.min(getUser?.length, 3);
-  console.log(getUser);
 
   return (
     <div className="flex max-h-screen min-h-screen w-screen flex-col bg-black bg-background bg-cover bg-no-repeat ">

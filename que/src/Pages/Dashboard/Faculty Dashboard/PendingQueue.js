@@ -26,6 +26,15 @@ const PendingQueue = () => {
       },  
     });
 
+
+    socket.io.on("reconnect_attempt", (attempt) => {
+      refetch()
+    });
+
+    socket.io.on("reconnect", (attempt) => {
+      refetch()
+    });
+    
     socket.on("queue", () => {
       refetch();
     });

@@ -38,7 +38,7 @@ const resetPassword = async (value, headers) => {
 
 export const ResetPassword = () => {
   const queryClient = useQueryClient();
-  let validation = sessionStorage.getItem("access_token");
+  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -57,7 +57,7 @@ const pendingQuery = async (headers) => {
 };
 
 export const GetPending = () => {
-  let validation = sessionStorage.getItem("access_token");
+  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -86,7 +86,7 @@ const queueHistory = async (headers) => {
 };
 
 export const GetHistory = () => {
-  let validation = sessionStorage.getItem("access_token");
+  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -100,7 +100,7 @@ const sendEmail = async (notify, headers) => {
 };
 
 export const NotifyQuery = () => {
-  let validation = sessionStorage.getItem("access_token");
+  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -116,7 +116,7 @@ const queueStatus = async (value, headers) => {
 
 export const QueueStatus = () => {
   const queryClient = useQueryClient();
-  let validation = sessionStorage.getItem("access_token");
+  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -124,7 +124,7 @@ export const QueueStatus = () => {
 
   return useMutation((value) => queueStatus(value, headers), {
     onSuccess: () => {
-      queryClient.invalidateQueries("pending");
+      queryClient.invalidateQueries('pending');
     },
   });
 };
@@ -147,7 +147,7 @@ export const Register = () => {
 
 //for Set limit queue
 const setLimit = async (value) => {
-  let validation = sessionStorage.getItem("access_token");
+  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",
@@ -166,7 +166,7 @@ export const SetLimit = () => {
 
 // For Status
 const status = async (value) => {
-  let validation = sessionStorage.getItem("access_token");
+  const validation = sessionStorage.getItem("access_token");
   const headers = {
     Authorization: `Bearer ${validation}`,
     "Content-Type": "application/x-www-form-urlencoded",

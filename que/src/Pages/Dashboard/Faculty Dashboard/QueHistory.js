@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GetHistory } from "../../../customHooks/axios";
 
 const QueHistory = () => {
-  const { data: History } = GetHistory();
+  const { data: History, refetch } = GetHistory();
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const sortedHistory = History?.sort((a, b) => a.timestamp - b.timestamp);
+
   return (
     <div className="flex min-h-screen w-full items-center justify-center overflow-hidden">
       <div className="mx-10 max-h-[80%] min-h-[70%] w-full overflow-auto overflow-x-hidden  bg-white  pb-10 shadow-2xl shadow-black drop-shadow backdrop-blur-sm">
@@ -21,7 +26,7 @@ const QueHistory = () => {
             {Array.isArray(sortedHistory) &&
               sortedHistory.map((item) => (
                 <tr
-                  className="cursor-pointer font-normal text-black  transition duration-75 ease-in hover:border-2 hover:shadow-md hover:shadow-black hover:ease-in"
+                  className="cursor-pointer font-normal text-black  transition duration-75 ease-in hover:shadow-md hover:shadow-black hover:ease-in"
                   key={item?.idNumber}
                 >
                   <td className="p-4 ">
